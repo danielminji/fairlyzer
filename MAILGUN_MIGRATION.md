@@ -14,7 +14,7 @@ Add the following variables to your `.env` file:
 
 ```
 MAILGUN_DOMAIN=your-domain.mailgun.org
-MAILGUN_SECRET=f3b8dcf8f9065480ab7dc7008e9f6538-51afd2db-463c25e0
+MAILGUN_SECRET=your-secret
 MAILGUN_FROM_EMAIL=noreply@your-domain.com
 MAILGUN_FROM_NAME="Resume System"
 ```
