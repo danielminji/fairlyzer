@@ -8,7 +8,7 @@ import json
 # Add lib directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lib"))
 
-from lib.api_helpers import make_api_request 
+from lib.api_helpers import make_api_request # Use the wrapper that returns 2 values
 from lib.ui_components import load_css, handle_api_error
 from lib.navigation import display_sidebar_navigation
 
@@ -46,7 +46,7 @@ ORGANIZERS_ENDPOINT = "admin/users/organizers" # Hypothetical, may need to fetch
 
 # --- Helper Functions ---
 def fetch_job_fairs():
-    response, success = make_api_request(JOB_FAIRS_ENDPOINT, "GET", params={'per_page': 'all'}) # Fetch all
+    response, success = make_api_request(JOB_FAIRS_ENDPOINT, "GET", params={'per_page': 'all'})
     if success:
         return response.get('data', []) if isinstance(response, dict) else []
     else:
@@ -54,10 +54,7 @@ def fetch_job_fairs():
         return []
 
 def fetch_organizers():
-    # This is a placeholder. We might need a dedicated endpoint or filter users.
-    # For now, let's assume admin/job-fairs controller's getOrganizers method.
-    # The JobFairController in admin has a getOrganizers method.
-    response, success = make_api_request("admin/job-fairs/organizers", "GET") # Uses the one from Admin\JobFairController
+    response, success = make_api_request("admin/job-fairs/organizers", "GET")
     if success:
         return response.get('data', []) if isinstance(response, dict) else []
     else:
@@ -175,12 +172,12 @@ with tab_list:
                 st.warning(f"Are you sure you want to delete Job Fair: '{jf.get('title', job_fair_id)}'? This action cannot be undone.")
                 confirm_cols = st.columns([1,1,8])
                 if confirm_cols[0].button("Yes, Delete", key=f"confirm_delete_jf_btn_{job_fair_id}"):
-                    response, success, status_code = make_api_request(f"{JOB_FAIRS_ENDPOINT}/{job_fair_id}", "DELETE", return_status_code=True)
-                    if success or status_code == 204:
+                    response, success, _ = make_api_request(f"{JOB_FAIRS_ENDPOINT}/{job_fair_id}", "DELETE", return_status_code=True)
+                    if success:
                         st.session_state.success_message_jf_admin = f"Job Fair ID {job_fair_id} deleted successfully."
                     else:
                         error_detail = response.get('error', 'Failed to delete job fair.')
-                        st.session_state.error_message_jf_admin = f"Error deleting Job Fair ID {job_fair_id}: {error_detail} (Status: {status_code})"
+                        st.session_state.error_message_jf_admin = f"Error deleting Job Fair ID {job_fair_id}: {error_detail}"
                     st.session_state.confirm_delete_job_fair_id = None
                     st.rerun()
                 if confirm_cols[1].button("Cancel", key=f"cancel_delete_jf_btn_{job_fair_id}"):
@@ -273,7 +270,7 @@ with tab_create:
                         JOB_FAIRS_ENDPOINT, 
                         "POST", 
                         data=payload,
-                        files=files_payload if files_payload else None,
+                        files=files_payload if files_payload else {},
                         return_status_code=True
                     )
 
@@ -349,13 +346,19 @@ if st.session_state.editing_job_fair_id:
             if job_fair_to_edit.get('formatted_address'):
                 st.caption(f"Currently geocoded as: {job_fair_to_edit.get('formatted_address')}")
             elif job_fair_to_edit.get('latitude') and job_fair_to_edit.get('longitude'):
-                st.caption(f"Current coordinates: Lat: {job_fair_to_edit.get('latitude')}, Lon: {job_fair_to_edit.get('longitude')}")
-
-            # Date and Time inputs
+                st.caption(f"Current coordinates: Lat: {job_fair_to_edit.get('latitude')}, Lon: {job_fair_to_edit.get('longitude')}")            # Date and Time inputs
             # Safely parse datetimes, provide defaults if parsing fails
             try:
-                current_start_datetime_obj = pd.to_datetime(job_fair_to_edit.get('start_datetime')).to_pydatetime()
-                current_end_datetime_obj = pd.to_datetime(job_fair_to_edit.get('end_datetime')).to_pydatetime()
+                start_datetime_str = job_fair_to_edit.get('start_datetime')
+                end_datetime_str = job_fair_to_edit.get('end_datetime')
+                if start_datetime_str:
+                    current_start_datetime_obj = pd.to_datetime(start_datetime_str).to_pydatetime()
+                else:
+                    current_start_datetime_obj = datetime.now()
+                if end_datetime_str:
+                    current_end_datetime_obj = pd.to_datetime(end_datetime_str).to_pydatetime()
+                else:
+                    current_end_datetime_obj = datetime.now() + timedelta(days=1)
             except Exception:
                 current_start_datetime_obj = datetime.now()
                 current_end_datetime_obj = datetime.now() + timedelta(days=1)
@@ -468,9 +471,7 @@ if st.session_state.selected_job_fair_id_for_booths:
     st.divider()
     st.subheader(f"Manage Booths for: {st.session_state.selected_job_fair_title_for_booths} (Job Fair ID: {st.session_state.selected_job_fair_id_for_booths})")
 
-    job_fair_id_for_booths = st.session_state.selected_job_fair_id_for_booths
-
-    # --- Helper function to fetch booths for the current job fair ---
+    job_fair_id_for_booths = st.session_state.selected_job_fair_id_for_booths    # --- Helper function to fetch booths for the current job fair ---
     def fetch_booths_for_job_fair(jf_id):
         endpoint = f"admin/job-fairs/{jf_id}/booths"
         response, success = make_api_request(endpoint, "GET")
@@ -529,12 +530,12 @@ if st.session_state.selected_job_fair_id_for_booths:
                 st.warning(f"Delete Booth: '{booth.get('company_name', booth_id)}'? This may also delete associated job openings.")
                 b_confirm_cols = st.columns([1,1,8])
                 if b_confirm_cols[0].button("Yes, Delete Booth", key=f"confirm_del_booth_btn_{booth_id}"):
-                    del_response, del_success, del_status_code = make_api_request(f"admin/booths/{booth_id}", "DELETE", return_status_code=True)
-                    if del_success or del_status_code == 204:
+                    del_response, del_success = make_api_request(f"admin/booths/{booth_id}", "DELETE")
+                    if del_success:
                         st.session_state.success_message_booth_admin = f"Booth ID {booth_id} deleted."
                     else:
                         err_detail = del_response.get('error', 'Failed to delete booth.')
-                        st.session_state.error_message_booth_admin = f"Error deleting Booth {booth_id}: {err_detail} (Status: {del_status_code})"
+                        st.session_state.error_message_booth_admin = f"Error deleting Booth {booth_id}: {err_detail}"
                     st.session_state.confirm_delete_booth_id = None
                     st.rerun()
                 if b_confirm_cols[1].button("Cancel Delete", key=f"cancel_del_booth_btn_{booth_id}"):
@@ -563,15 +564,15 @@ if st.session_state.selected_job_fair_id_for_booths:
                         # 'map_coordinates': json.loads(nb_map_coordinates) if nb_map_coordinates else None # Example if using JSON input
                     }
                     add_booth_endpoint = f"admin/job-fairs/{job_fair_id_for_booths}/booths"
-                    response, success, status_code = make_api_request(add_booth_endpoint, "POST", data=payload, return_status_code=True)
+                    response, success = make_api_request(add_booth_endpoint, "POST", data=payload)
 
-                    if success and (status_code == 201 or status_code == 200):
+                    if success:
                         st.session_state.success_message_booth_admin = f"Booth '{nb_company_name}' added successfully."
                         st.rerun()
                     else:
                         error_detail = response.get('error', response.get('message', 'Failed to add booth.'))
                         if 'errors' in response: error_detail = response['errors']
-                        st.session_state.error_message_booth_admin = f"Error adding booth: {error_detail} (Status: {status_code})"
+                        st.session_state.error_message_booth_admin = f"Error adding booth: {error_detail}"
                         st.rerun() # Rerun to show the error and persist form data
 
     # --- Edit Booth Form (Placeholder/Initial Setup) ---
@@ -604,9 +605,9 @@ if st.session_state.selected_job_fair_id_for_booths:
                         # 'map_coordinates': json.loads(edit_b_map_coordinates) if edit_b_map_coordinates else None
                     }
                     update_booth_endpoint = f"admin/booths/{st.session_state.editing_booth_id}"
-                    response, success, status_code = make_api_request(update_booth_endpoint, "PUT", data=update_payload, return_status_code=True)
+                    response, success = make_api_request(update_booth_endpoint, "PUT", data=update_payload)
 
-                    if success and (status_code == 200 or status_code == 204):
+                    if success:
                         st.session_state.success_message_booth_admin = f"Booth ID {st.session_state.editing_booth_id} updated."
                         st.session_state.editing_booth_id = None
                         st.session_state.booth_data_for_edit = {}
@@ -614,7 +615,7 @@ if st.session_state.selected_job_fair_id_for_booths:
                     else:
                         error_detail = response.get('error', response.get('message', 'Update failed.'))
                         if 'errors' in response: error_detail = response['errors']
-                        st.session_state.error_message_booth_admin = f"Error updating booth {st.session_state.editing_booth_id}: {error_detail} (Status: {status_code})"
+                        st.session_state.error_message_booth_admin = f"Error updating booth {st.session_state.editing_booth_id}: {error_detail}"
                         st.rerun() # Rerun to display error and keep form open
 
     st.markdown("---    ")

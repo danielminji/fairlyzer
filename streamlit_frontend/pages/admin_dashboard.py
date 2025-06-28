@@ -8,7 +8,8 @@ from datetime import datetime, timedelta
 # Add lib directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lib"))
 
-from lib.api_helpers import make_api_request, safe_get_users, safe_get_organizers, is_api_healthy
+from lib.api import make_api_request  # Direct import from api.py for 3-value return
+from lib.api_helpers import safe_get_users, safe_get_organizers, is_api_healthy
 from lib.ui_components import load_css, render_header, render_status_indicator, handle_api_error
 from lib.navigation import display_sidebar_navigation
 
@@ -73,15 +74,13 @@ def get_all_job_fairs():
 
 def get_all_job_requirements():
     """Get all job requirements from API"""
-    # Updated to fetch all job requirements
     result, success = make_api_request("admin/job-requirements", "GET", params={'per_page': 'all'})
     if success:
-        # Ensure data is extracted correctly, backend might wrap in 'data' or be a direct list
         if isinstance(result, dict) and 'data' in result:
             return result['data']
-        elif isinstance(result, list): # If API directly returns a list (less likely for this admin endpoint now)
-             return result
-        return [] # Default to empty list if structure is unexpected
+        elif isinstance(result, list):
+            return result
+        return []
     return []
 
 def update_user_role(user_id, new_role):
@@ -201,10 +200,11 @@ with tab2:
                 with col2:
                     role_options = ["user", "organizer", "admin"]
                     current_role = user.get('role', 'user')
+                    role_index = role_options.index(current_role) if current_role in role_options else 0
                     new_role = st.selectbox(
                         "Role", 
                         options=role_options,
-                        index=role_options.index(current_role),
+                        index=role_index,
                         key=f"role_{user.get('id')}"
                     )
                 with col3:
@@ -327,8 +327,7 @@ with tab5:
     # Configuration (placeholder)
     st.subheader("Configuration")
     st.info("System configuration options will be added here in future updates.")
-    
-    # Maintenance Actions
+      # Maintenance Actions
     st.subheader("Maintenance")
     col1, col2, col3 = st.columns(3)
     

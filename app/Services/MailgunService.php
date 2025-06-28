@@ -34,14 +34,21 @@ class MailgunService
 
     /**
      * Create a new Mailgun Service instance.
-     */
-    public function __construct()
+     */    public function __construct()
     {
         $this->apiKey = config('services.mailgun.secret');
         $this->domain = config('services.mailgun.domain');
         $this->apiUrl = "https://api.mailgun.net/v3/{$this->domain}/messages";
         $this->fromEmail = config('services.mailgun.from_email', 'noreply@' . $this->domain);
         $this->fromName = config('services.mailgun.from_name', 'Resume System');
+        
+        // Log configuration for debugging
+        Log::debug('Mailgun Configuration', [
+            'domain' => $this->domain,
+            'from_email' => $this->fromEmail,
+            'api_key_present' => !empty($this->apiKey),
+            'api_url' => $this->apiUrl
+        ]);
     }
 
     /**
@@ -75,14 +82,19 @@ class MailgunService
             // If you want to use Mailgun templates, you'd add template parameters here
             
             // Make API call to Mailgun
-            $response = Http::withBasicAuth('api', $this->apiKey)->asForm()->post($this->apiUrl, $data);
-
-            if ($response->successful()) {
+            $response = Http::withBasicAuth('api', $this->apiKey)->asForm()->post($this->apiUrl, $data);            if ($response->successful()) {
                 Log::info('Email sent successfully via Mailgun', ['to' => $to_email, 'subject' => $subject]);
                 return true;
             }
             
-            Log::error('Mailgun Error: ' . $response->body());
+            Log::error('Mailgun Error', [
+                'status' => $response->status(),
+                'body' => $response->body(),
+                'to' => $to_email,
+                'subject' => $subject,
+                'domain' => $this->domain,
+                'from_email' => $this->fromEmail
+            ]);
             return false;
         } catch (\Exception $e) {
             Log::error('Mailgun Exception: ' . $e->getMessage());

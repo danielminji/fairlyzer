@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 import sys
 import os
@@ -6,7 +7,8 @@ import os
 # Add lib directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lib"))
 
-from lib.api_helpers import make_api_request, safe_get_users, safe_get_organizers, is_api_healthy
+from lib.api import make_api_request  # Direct import from api.py for 3-value return
+from lib.api_helpers import safe_get_users, safe_get_organizers, is_api_healthy
 from lib.ui_components import load_css, render_header, render_status_indicator, handle_api_error
 from lib.navigation import display_sidebar_navigation
 
@@ -89,6 +91,68 @@ if "authenticated" not in st.session_state or not st.session_state.authenticated
     if st.button("Go to Login"):
         st.switch_page("app.py")
     st.stop()
+
+# Check if we should display a user profile
+if "view_user" in st.session_state and st.session_state.view_user:
+    user = st.session_state.view_user
+    
+    # Header with back button
+    col1, col2 = st.columns([1, 4])
+    with col1:
+        if st.button("← Back to User Management", use_container_width=True):
+            del st.session_state.view_user
+            st.rerun()
+    
+    with col2:
+        st.title(f"User Profile: {user.get('name', 'Unknown')}")
+    
+    # User profile details
+    st.divider()
+    
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        st.subheader("Basic Information")
+        st.write(f"**Name:** {user.get('name', 'Unknown')}")
+        st.write(f"**Email:** {user.get('email', 'No email')}")
+        st.write(f"**Role:** {user.get('role', 'user').upper()}")
+        st.write(f"**Status:** {'ACTIVE' if user.get('is_active', True) else 'INACTIVE'}")
+        st.write(f"**Joined:** {user.get('created_at', 'Unknown')}")
+        if user.get('company_name'):
+            st.write(f"**Company:** {user.get('company_name')}")
+    
+    with col2:
+        st.subheader("Profile Actions")
+        
+        # Role management
+        if st.session_state.user_id != user.get('id'):
+            st.write("**Role Management:**")
+            current_role = user.get('role', 'user')
+            new_role = st.selectbox("Change Role", 
+                                   options=["user", "organizer", "admin"],
+                                   index=["user", "organizer", "admin"].index(current_role),
+                                   key=f"profile_role_{user.get('id')}")
+            
+            if new_role != current_role:
+                if st.button("Update Role", key=f"profile_update_role_{user.get('id')}"):
+                    with st.spinner("Updating role..."):
+                        success, result = update_user_role(user.get('id'), new_role)
+                        if success:
+                            st.success(f"Role updated to {new_role}!")
+                            # Update the session state user data
+                            st.session_state.view_user['role'] = new_role
+                            st.rerun()
+                        else:
+                            error_msg = result.get('error', 'Failed to update role') if isinstance(result, dict) else 'Failed to update role'
+                            st.error(error_msg)
+        else:
+            st.info("You cannot modify your own profile from this page.")
+    
+    # Additional user data if available
+    if user.get('email_verified_at'):
+        st.write(f"**Email Verified:** {user.get('email_verified_at')}")
+    
+    st.stop()  # Don't show the rest of the page when viewing a profile
 
 # Check admin permissions
 if st.session_state.user_role != "admin":
@@ -366,6 +430,7 @@ with tabs[3]:
             with cols[0]:
                 if st.button("View Profile", key=f"view_{user.get('id')}", use_container_width=True):
                     st.session_state.view_user = user
+                    st.rerun()
             
             with cols[1]:
                 if st.button("Promote to Organizer", key=f"promote_{user.get('id')}", use_container_width=True):
@@ -402,4 +467,4 @@ if initial_tab > 0:
         }}, 100);
     </script>
     """
-    st.components.v1.html(js, height=0) 
+    components.html(js, height=0) 
