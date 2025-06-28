@@ -14,6 +14,15 @@ from .api import make_api_request, API_BASE_URL # Assuming API_BASE_URL is expos
 # For now, assuming `from .api import API_BASE_URL` works or `is_api_healthy` will be adapted.
 import requests # Keep requests for is_api_healthy if it remains independent.
 
+def _safe_api_call(endpoint, method="GET", data=None):
+    """Helper function to handle API calls with consistent return values"""
+    if data is None:
+        api_result = make_api_request(endpoint=endpoint, method=method)
+    else:
+        api_result = make_api_request(endpoint=endpoint, method=method, data=data)
+    # Always return just the first two values (result, success)
+    return api_result[0], api_result[1]
+
 def is_api_healthy():
     """Check if the API is responding and returning proper responses"""
     try:
@@ -36,7 +45,8 @@ def is_api_healthy():
 def safe_get_users():
     """Get users with improved error handling, using the main api.py make_api_request"""
     # make_api_request from .api handles auth headers internally
-    result, success = make_api_request(endpoint="admin/users", method="GET")
+    result, success = _safe_api_call(endpoint="admin/users", method="GET")
+    
     if success:
         return result.get("data", []), True
     else:
@@ -47,7 +57,8 @@ def safe_get_users():
 def safe_get_organizers(status="pending"):
     """Get organizers with improved error handling, using the main api.py make_api_request"""
     endpoint = f"admin/organizers/{status}"
-    result, success = make_api_request(endpoint=endpoint, method="GET")
+    result, success = _safe_api_call(endpoint=endpoint, method="GET")
+    
     if success:
         # Both pending and approved now return data wrapped in "data" key
         return result.get("data", []), True

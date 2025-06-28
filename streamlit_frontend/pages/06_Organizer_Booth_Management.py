@@ -429,6 +429,36 @@ if job_fair_details:
 
     # --- Booth Listing and Management ---
     st.header("Manage Booths")
+
+    # --- Add Booth Form (always visible) ---
+    with st.form("add_booth_form", clear_on_submit=True):
+        st.subheader("Add a New Booth")
+        new_company_name = st.text_input("Company Name", key="add_booth_company_name")
+        new_booth_number = st.text_input("Booth Number", key="add_booth_number")
+        add_booth_submitted = st.form_submit_button("Add Booth")
+        if add_booth_submitted:
+            if not new_company_name or not new_booth_number:
+                st.warning("Both Company Name and Booth Number are required.")
+            else:
+                headers = get_organizer_auth_headers()
+                if headers:
+                    try:
+                        create_url = f"{ORGANIZER_JOB_FAIRS_URL}/{job_fair_id}/booths"
+                        payload = {
+                            "company_name": new_company_name,
+                            "booth_number_on_map": new_booth_number
+                        }
+                        response = requests.post(create_url, headers=headers, json=payload)
+                        response.raise_for_status()
+                        st.success("Booth added successfully!")
+                        st.rerun()
+                    except requests.exceptions.HTTPError as e:
+                        st.error(f"Failed to add booth: {e.response.status_code} - {e.response.text}")
+                    except Exception as e:
+                        st.error(f"An error occurred: {e}")
+                else:
+                    st.error("Authentication error. Please log in again.")
+
     booths_data = fetch_booths_for_job_fair(job_fair_id)
 
     if booths_data:

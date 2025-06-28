@@ -579,7 +579,7 @@ class EnhancedParser:
                         # Example: candidate_for_ner="Universiti Teknologi MARA", final_acronym_part="(UiTM)"
                         # spaCy on "Universiti Teknologi MARA" might give ['Universiti', 'UiTM'] or just ['Universiti']
                         # We want to prefer "Universiti Teknologi MARA" in such cases.
-                        if phénomènes_like_uitm_or_ukm := (
+                        if (
                             candidate_for_ner.lower().startswith("universiti") and
                             acronym_core_from_final_part and # We have a distinct acronym like (UiTM)
                             (
@@ -587,8 +587,12 @@ class EnhancedParser:
                                 acronym_core_from_final_part.lower() in base_ner_name.lower() # NER merged part of acronym
                             ) and
                             len(candidate_for_ner.split()) > len(base_ner_name.split()) # Adjusted condition
+                        ) or (
+                            # PATCH: If NER result is a single generic word (e.g. 'Universiti') and candidate is longer, prefer candidate
+                            base_ner_name.lower() in ["universiti", "university", "college", "institute", "school"] and
+                            len(candidate_for_ner.split()) > 1
                         ):
-                            if self.debug: print(f"DEBUG_INST_NER: UiTM/UKM-like case. NER='{base_ner_name}', Candidate='{candidate_for_ner}'. Preferring candidate.")
+                            if self.debug: print(f"DEBUG_INST_NER: UiTM/UKM-like or generic case. NER='{base_ner_name}', Candidate='{candidate_for_ner}'. Preferring candidate.")
                             ner_extracted_institution_parts.append(candidate_for_ner)
                         
                         # Scenario 2: NER is good, and the original candidate_for_ner is not significantly richer

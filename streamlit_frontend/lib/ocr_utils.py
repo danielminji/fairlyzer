@@ -4,6 +4,7 @@ import pytesseract
 from PIL import Image, ImageDraw
 import requests
 from io import BytesIO
+import re
 
 # Optional: Specify Tesseract path if not in system PATH
 # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe' # Example for Windows
@@ -61,7 +62,7 @@ def highlight_booths_on_map(image_bytes, recommended_booth_numbers):
     
     try:
         # Use pytesseract to get detailed data including bounding boxes
-        tesseract_config = '--psm 11 --oem 3 -c tessedit_char_whitelist=0123456789' # REVERTED to PSM 11
+        tesseract_config = '--psm 6 --oem 3'
         ocr_data = pytesseract.image_to_data(dilated_image, output_type=pytesseract.Output.DICT, config=tesseract_config)
         
         n_boxes = len(ocr_data['level'])
@@ -81,101 +82,40 @@ def highlight_booths_on_map(image_bytes, recommended_booth_numbers):
                     "box": (ocr_data['left'][i], ocr_data['top'][i], ocr_data['width'][i], ocr_data['height'][i]),
                     "conf": conf
                 })
-
-        # Logic to match recommended_booth_numbers
-        for rec_num_str in recommended_booth_numbers:
-            rec_num_str = str(rec_num_str) # Ensure it's a string
-            found_match_for_this_rec_num = False
-
-            # Attempt 1: Direct match for the recommended number
+        print("DEBUG: OCR Detected Texts:")
+        for det in raw_detections:
+            print(f"  Text: '{det['text']}' Conf: {det['conf']} Box: {det['box']}")
+        print(f"DEBUG: Recommended booth numbers: {recommended_booth_numbers}")
+        # Try matching both digit-only and 'Booth X' style
+        for rec_num in recommended_booth_numbers:
+            rec_num_str = str(rec_num)
+            # Accept both digit-only and 'Booth X' style
+            possible_patterns = [rec_num_str, f"Booth {rec_num_str}", f"Booth{rec_num_str}"]
+            found_match = False
             for detection in raw_detections:
-                if detection["text"] == rec_num_str and detection["conf"] > 50:
-                    x, y, w, h = detection["box"]
-                    existing_entry = next((fb for fb in found_booth_boxes if fb["text"] == detection["text"] and fb["box"] == (x,y,w,h)), None)
-                    if not existing_entry:
+                for pat in possible_patterns:
+                    if detection["text"].replace(" ", "").lower() == pat.replace(" ", "").lower() and detection["conf"] > 50:
+                        x, y, w, h = detection["box"]
                         found_booth_boxes.append({
                             "text": detection["text"],
-                            "box": (x, y, w, h) 
+                            "box": (x, y, w, h)
                         })
-                        print(f"OCR DIRECT MATCH & Kept: '{detection['text']}' at ({x},{y},{w},{h}) conf: {detection['conf']}")
-                    found_match_for_this_rec_num = True
-                    break 
-            
-            if found_match_for_this_rec_num:
-                continue
-
-            # Attempt 2: Combination logic for two-digit numbers if not directly found
-            if len(rec_num_str) == 2 and not found_match_for_this_rec_num:
-                digit1_char = rec_num_str[0]
-                digit2_char = rec_num_str[1]
-
-                possible_d1s = [d for d in raw_detections if d["text"] == digit1_char and d["conf"] > 40]
-                possible_d2s = [d for d in raw_detections if d["text"] == digit2_char and d["conf"] > 40]
-
-                for d1 in possible_d1s:
-                    d1_x, d1_y, d1_w, d1_h = d1["box"]
-                    d1_center_y = d1_y + d1_h / 2
-                    d1_right_edge = d1_x + d1_w
-
-                    for d2 in possible_d2s:
-                        if d1 == d2: continue 
-                        d2_x, d2_y, d2_w, d2_h = d2["box"]
-                        d2_center_y = d2_y + d2_h / 2
-
-                        max_horizontal_gap_abs = d1_w * 0.6 
-                        max_vertical_offset_abs = d1_h * 0.5 
-                        
-                        horizontal_gap = d2_x - d1_right_edge
-                        vertical_offset = abs(d1_center_y - d2_center_y)
-
-                        if (d2_x > d1_x and 
-                            horizontal_gap >= -(d1_w * 0.3) and 
-                            horizontal_gap < max_horizontal_gap_abs and 
-                            vertical_offset < max_vertical_offset_abs):
-                            
-                            combined_x = d1_x
-                            combined_y = min(d1_y, d2_y)
-                            combined_w = (d2_x + d2_w) - d1_x 
-                            combined_h = max(d1_y + d1_h, d2_y + d2_h) - combined_y 
-
-                            print(f"OCR COMBINED MATCH for '{rec_num_str}': Found '{d1['text']}' and '{d2['text']}' nearby. Combined Box: ({combined_x},{combined_y},{combined_w},{combined_h})")
-                            found_booth_boxes.append({
-                                "text": rec_num_str, 
-                                "box": (combined_x, combined_y, combined_w, combined_h)
-                            })
-                            found_match_for_this_rec_num = True
-                            break 
-                    if found_match_for_this_rec_num:
-                        break 
-
-            # ATTEMPT 3: Heuristic for specific problematic two-digit numbers where the first digit might be "eaten"
-            if len(rec_num_str) == 2 and not found_match_for_this_rec_num:
-                first_digit_of_rec = rec_num_str[0]
-                second_digit_of_rec = rec_num_str[1]
-
-                if first_digit_of_rec == '1':
-                    possible_lone_second_digits = [
-                        d for d in raw_detections
-                        if d["text"] == second_digit_of_rec and d["conf"] > 70 
-                    ]
-                    # print(f"DEBUG Attempt 3: For rec_num '{rec_num_str}', possible_lone_second_digits: {possible_lone_second_digits}") #生产环境下注释掉
-
-                    for lone_d2_detection in possible_lone_second_digits:
-                        d2_x, d2_y, d2_w, d2_h = lone_d2_detection["box"]
-                        # print(f"DEBUG Attempt 3: Checking lone '{lone_d2_detection['text']}' (w:{d2_w}, h:{d2_h}) for rec_num '{rec_num_str}'") #生产环境下注释掉
-
-                        if d2_w > (d2_h * 0.8): 
-                            print(f"OCR HEURISTIC (Attempt 3) for '{rec_num_str}': Found lone '{lone_d2_detection['text']}' (conf {lone_d2_detection['conf']}) with wide box (w:{d2_w}, h:{d2_h}). Assuming it's {rec_num_str}.")
-                            found_booth_boxes.append({
-                                "text": rec_num_str,
-                                "box": (d2_x, d2_y, d2_w, d2_h) 
-                            })
-                            found_match_for_this_rec_num = True
-                            break 
-            
-            # End of ATTEMPT 3
-        # --- All highlighting logic is now conditional on recommended_booth_numbers ---
-
+                        print(f"MATCHED: '{detection['text']}' for recommended '{rec_num_str}' at {detection['box']}")
+                        found_match = True
+                        break
+                if found_match:
+                    break
+        # Fallback: try partial match if nothing found
+        if not found_booth_boxes:
+            for rec_num in recommended_booth_numbers:
+                for detection in raw_detections:
+                    if rec_num in detection["text"] and detection["conf"] > 50:
+                        x, y, w, h = detection["box"]
+                        found_booth_boxes.append({
+                            "text": detection["text"],
+                            "box": (x, y, w, h)
+                        })
+                        print(f"PARTIAL MATCH: '{detection['text']}' for recommended '{rec_num}' at {detection['box']}")
     except pytesseract.TesseractNotFoundError:
         print("Tesseract is not installed or not in your PATH.")
         return pil_image # Return original image
@@ -219,9 +159,9 @@ def highlight_booths_on_map(image_bytes, recommended_booth_numbers):
         final_padded_box_for_pillow = (padded_x0_for_pillow, padded_y0_for_pillow, padded_x1_for_pillow, padded_y1_for_pillow)
 
         # Draw a semi-transparent rectangle
-        draw.rectangle(final_padded_box_for_pillow, outline="red", fill=(255, 0, 0, 70), width=3)
+        draw.rectangle(final_padded_box_for_pillow, outline="red", fill=(255, 0, 0, 200), width=8)
         
         # Optionally, draw the detected text again (e.g., if preprocessing made it hard to see)
-        # draw.text((box[0], box[1] - 10), item["text"], fill="red")
+        draw.text((padded_x0_for_pillow, padded_y0_for_pillow - 20), item["text"], fill="red")
 
-    return pil_image 
+    return pil_image

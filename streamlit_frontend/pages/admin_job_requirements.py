@@ -8,7 +8,7 @@ import sys # Import sys
 # This assumes 'pages' is a subdir of 'streamlit_frontend' and 'lib' is also a subdir of 'streamlit_frontend'
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from lib.api import make_api_request # Corrected import
+from lib.api import make_api_request # Direct import from api.py
 from lib.navigation import display_sidebar_navigation # Corrected import
 from lib.ui_components import load_css # Corrected import, render_header removed as it was causing issues
 
@@ -75,15 +75,12 @@ st.divider()
 
 # --- Fetch Job Requirements ---
 def fetch_job_requirements():
-    # Pass params={'per_page': 'all'} to fetch all job requirements
     response, success = make_api_request(JOB_REQUIREMENTS_ENDPOINT, "GET", params={'per_page': 'all'})
     if success:
-        # The backend now wraps non-paginated results in 'data' key as well for consistency
         data = response.get('data', []) if isinstance(response, dict) else response
         if isinstance(data, list):
-            # Sort by ID ascending (oldest first)
             return sorted(data, key=lambda x: x.get('id', 0), reverse=False)
-        return data # Should be a list, but return as is if not
+        return data
     else:
         st.error(f"Failed to fetch job requirements: {response.get('error', 'Unknown error') if isinstance(response, dict) else 'Unknown error'}")
         return []
@@ -359,7 +356,7 @@ with st.form(key="add_job_requirement_form", clear_on_submit=True):
             # Remove None values from payload keys like skills if they were empty strings
             payload = {k: v for k, v in payload.items() if v is not None}
             
-            response, success = make_api_request(JOB_REQUIREMENTS_ENDPOINT, "POST", data=payload)
+            response, success, _ = make_api_request(JOB_REQUIREMENTS_ENDPOINT, "POST", data=payload)
             if success:
                 st.success(f"Job Requirement '{add_job_title}' added successfully!")
                 st.rerun()
