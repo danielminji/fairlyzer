@@ -423,6 +423,21 @@ def get_job_recommendations(resume_id: int) -> Tuple[Dict, bool]:
 # Job Fair API
 # ==========================================
 
+def _add_map_image_url_to_job_fair(jf):
+    """Ensure every job fair dict has a map_image_url field if map_image_path is present."""
+    if not isinstance(jf, dict):
+        return jf
+    map_path = jf.get('map_image_path')
+    if map_path:
+        # Always use /storage/ prefix for public access
+        if not str(map_path).startswith('/storage/'):
+            jf['map_image_url'] = f"https://fairlyzer.me/storage/{str(map_path).lstrip('/')}"
+        else:
+            jf['map_image_url'] = f"https://fairlyzer.me{map_path}"
+    else:
+        jf['map_image_url'] = None
+    return jf
+
 def get_all_job_fairs() -> Tuple[Dict, bool]:
     """
     Get all job fairs. This should ideally fetch from a public endpoint
@@ -430,7 +445,11 @@ def get_all_job_fairs() -> Tuple[Dict, bool]:
     For now, using a generic '/job-fairs' which might be admin-only or public based on backend.
     Assuming it's public or the role is handled by the backend.
     """
-    return make_api_request("public/job-fairs", "GET")
+    resp, success = make_api_request("public/job-fairs", "GET")
+    if success and isinstance(resp, dict) and 'data' in resp:
+        for jf in resp['data']:
+            _add_map_image_url_to_job_fair(jf)
+    return resp, success
 
 def get_job_fair_openings(job_fair_id: int) -> Tuple[Dict, bool]:
     """
@@ -445,7 +464,10 @@ def get_job_fair_details(job_fair_id: int) -> Tuple[Dict, bool]:
     """
     Fetch details for a specific job fair.
     """
-    return make_api_request(f"organizer/job-fairs/{job_fair_id}", "GET") # Assuming this is an organizer endpoint
+    resp, success = make_api_request(f"organizer/job-fairs/{job_fair_id}", "GET")
+    if success and isinstance(resp, dict) and 'data' in resp:
+        _add_map_image_url_to_job_fair(resp['data'])
+    return resp, success
 
 def create_job_fair(data: Dict, map_file = None) -> Tuple[Dict, bool]:
     """
