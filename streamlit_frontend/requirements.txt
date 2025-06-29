@@ -16,9 +16,6 @@ nltk>=3.8.1
 python-multipart>=0.0.6
 scikit-learn>=1.3.0
 # PDF and document processing
-pdfplumber>=0.10.2
-PyPDF2>=3.0.1
-python-docx>=0.8.11
 # OCR and image processing
 pdf2image>=1.16.3
 pytesseract>=0.3.10
@@ -30,4 +27,10 @@ wordcloud>=1.9.2
 # For testing and development
 reportlab>=4.0.4
 streamlit-authenticator>=0.3.0
-streamlit-cropper 
+streamlit-cropper
+# Map and geolocation dependencies
+folium
+streamlit-folium
+branca
+streamlit-geolocation
+jinja2 
