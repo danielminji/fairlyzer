@@ -174,8 +174,9 @@ class ResumeParserService
                 $this->createEnhancedParserCLI();
             
             // Prepare the command
+            $venvPython = base_path('streamlit_frontend/venv/bin/python');
             $escapedFilePath = escapeshellarg($filePath);
-            $command = "python " . escapeshellarg($pythonScript) . " " . $escapedFilePath;
+            $command = escapeshellarg($venvPython) . " " . escapeshellarg($pythonScript) . " " . $escapedFilePath;
             
             // Execute the command and capture output
             $output = shell_exec($command);
