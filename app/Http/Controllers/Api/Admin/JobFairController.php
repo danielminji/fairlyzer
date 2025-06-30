@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Services\GeoapifyService;
+use Illuminate\Support\Facades\Log;
 
 class JobFairController extends Controller
 {
@@ -162,10 +163,12 @@ class JobFairController extends Controller
         ]);
 
         if ($validator->fails()) {
+            Log::warning('JobFair update validation failed', ['errors' => $validator->errors()]);
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
         $updateData = $validator->validated();
+        Log::info('JobFair update called', ['job_fair_id' => $jobFair->id, 'updateData_initial' => $updateData]);
         
         // Verify the organizer has the correct role if organizer_id is being updated
         if (isset($updateData['organizer_id'])) {
@@ -203,6 +206,7 @@ class JobFairController extends Controller
         
         // Handle map image upload
         if ($request->hasFile('map_image')) {
+            Log::info('JobFair update received map_image file', ['job_fair_id' => $jobFair->id]);
             // Delete old image if exists
             if ($jobFair->map_image_path) {
                 $oldImagePath = $jobFair->map_image_path;
@@ -211,19 +215,19 @@ class JobFairController extends Controller
                 }
                 Storage::disk('public')->delete($oldImagePath);
             }
-            
             $mapImagePath = $request->file('map_image')->store('job_fair_maps', 'public');
             $updateData['map_image_path'] = $mapImagePath;
+            Log::info('JobFair update stored new map_image', ['job_fair_id' => $jobFair->id, 'map_image_path' => $mapImagePath]);
         } elseif ($request->exists('map_image') && is_null($request->input('map_image'))){
              if ($jobFair->map_image_path) {
                 Storage::disk('public')->delete($jobFair->map_image_path);
                 $updateData['map_image_path'] = null;
+                Log::info('JobFair update removed map_image', ['job_fair_id' => $jobFair->id]);
             }
         }
-
+        Log::info('JobFair updateData before save', ['job_fair_id' => $jobFair->id, 'updateData_final' => $updateData]);
         $jobFair->update($updateData);
         $jobFair->load('organizer:id,name,email');
-
         return response()->json(['data' => $jobFair]);
     }
 
