@@ -38,9 +38,6 @@ return new class extends Migration
                 'linkedin_url',
                 'github_url',
                 'profile_photo_path',
-                'notification_preferences',
-                'profile_visibility',
-                'share_data',
             ]);
         });
     }

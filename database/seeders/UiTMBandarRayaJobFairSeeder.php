@@ -35,7 +35,7 @@ class UiTMBandarRayaJobFairSeeder extends Seeder
         }
 
         // 2. Create the Job Fair
-        $mapImageFileName = 'jobfairmap.png';
+        $mapImageFileName = 'jobfairmap2.png';
         $sourceMapPath = database_path('seeders/assets/job_fair_maps/' . $mapImageFileName);
         $mapPathInPublicStorage = 'job_fair_maps/' . $mapImageFileName; // Relative to public disk root (storage/app/public)
 
