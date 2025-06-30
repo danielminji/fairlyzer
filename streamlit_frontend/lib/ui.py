@@ -15,55 +15,138 @@ def display_landing_page():
     """
     Display the landing page for the Resume Analyzer & Booth Recommendations app
     """
-    # Header section with full width and gradient background
-    st.container()
-    with st.container():
-        st.title("Resume Analyzer & Booth Recommendations")
-        st.caption("Your AI-powered Job Fair Assistant")
-    
-    # Icon-based workflow using proper Streamlit components
-    st.header("How It Works", anchor=False)
-    
-    # Use Streamlit columns for workflow
-    col1, col2, col3, col4, col5 = st.columns(5)
-    
-    with col1:
-        st.image("https://img.icons8.com/color/48/000000/password.png", width=60)
-        st.write("Login")
-    
+    st.markdown(
+        """
+        <style>
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .hero-title { font-size: 3.2rem; font-weight: 900; background: linear-gradient(90deg, #3b82f6, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-sub { font-size: 1.3rem; color: #cbd5e1; margin-bottom: 1.5rem; }
+        .feature-card {
+            background: #232b3b;
+            border-radius: 18px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            min-height: 260px;
+            min-width: 200px;
+            max-width: 220px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s cubic-bezier(.4,2,.6,1);
+        }
+        .feature-card:hover {
+            transform: scale(1.045);
+            box-shadow: 0 8px 32px rgba(59,130,246,0.18);
+            background: #22304a;
+        }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .jobfair-card {
+            background: #232b3b;
+            border-radius: 18px;
+            padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 420px;
+        }
+        .jobfair-map-img { border-radius: 12px; width: 100%; height: auto; margin-bottom: 1rem; }
+        .status-badge {
+            background: #3b82f6;
+            color: white;
+            border-radius: 8px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .jobfair-header-row {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .jobfair-title { margin-top: 1rem; font-size: 1.2rem; font-weight: 700; }
+        .jobfair-desc { color: #cbd5e1; margin-bottom: 0.7rem; }
+        .jobfair-list { color: #cbd5e1; margin-top: 1rem; margin-bottom: 1.2rem; }
+        .jobfair-btn-row { width: 100%; margin-top: 1.2rem; text-align: center; }
+        .jobfair-btn-row button, .jobfair-btn-row .stButton > button {
+            width: 100% !important;
+            background: #3b82f6 !important;
+            color: white !important;
+            font-size: 1.1rem;
+            padding: 0.7rem 0;
+            border-radius: 8px;
+        }
+        @media (max-width: 900px) {
+            .hero-title { font-size: 2.2rem; }
+            .feature-card { padding: 1.2rem 0.5rem; min-width: 140px; max-width: 180px; }
+            .jobfair-card { min-width: 90vw; }
+        }
+        @media (max-width: 600px) {
+            .hero-title { font-size: 1.3rem; }
+            .feature-card { padding: 0.7rem 0.2rem; min-width: 120px; max-width: 100%; }
+            .hero-section { margin-top: 1rem; }
+            .jobfair-card { min-width: 98vw; }
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    st.markdown('<div class="hero-section">', unsafe_allow_html=True)
+    st.markdown('<span class="hero-title">Resume Analyzer & Booth <span style="color:#3b82f6;">Recommendations</span></span>', unsafe_allow_html=True)
+    st.markdown('<div class="hero-sub">Your AI-powered Job Fair Assistant</div>', unsafe_allow_html=True)
+    st.write("Get personalized career insights and discover the perfect job fair booths tailored to your skills and aspirations")
+    # Center login/register using columns
+    col1, col2, col3 = st.columns([2,2,2])
     with col2:
-        st.image("https://img.icons8.com/color/48/000000/resume.png", width=60)
-        st.write("Upload Resume")
-    
-    with col3:
-        st.image("https://img.icons8.com/color/48/000000/robot.png", width=60)
-        st.write("Get Analysis")
-    
-    with col4:
-        st.image("https://img.icons8.com/color/48/000000/target.png", width=60)
-        st.write("Find Booths")
-    
-    with col5:
-        st.image("https://img.icons8.com/color/48/000000/company.png", width=60)
-        st.write("Visit Booth")
-    
-    # Login/Register buttons centered
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        col_login, col_register = st.columns(2)
-        with col_login:
-            if st.button("Login", key="landing_login_btn", use_container_width=True):
-                st.session_state.view = "login"
-                st.rerun()
-        with col_register:
-            if st.button("Register", key="landing_register_btn", use_container_width=True):
-                st.session_state.view = "register"
-                st.rerun()
-    
-    # Display Current and Upcoming Job Fairs section
+        c1, c2 = st.columns([1,1])
+        with c1:
+            login_clicked = st.button("Login", key="landing_login_btn", use_container_width=True)
+        with c2:
+            register_clicked = st.button("Register", key="landing_register_btn", use_container_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    if login_clicked:
+        st.session_state.view = "login"
+        st.rerun()
+    if register_clicked:
+        st.session_state.view = "register"
+        st.rerun()
+    st.markdown("---")
+
+    # --- HOW IT WORKS SECTION ---
+    st.header("How It Works")
+    st.write("Your AI-powered job fair assistant makes finding the right opportunities simple and efficient")
+    features = [
+        {"icon": "➡️", "title": "Login", "desc": "Create your account and login to get started with our platform"},
+        {"icon": "📤", "title": "Upload Resume", "desc": "Upload your resume for AI-powered analysis and optimization"},
+        {"icon": "📊", "title": "Get Analysis", "desc": "Receive detailed insights and recommendations for improvement"},
+        {"icon": "📍", "title": "Find Booths", "desc": "Get personalized booth recommendations based on your resume"},
+        {"icon": "🏢", "title": "Visit Booth", "desc": "Connect with employers at recommended job fair booths"},
+    ]
+    cols = st.columns(len(features), gap="large")
+    for col, feat in zip(cols, features):
+        with col:
+            st.markdown(f'<div class="feature-card"><div class="feature-icon">{feat["icon"]}</div><b>{feat["title"]}</b><br><span style="color:#cbd5e1;">{feat["desc"]}</span></div>', unsafe_allow_html=True)
+    st.markdown("---")
+
+    # --- CURRENT & UPCOMING JOB FAIRS ---
     st.header("Current & Upcoming Job Fairs")
-    
-    # Get job fairs from API
+    st.write("Discover exciting career opportunities at upcoming job fairs tailored to your profile")
     try:
         job_fairs_data, success = get_all_job_fairs()
         job_fairs = []
@@ -71,153 +154,81 @@ def display_landing_page():
             if isinstance(job_fairs_data, dict) and 'data' in job_fairs_data:
                 job_fairs = job_fairs_data['data']
             elif isinstance(job_fairs_data, list):
-                job_fairs = job_fairs_data # If the API directly returns a list
-            
+                job_fairs = job_fairs_data
             if not job_fairs:
                 st.info("No job fairs available at the moment.")
-                # return # Keep this commented out if you want the footer to show
-            else: # Only proceed if job_fairs list is populated
-                # Current date for comparison
+            else:
                 current_date = datetime.now().strftime("%Y-%m-%d")
-                
-                # Split job fairs into current and upcoming
                 current_job_fairs = []
                 upcoming_job_fairs = []
-                
                 for jf in job_fairs:
-                    # API returns 'start_datetime' and 'end_datetime' (e.g., "2025-12-31T10:00:00.000000Z")
-                    start_datetime_str = jf.get("start_datetime", "") 
+                    start_datetime_str = jf.get("start_datetime", "")
                     end_datetime_str = jf.get("end_datetime", "")
-
-                    # Extract just the date part for comparison and display
                     start_date = start_datetime_str.split("T")[0] if "T" in start_datetime_str else start_datetime_str
                     end_date = end_datetime_str.split("T")[0] if "T" in end_datetime_str else end_datetime_str
-                    
-                    jf["_display_start_date"] = start_date 
+                    jf["_display_start_date"] = start_date
                     jf["_display_end_date"] = end_date
-                    
                     try:
-                        # A fair is current if today's date is between its start and end date (inclusive)
                         if start_date and end_date and start_date <= current_date <= end_date:
                             jf["status"] = "current"
                             current_job_fairs.append(jf)
-                        # A fair is upcoming if its start date is after today
                         elif start_date and start_date > current_date:
                             jf["status"] = "upcoming"
                             upcoming_job_fairs.append(jf)
-                        # else: past or invalid date, do not add
                     except (ValueError, TypeError):
-                        # If dates are malformed, attempt to classify as upcoming if start_date seems valid and in the future
                         if start_date and start_date > current_date:
-                             upcoming_job_fairs.append(jf)
-                
+                            upcoming_job_fairs.append(jf)
                 upcoming_job_fairs = sorted(upcoming_job_fairs, key=lambda x: x.get("_display_start_date", ""))
-                
-                if current_job_fairs:
-                    st.subheader("Live Now")
-                    for job_fair in current_job_fairs:
-                        col1, col2 = st.columns([1, 3]) # Ratio for image and text
-                        with col1:
-                            # Display static map or fallback image
-                            lat = job_fair.get('latitude')
-                            lon = job_fair.get('longitude')
-                            geoapify_api_key = st.secrets.get("GEOAPIFY_API_KEY")
-
-                            if lat and lon and geoapify_api_key:
-                                static_map_url = f"https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=400&height=300&center=lonlat:{lon},{lat}&zoom=14&marker=lonlat:{lon},{lat};color:%23ff0000;size:medium&apiKey={geoapify_api_key}"
-                                st.image(static_map_url, width=200, caption="Job Fair Location")
-                            else:
-                                map_image_path = job_fair.get("map_image_url") # Fallback to floor plan if no geo
-                                if map_image_path:
-                                    try:
-                                        st.image(map_image_path, width=200, caption="Job Fair Map/Floor Plan")
-                                    except Exception as e:
-                                        print(f"Error loading image {map_image_path}: {e}")
-                                        st.image("https://via.placeholder.com/200x150?text=Map+Error", width=200)
-                                else:
-                                    st.image("https://via.placeholder.com/200x150?text=No+Map+Available", width=200)
-                        
-                        with col2:
-                            organizer_name = job_fair.get("organizer", {}).get("name", "N/A")
-                            if isinstance(job_fair.get("organizer"), str): # Compatibility for older seeder
-                                organizer_name = "Administrator"
-                            
-                            st.success("Live Now", icon="🔴")
-                            st.markdown(f"##### {job_fair.get('title', 'No Title')}")
-                            st.caption(job_fair.get("description", ""))
-                            
-                            # Display formatted address or location query
-                            display_location = job_fair.get('formatted_address') or job_fair.get('location_query') or job_fair.get('location', 'N/A')
-                            st.write(f"**Location:** {display_location}")
-                            
-                            st.write(f"**Dates:** {job_fair.get('_display_start_date')} to {job_fair.get('_display_end_date')}")
-                            st.write(f"**Organized by:** {organizer_name}")
-                            booths_count = job_fair.get('booths_count', 0)
-                            st.write(f"**Booths:** {booths_count}")
-                elif not upcoming_job_fairs: # only show if no upcoming either
-                    st.info("No job fairs currently in progress.")
-                
-                if upcoming_job_fairs:
-                    st.subheader("Upcoming Events")
-                    for job_fair in upcoming_job_fairs[:3]: # Show top 3 upcoming
-                        col1, col2 = st.columns([1, 3]) # Ratio for image and text
-                        with col1:
-                            # Display static map or fallback image
-                            lat = job_fair.get('latitude')
-                            lon = job_fair.get('longitude')
-                            geoapify_api_key = st.secrets.get("GEOAPIFY_API_KEY")
-
-                            if lat and lon and geoapify_api_key:
-                                static_map_url = f"https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=400&height=300&center=lonlat:{lon},{lat}&zoom=14&marker=lonlat:{lon},{lat};color:%23ff0000;size:medium&apiKey={geoapify_api_key}"
-                                st.image(static_map_url, width=200, caption="Job Fair Location")
-                            else:
-                                map_image_path = job_fair.get("map_image_url") # Fallback to floor plan if no geo
-                                if map_image_path:
-                                    try:
-                                        st.image(map_image_path, width=200, caption="Job Fair Map/Floor Plan")
-                                    except Exception as e:
-                                        print(f"Error loading image {map_image_path}: {e}")
-                                        st.image("https://via.placeholder.com/200x150?text=Map+Error", width=200)
-                                else:
-                                    st.image("https://via.placeholder.com/200x150?text=No+Map+Available", width=200)
-
-                        with col2:
-                            try:
-                                start_date_dt = datetime.strptime(job_fair.get("_display_start_date"), "%Y-%m-%d")
-                                days_until = (start_date_dt - datetime.now()).days
-                                days_text = f"Coming in {days_until} days" if days_until >= 0 else "Upcoming"
-                            except (ValueError, TypeError):
-                                days_text = "Coming soon"
-                            
-                            organizer_name = job_fair.get("organizer", {}).get("name", "N/A")
-                            if isinstance(job_fair.get("organizer"), str):
-                                organizer_name = "Administrator"
-                                
-                            st.info(days_text)
-                            st.markdown(f"##### {job_fair.get('title', 'No Title')}")
-                            st.caption(job_fair.get("description", ""))
-                            
-                            # Display formatted address or location query
-                            display_location = job_fair.get('formatted_address') or job_fair.get('location_query') or job_fair.get('location', 'N/A')
-                            st.write(f"**Location:** {display_location}")
-                            
-                            st.write(f"**Dates:** {job_fair.get('_display_start_date')} to {job_fair.get('_display_end_date')}")
-                            st.write(f"**Organized by:** {organizer_name}")
-                            booths_count = job_fair.get('booths_count', 0)
-                            st.write(f"**Booths:** {booths_count}")
-                elif not current_job_fairs:
-                     st.info("No upcoming job fairs scheduled at this time.")
-
-        elif not success: # API call failed
+                # Responsive: 2 columns desktop, 1 column mobile
+                fair_cols = st.columns(2, gap="large")
+                for idx, fair in enumerate(current_job_fairs[:2] + upcoming_job_fairs[:2]):
+                    with fair_cols[idx % 2]:
+                        lat = fair.get('latitude')
+                        lon = fair.get('longitude')
+                        geoapify_api_key = st.secrets.get("GEOAPIFY_API_KEY")
+                        if lat and lon and geoapify_api_key:
+                            static_map_url = f"https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=600&height=300&center=lonlat:{lon},{lat}&zoom=15&marker=lonlat:{lon},{lat};color:%23ff0000;size:medium&apiKey={geoapify_api_key}"
+                        else:
+                            static_map_url = "https://via.placeholder.com/600x300?text=Map+Unavailable"
+                        status_text = "Live Now" if fair.get("status") == "current" else "Upcoming"
+                        booths_count = fair.get('booths_count', 0)
+                        organizer_name = fair.get("organizer", {}).get("name", "N/A") if isinstance(fair.get("organizer"), dict) else "Administrator"
+                        st.markdown(f"""
+                        <div class='jobfair-card'>
+                            <img src='{static_map_url}' class='jobfair-map-img' alt='Job Fair Map'/>
+                            <div class='jobfair-header-row'>
+                                <span class='status-badge'>{status_text}</span>
+                                <span style='color:#cbd5e1; font-size:0.95rem;'>{booths_count} Booths</span>
+                            </div>
+                            <div class='jobfair-title'>{fair.get('title', 'No Title')}</div>
+                            <div class='jobfair-desc'>{fair.get('description', '')}</div>
+                            <ul class='jobfair-list'>
+                                <li><b>Location:</b> {fair.get('formatted_address') or fair.get('location_query') or fair.get('location', 'N/A')}</li>
+                                <li><b>Dates:</b> {fair.get('_display_start_date')} to {fair.get('_display_end_date')}</li>
+                                <li><b>Organized by:</b> {organizer_name}</li>
+                            </ul>
+                            <div class='jobfair-btn-row'>
+                                <button>Learn More</button>
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+        elif not success:
             st.warning(f"Could not load job fairs. {job_fairs_data.get('error', 'The backend might be unavailable.') if isinstance(job_fairs_data, dict) else 'Please try again later.'}")
-        else: # success but job_fairs_data is empty
+        else:
             st.info("No job fairs available at the moment.")
-            
     except Exception as e:
         st.error(f"An error occurred while loading job fair data: {str(e)}")
         print(f"Exception in display_landing_page loading job fairs: {e}")
-    
     st.markdown("---")
+
+    # --- CALL TO ACTION ---
+    st.markdown('<div class="cta-section">', unsafe_allow_html=True)
+    st.header("Ready to Accelerate Your Career?")
+    st.write("Join thousands of students and professionals who have found their dream opportunities")
+    if st.button("Get Started Today", use_container_width=True):
+        st.session_state.view = "login"
+        st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
     st.caption("© 2025 Resume Analyzer & Booth Recommendations | Powered by AI")
 
 def display_login_page():
