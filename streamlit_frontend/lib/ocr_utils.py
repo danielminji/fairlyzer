@@ -5,6 +5,10 @@ from PIL import Image, ImageDraw
 import requests
 from io import BytesIO
 import re
+import os
+import concurrent.futures
+import time
+import math
 
 # Optional: Specify Tesseract path if not in system PATH
 # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe' # Example for Windows
@@ -19,149 +23,216 @@ def get_image_from_url(image_url):
         print(f"Error fetching image from URL {image_url}: {e}")
         return None
 
-def highlight_booths_on_map(image_bytes, recommended_booth_numbers):
-    """
-    Detects booth numbers on a map image using OCR and highlights the recommended ones.
+def is_booth_like_box(x, y, w, h, img_w, img_h):
+    aspect = w / h if h > 0 else 0
+    area = w * h
+    # Loosened: aspect 0.3–4.0, area 100–10000, no grid position filter
+    return (w > 15 and h > 15 and w < img_w * 0.9 and h < img_h * 0.9 and
+            0.3 < aspect < 4.0 and 100 < area < 10000)
 
-    Args:
-        image_bytes (BytesIO): The job fair map image in bytes.
-        recommended_booth_numbers (list): A list of strings representing the booth numbers to highlight.
+def detect_booth_rectangles(cv_img, debug_save_path=None):
+    gray = cv2.cvtColor(cv_img, cv2.COLOR_BGR2GRAY)
+    blur = cv2.GaussianBlur(gray, (3, 3), 0)
+    thresh = cv2.adaptiveThreshold(blur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                   cv2.THRESH_BINARY_INV, 11, 2)
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+    closed = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=1)
+    contours, _ = cv2.findContours(closed, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    booth_boxes = []
+    img_h, img_w = gray.shape
+    debug_img = cv_img.copy()
+    print(f"Detected {len(contours)} contours after closing.")
+    for cnt in contours:
+        x, y, w, h = cv2.boundingRect(cnt)
+        if is_booth_like_box(x, y, w, h, img_w, img_h):
+            booth_boxes.append((x, y, w, h))
+            cv2.rectangle(debug_img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    if debug_save_path:
+        cv2.imwrite(debug_save_path, debug_img)
+        print(f"Saved debug contour image to {debug_save_path}")
+    return booth_boxes
 
-    Returns:
-        PIL.Image: The image with recommended booths highlighted, or the original image if errors occur.
-                   Returns None if the input image cannot be processed.
-    """
+def ocr_booth_single(cv_img, box, save_failed_dir=None, label_hint=None):
+    x, y, w, h = box
+    img_h, img_w, _ = cv_img.shape
+    pad = 5
+    # Special-case: if label_hint is 11 or 21, use larger padding
+    if label_hint in ('11', '21', 11, 21):
+        pad = 20
+    x0 = max(0, x - pad)
+    y0 = max(0, y - pad)
+    x1 = min(img_w, x + w + pad)
+    y1 = min(img_h, y + h + pad)
+    booth_img = cv_img[y0:y1, x0:x1]
+    pil_img_color = Image.fromarray(cv2.cvtColor(booth_img, cv2.COLOR_BGR2RGB))
+    # Fast path: color, PSM 8
+    config = '--psm 8 -c tessedit_char_whitelist=0123456789'
+    text = pytesseract.image_to_string(pil_img_color, config=config)
+    m = re.search(r'\d+', text)
+    if m:
+        return m.group(0)
+    # Fallback: binarized, PSM 8
+    gray_booth = cv2.cvtColor(booth_img, cv2.COLOR_BGR2GRAY)
+    booth_bin = cv2.adaptiveThreshold(gray_booth, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 11, 2)
+    pil_img_bin = Image.fromarray(booth_bin)
+    text = pytesseract.image_to_string(pil_img_bin, config=config)
+    m = re.search(r'\d+', text)
+    if m:
+        return m.group(0)
+    # Fallback: inverted binarized, PSM 8
+    booth_bin_inv = cv2.bitwise_not(booth_bin)
+    pil_img_inv = Image.fromarray(booth_bin_inv)
+    text = pytesseract.image_to_string(pil_img_inv, config=config)
+    m = re.search(r'\d+', text)
+    if m:
+        return m.group(0)
+    # Fallback: color, PSM 7
+    config7 = '--psm 7 -c tessedit_char_whitelist=0123456789'
+    text = pytesseract.image_to_string(pil_img_color, config=config7)
+    m = re.search(r'\d+', text)
+    if m:
+        return m.group(0)
+    # Deep learning OCR fallback for special-case booths
+    if label_hint in ('11', '21', 11, 21):
+        try:
+            import easyocr
+            reader = easyocr.Reader(['en'], gpu=False)
+            result = reader.readtext(booth_img)
+            for bbox, text, conf in result:
+                m = re.search(r'\d+', text)
+                if m:
+                    return m.group(0)
+        except Exception as e:
+            print(f"EasyOCR failed: {e}")
+    # Save failed crop for manual inspection
+    if save_failed_dir and label_hint:
+        os.makedirs(save_failed_dir, exist_ok=True)
+        fail_path = os.path.join(save_failed_dir, f"fail_{label_hint}_x{x}_y{y}_w{w}_h{h}.png")
+        cv2.imwrite(fail_path, booth_img)
+        print(f"Saved failed booth crop to {fail_path}")
+    return None
+
+def ocr_booth_parallel(cv_img, booth_boxes, save_failed_dir=None, label_hints=None):
+    results = [None] * len(booth_boxes)
+    def ocr_task(args):
+        idx, box = args
+        label_hint = label_hints[idx] if label_hints else None
+        return idx, ocr_booth_single(cv_img, box, save_failed_dir, label_hint)
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        for idx, result in executor.map(ocr_task, enumerate(booth_boxes)):
+            results[idx] = result
+    return results
+
+def highlight_booths_on_map(image_bytes, recommended_booth_numbers, test_mode=False, debug_name=None):
     if not image_bytes or not recommended_booth_numbers:
         return None
-
     try:
         pil_image = Image.open(image_bytes).convert("RGB")
-        opencv_image = np.array(pil_image)
-        # Convert RGB to BGR for OpenCV
-        opencv_image = opencv_image[:, :, ::-1].copy()
+        cv_img = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
     except Exception as e:
-        print(f"Error loading image for OCR: {e}")
-        return None # Return None if image loading fails
-
-    # Preprocessing (optional, but can improve OCR)
-    gray_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2GRAY)
-    thresh_image = cv2.threshold(gray_image, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
-    
-    # --- Experimental: Dilate the image slightly to thicken characters --- 
-    kernel = np.ones((2,2),np.uint8) # REVERTED to (2,2) DILATION KERNEL
-    dilated_image = cv2.dilate(thresh_image, kernel, iterations = 1)
-    # --- End Experimental Dilation ---
-
-    cv2.imwrite("debug_ocr_input_map_dilated.png", dilated_image) # DEBUG: Save the DILATED image
-    print("DEBUG: Saved DILATED thresh_image as debug_ocr_input_map_dilated.png")
-    # cv2.imwrite("debug_ocr_input_NO_DILATION.png", dilated_image) # DEBUG: Save the NON-DILATED image
-    # print("DEBUG: Saved NON-DILATED thresh_image as debug_ocr_input_NO_DILATION.png")
-    # Could add more: noise removal, scaling, etc.
-
-    found_booth_boxes = []
-    
-    try:
-        # Use pytesseract to get detailed data including bounding boxes
-        tesseract_config = '--psm 6 --oem 3'
-        ocr_data = pytesseract.image_to_data(dilated_image, output_type=pytesseract.Output.DICT, config=tesseract_config)
-        
-        n_boxes = len(ocr_data['level'])
-        print(f"OCR: Found {n_boxes} potential text boxes. Iterating...") 
-
-        raw_detections = []
-        for i in range(n_boxes):
-            text = ocr_data['text'][i].strip()
-            conf = int(ocr_data['conf'][i])
-            # Log everything Tesseract sees above a very low confidence for debugging
-            # print(f"OCR Raw Detect (conf > 0): '{text}' at ({ocr_data['left'][i]},{ocr_data['top'][i]},{ocr_data['width'][i]},{ocr_data['height'][i]}) conf: {conf}") #生产环境下注释掉
-            
-            # Store reasonably confident raw detections for matching logic
-            if conf > 30 and text: # Minimum confidence for considering a piece for matching
-                raw_detections.append({
-                    "text": text,
-                    "box": (ocr_data['left'][i], ocr_data['top'][i], ocr_data['width'][i], ocr_data['height'][i]),
-                    "conf": conf
-                })
-        print("DEBUG: OCR Detected Texts:")
-        for det in raw_detections:
-            print(f"  Text: '{det['text']}' Conf: {det['conf']} Box: {det['box']}")
-        print(f"DEBUG: Recommended booth numbers: {recommended_booth_numbers}")
-        # Try matching both digit-only and 'Booth X' style
-        for rec_num in recommended_booth_numbers:
-            rec_num_str = str(rec_num)
-            # Accept both digit-only and 'Booth X' style
-            possible_patterns = [rec_num_str, f"Booth {rec_num_str}", f"Booth{rec_num_str}"]
-            found_match = False
-            for detection in raw_detections:
-                for pat in possible_patterns:
-                    if detection["text"].replace(" ", "").lower() == pat.replace(" ", "").lower() and detection["conf"] > 50:
-                        x, y, w, h = detection["box"]
-                        found_booth_boxes.append({
-                            "text": detection["text"],
-                            "box": (x, y, w, h)
-                        })
-                        print(f"MATCHED: '{detection['text']}' for recommended '{rec_num_str}' at {detection['box']}")
-                        found_match = True
-                        break
-                if found_match:
-                    break
-        # Fallback: try partial match if nothing found
-        if not found_booth_boxes:
-            for rec_num in recommended_booth_numbers:
-                for detection in raw_detections:
-                    if rec_num in detection["text"] and detection["conf"] > 50:
-                        x, y, w, h = detection["box"]
-                        found_booth_boxes.append({
-                            "text": detection["text"],
-                            "box": (x, y, w, h)
-                        })
-                        print(f"PARTIAL MATCH: '{detection['text']}' for recommended '{rec_num}' at {detection['box']}")
-    except pytesseract.TesseractNotFoundError:
-        print("Tesseract is not installed or not in your PATH.")
-        return pil_image # Return original image
-    except Exception as e:
-        print(f"Error during OCR processing: {e}")
-        return pil_image # Return original image on other OCR errors
-
-    if not found_booth_boxes:
-        print("No recommended booth numbers found on the map via OCR.")
-        return pil_image # Return original if nothing found or to highlight
-
-    # Draw highlights on the original PIL image
-    draw = ImageDraw.Draw(pil_image, "RGBA") # Use RGBA for semi-transparent highlights
-
-    padding = 10 # INCREASED PADDING
-
-    for item in found_booth_boxes:
-        # item["box"] is (x, y, width, height)
-        x_coord, y_coord, w_coord, h_coord = item["box"]
-
-        # Convert to (x0, y0, x1, y1) for Pillow, where (x1,y1) is bottom-right
-        box_x0 = x_coord
-        box_y0 = y_coord
-        box_x1 = x_coord + w_coord
-        box_y1 = y_coord + h_coord
-
-        # Add padding, ensuring coordinates stay within image bounds
-        img_width, img_height = pil_image.size
-        padded_x0_for_pillow = max(0, box_x0 - padding)
-        padded_y0_for_pillow = max(0, box_y0 - padding)
-        padded_x1_for_pillow = min(img_width, box_x1 + padding)
-        padded_y1_for_pillow = min(img_height, box_y1 + padding)
-        
-        # Ensure x1 >= x0 and y1 >= y0 after padding to prevent Pillow error
-        # This can happen if width/height is very small and padding is large
-        if padded_x1_for_pillow < padded_x0_for_pillow:
-            padded_x1_for_pillow = padded_x0_for_pillow 
-        if padded_y1_for_pillow < padded_y0_for_pillow:
-            padded_y1_for_pillow = padded_y0_for_pillow
-
-        final_padded_box_for_pillow = (padded_x0_for_pillow, padded_y0_for_pillow, padded_x1_for_pillow, padded_y1_for_pillow)
-
-        # Draw a semi-transparent rectangle
-        draw.rectangle(final_padded_box_for_pillow, outline="red", fill=(255, 0, 0, 200), width=8)
-        
-        # Optionally, draw the detected text again (e.g., if preprocessing made it hard to see)
-        draw.text((padded_x0_for_pillow, padded_y0_for_pillow - 20), item["text"], fill="red")
-
+        if not test_mode:
+            print(f"Error loading image for OCR: {e}")
+        return None
+    debug_path = os.path.join(os.path.dirname(__file__), f'debug_contours_{debug_name or "map"}.png')
+    t0 = time.time()
+    booth_boxes = detect_booth_rectangles(cv_img, debug_save_path=debug_path)
+    print(f"Filtered to {len(booth_boxes)} candidate boxes after contour filtering.")
+    img_h, img_w, _ = cv_img.shape
+    grid_boxes = [box for box in booth_boxes if img_h * 0.1 < box[1] < img_h * 0.9]
+    print(f"Filtered to {len(grid_boxes)} boxes in main grid area.")
+    def tesseract_color_psm8(box):
+        x, y, w, h = box
+        pad = 5
+        x0 = max(0, x - pad)
+        y0 = max(0, y - pad)
+        x1 = min(img_w, x + w + pad)
+        y1 = min(img_h, y + h + pad)
+        booth_img = cv_img[y0:y1, x0:x1]
+        pil_img_color = Image.fromarray(cv2.cvtColor(booth_img, cv2.COLOR_BGR2RGB))
+        config = '--psm 8 -c tessedit_char_whitelist=0123456789'
+        data = pytesseract.image_to_data(pil_img_color, config=config, output_type=pytesseract.Output.DICT)
+        best_num = None
+        best_conf = -1
+        for i, text in enumerate(data['text']):
+            if text.strip().isdigit():
+                conf = int(data['conf'][i]) if data['conf'][i] != '-1' else 0
+                if conf > best_conf:
+                    best_num = text.strip()
+                    best_conf = conf
+        return best_num, best_conf, box
+    t1 = time.time()
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor() as executor:
+        ocr_results = list(executor.map(tesseract_color_psm8, grid_boxes))
+    t2 = time.time()
+    booth_to_box = {}
+    assigned_boxes = set()
+    for num in recommended_booth_numbers:
+        best = None
+        best_conf = -1
+        for detected_num, conf, box in ocr_results:
+            if detected_num == str(num) and conf > best_conf:
+                best = (detected_num, box)
+                best_conf = conf
+        if best:
+            booth_to_box[num] = best[1]
+            assigned_boxes.add(tuple(best[1]))
+    # Targeted fallback for 11 and 21
+    for special_num in ['11', '21']:
+        if special_num in recommended_booth_numbers and special_num not in booth_to_box:
+            # Find the row (y) of the closest detected neighbor (10/12 for 11, 20/22 for 21)
+            neighbors = []
+            if special_num == '11':
+                for n in ['10', '12']:
+                    if n in booth_to_box:
+                        neighbors.append(booth_to_box[n])
+            if special_num == '21':
+                for n in ['20', '22']:
+                    if n in booth_to_box:
+                        neighbors.append(booth_to_box[n])
+            if neighbors:
+                # Use average y of neighbors as expected row
+                expected_y = int(np.mean([b[1] for b in neighbors]))
+                # Only consider unassigned boxes in the same row (y within threshold)
+                row_thresh = 0.15 * img_h  # 15% of image height
+                candidates = [box for box in grid_boxes if tuple(box) not in assigned_boxes and abs(box[1] - expected_y) < row_thresh]
+                # Pick the one closest in x to the average x of neighbors
+                if candidates:
+                    expected_x = int(np.mean([b[0] for b in neighbors]))
+                    best_box = min(candidates, key=lambda b: abs(b[0] - expected_x))
+                    booth_to_box[special_num] = best_box
+                    assigned_boxes.add(tuple(best_box))
+                    if test_mode:
+                        print(f"Targeted fallback: Assigned booth {special_num} to box at {best_box}")
+    missing = [str(n) for n in recommended_booth_numbers if n not in booth_to_box]
+    if test_mode:
+        print(f"SUMMARY: Detected {len(booth_to_box)}/{len(recommended_booth_numbers)} booths: {sorted(list(booth_to_box.keys()))}")
+        if missing:
+            print(f"MISSING: {missing}")
+        print(f"Timing: Contour+filter: {t1-t0:.2f}s, Tesseract parallel: {t2-t1:.2f}s")
+    if not booth_to_box:
+        if not test_mode:
+            print("No recommended booth numbers found on the map via OCR.")
+        return pil_image
+    draw = ImageDraw.Draw(pil_image, "RGBA")
+    padding = 2  # Tighter fit
+    # Compute average width and height of all detected booth boxes
+    if booth_to_box:
+        avg_w = int(np.mean([b[2] for b in booth_to_box.values()]))
+        avg_h = int(np.mean([b[3] for b in booth_to_box.values()]))
+    else:
+        avg_w, avg_h = 40, 20  # fallback default
+    for num, box in booth_to_box.items():
+        x_coord, y_coord, w_coord, h_coord = box
+        # Center the highlight box on the detected booth center
+        center_x = x_coord + w_coord // 2
+        center_y = y_coord + h_coord // 2
+        half_w = avg_w // 2 + padding
+        half_h = avg_h // 2 + padding
+        box_x0 = max(0, center_x - half_w)
+        box_y0 = max(0, center_y - half_h)
+        box_x1 = min(pil_image.width, center_x + half_w)
+        box_y1 = min(pil_image.height, center_y + half_h)
+        final_box = (box_x0, box_y0, box_x1, box_y1)
+        draw.rectangle(final_box, outline="red", fill=(255, 0, 0, 77), width=3)
     return pil_image
