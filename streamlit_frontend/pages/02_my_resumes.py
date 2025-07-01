@@ -27,32 +27,18 @@ st.set_page_config(
 import requests
 from lib.api import API_BASE_URL, get_auth_headers, upload_resume
 from lib.auth_client import add_auth_persistence_js, check_auth
-from lib.ui_components import load_css, render_header, render_footer
+from lib.ui_components import render_header, render_footer
 from lib.navigation import display_sidebar_navigation
-
-# Load global CSS
-load_css()
-
-# Apply auth persistence JavaScript
-add_auth_persistence_js()
 
 # Check authentication
 if check_auth():
-    # Set current path in session state
     st.session_state.current_path = "my_resumes"
-    
-    # Display the navigation sidebar
     display_sidebar_navigation()
 else:
     st.warning("Please log in first to view your resumes.")
-    
-    # Save the destination for after login
     st.session_state.current_path = "my_resumes"
-    
-    # Redirect to login page
     html("""
     <script>
-        // Redirect to login after a delay
         setTimeout(function() {
             window.location.href = "/";
         }, 2000);

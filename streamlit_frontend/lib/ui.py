@@ -427,11 +427,11 @@ def display_home_page():
         st.write("Upload your resume, view analysis, and get job recommendations.")
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("📄 My Resumes", key="home_my_resumes", use_container_width=True):
-                st.switch_page("pages/02_my_resumes.py")
-        with col2:
             if st.button("📤 Upload New Resume", key="home_upload_resume", use_container_width=True):
                 st.switch_page("pages/01_resume_upload.py")
+        with col2:
+            if st.button("📄 My Resumes", key="home_my_resumes", use_container_width=True):
+                st.switch_page("pages/02_my_resumes.py")
 
     st.divider()
     st.subheader("Quick Links")
