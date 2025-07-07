@@ -1,0 +1,8836 @@
+CHAPTER FOUR
+
+ANALYSIS & DISCUSSIONS
+
+This chapter analyzes StudyMate's (also referred to UiTM Student Time Management
+System) performance in great depth, outlining all its distinct characteristics. In addition
+to comprehensive data, it provides important user feedback obtained from extensive
+testing. Functionality testing was carefully carried out by an IT specialist to guarantee
+that every feature works as intended. However, the chapter captures the voices of its
+target audience, UiTM students, going beyond technical assessments. However, by
+integrating non-UiTM students, the user-acceptance test expands its reach and offers
+insightful information about how the system might perform with a larger user base.
+This comprehensive strategy lays the groundwork for StudyMate's effective
+deployment and best-in-class support for UiTM students by providing a complex
+perspective of the platform's advantages and shortcomings.
+
+4.1
+
+User Interface
+
+StudyMate, an UiTM student time management system, has a user interface (UI) that
+allows for seamless interactions between users and the application. Its smart layout,
+engaging visual style, and flexible controls enable students to access tools and
+information to organize their study in an intuitive manner. A comprehensive yet userfriendly user interface is critical for StudyMate to create an exceptional user
+experience that satisfies the needs of its student users.
+
+144
+
+Table 4.1 Result User Interface: Landing Page: Home
+
+User Interface
+
+Landing Page: Home
+
+Figure 4.1 Result User Interface: Landing Page: Home
+
+Description
+This landing page is the entry point for StudyMate, the UiTM Student Time
+Management System. The prominent "Get Started" button catches the eye, inviting
+new users to create an account via registration. For those with existing accounts, a
+simple click of the "Sign In" button navigates to the login page. Helpful links across
+the top enable easy access to different sections. As the initial gateway, this interface
+offers clear calls-to-action so users can quickly find their way based on whether they
+need to register or sign in.
+
+145
+
+Table 4.2 Result User Interface: Landing Page: Features
+
+User Interface
+
+Landing Page: Features
+
+Figure 4.2 Result User Interface: Landing Page: Features
+
+Description
+Scrolling down or clicking "Features" in the top navigation bar brings users to this
+informative section highlighting StudyMate's features. At a glance, the cards convey
+the system's capabilities and value proposition in managing student time. Each card
+succinctly states a key feature – class timetable, activity management, and schedule
+reminder. Answering the question "What can StudyMate do for me?" This sneak
+peek aims to convince students that using StudyMate will empower them to
+organize, plan, and use their time effectively. The clean, visual layout lets the main
+selling points shine.
+
+146
+
+Table 4.3 Result User Interface: Landing Page: Contact Us
+
+User Interface
+
+Landing Page: Contact Us
+
+Figure 4.3 Result User Interface: Landing Page: Contact Us
+
+Description
+This Contact Us section, accessible by scrolling down or clicking the top navigation,
+enables direct communication with the StudyMate team. Users may need to get in
+touch for various reasons - questions, feedback, and issues. By filling out the subject
+line and message fields and clicking the button, their default email application opens
+pre-populated with StudyMate's email address. Whether they have a quick query or
+more in-depth matter, this direct access ensures their concerns or thoughts can be
+promptly received and addressed. With clear fields and a smooth email mechanism,
+contacting the team is simple and straightforward.
+
+147
+
+Table 4.4 Result User Interface: Sign Up
+
+User Interface
+
+Sign Up
+
+Figure 4.4 Result User Interface: Sign Up
+
+Description
+This registration page offers new users two straightforward paths to create a
+StudyMate account. The manual option allows inputting one's name, email, and
+preferred password to generate credentials unique to the system. Alternatively,
+intuitive single-click registration with existing social media delivers instant access
+without needing to remember additional login details. By syncing with platforms
+like Google or GitHub, the social button enables users to seamlessly integrate and
+authenticate via their familiar online identity. Whether preferring to manage a
+separate StudyMate profile or easily connect their social media presence, students
+can quickly and easily register through their method of choice.
+
+148
+
+Table 4.5 Result User Interface: Sign In
+
+User Interface
+
+Sign In
+
+Figure 4.5 Result User Interface: Sign In
+
+Description
+This Sign In page mirrors the Registration page in layout, for a consistent and
+recognizable user experience. Two simple options give existing users the ability to
+authenticate and access their StudyMate accounts. Inputting their email and
+password logs them in manually, while single click social media buttons provide
+quick no-hassle login via integrated platforms like Google or GitHub. In fact,
+clicking a social button when one doesn't already have an account will automatically
+register and login the user for added convenience. For those who may have forgotten
+their local password, the "Forgot Password?" link routes them to a password
+recovery flow.
+
+149
+
+Table 4.6 Result User Interface: Forgot Password
+
+User Interface
+
+Forgot Password
+
+Figure 4.6 Result User Interface: Forgot Password
+
+Description
+This Forgot Password page provides a recovery flow for users who have lost access
+to their StudyMate credentials. By entering the email address registered with their
+account and clicking the button, a password reset link is emailed which remains
+active for a limited period. For security reasons, the unique link expires if not
+promptly used. Additionally, a check verifies the submitted email aligns with an
+existing account before sending the notification. Upon receiving the email, users
+click the one-time link to change their password securely. This thoughtful process
+allows users to seamlessly re-establish account access even if they forget sensitive
+login details
+
+150
+
+Table 4.7 Result User Interface: Reset Password
+
+User Interface
+
+Reset Password
+
+Figure 4.7 Result User Interface: Reset Password
+
+Description
+This password reset page is only accessible via the unique link sent to a user's email,
+preventing unauthorized access. By entering and confirming a new password then
+clicking reset, users can securely establish new login credentials if they had
+forgotten their previous one. The page safeguards this update process to apply only
+to those coming from a valid password recovery email. For anyone who may have
+stumbled here incorrectly or already recalled their existing password, the handy
+"Sign In" button redirects back to the login page. Allowing authenticated users in
+need to safely create new passwords while giving others a clear path back to sign in
+formulates a clean, sensible flow.
+
+151
+
+Table 4.8 Result User Interface: Student’s Dashboard
+
+User Interface
+
+Student’s Dashboard
+
+Figure 4.8 Result User Interface: Student’s Dashboard
+
+Description
+This student dashboard provides an informative overview of one's StudyMate
+account. Key details are prominently displayed, including total classes, activities,
+and combined schedules added. This summary conveys the breadth of the user's
+current time management landscape at a glance. Additionally, the year-long usage
+statistics grant helpful monthly insight into class and activity creation trends,
+whether reminder-enabled or not. Students are equipped with at-hand data to better
+understand their behaviors over time when organizing their workload and
+commitments.
+
+152
+
+Table 4.9 Result User Interface: Student’s Upcoming Events
+
+User Interface
+
+Student’s Upcoming Events
+
+Figure 4.9 Result User Interface: Student’s Upcoming Events
+
+Description
+This Upcoming Events page gives students visibility into their immediate future
+schedules for the current day. By showing only impending events and commitments,
+it enables users to quickly see what lies ahead without sorting through irrelevant
+past items that have already occurred earlier in the day. The clean focus on simply
+the next scheduled tasks or classes provides an at-a-glance answer to "What's going
+on next today?". Devoid of any clutter from hours gone by, this page achieves its
+singular purpose to inform users of imminent appointments within the same day, so
+they know what is soon to come.
+
+153
+
+Table 4.10 Result User Interface: Student’s Schedule
+
+User Interface
+
+Student’s Schedule
+
+Figure 4.10 Result User Interface: Student’s Schedule
+
+Description
+This Schedules page gives students a comprehensive look at all their calendar items
+for the current month. In contrast to the Upcoming Events page showing only
+immediate daily tasks, this view provides an expanded snapshot of longer-term
+commitments. By encompassing all classes, activities and reminders scheduled
+across the full month, students can broadly visualize their academic and personal
+obligations across weeks rather than just the rest of today. The widened scope
+enables more holistic planning and time management compared to an hour-by-hour
+glance.
+
+154
+
+Table 4.11 Result User Interface: Student’s Schedule Details
+
+User Interface
+
+Student’s Schedule Details
+
+Figure 4.11 Result User Interface: Student’s Schedule Details
+
+Description
+To maintain an uncluttered calendar interface while still providing comprehensive
+schedule details, a clickable popup is the optimal solution. Rather than presenting
+extensive information all at once which may feel overwhelming, schedules are
+represented clearly and succinctly within the monthly layout. Then for any given
+calendar item, users can tap for further specifics to materialize in a popup overlay.
+The layers cater smartly to both bird's eye planning along with granular schedule
+and task insights.
+
+155
+
+Table 4.12 Result User Interface: Student’s All Schedules
+
+User Interface
+
+Student’s All Schedules
+
+Figure 4.12 Result User Interface: Student’s All Schedules
+
+Description
+With the Upcoming Events page showing today's schedules and the main Schedules
+page displaying the current month, students may wonder how to view academic
+commitments beyond this range. The “All Schedules” page delivers complete
+flexibility to comb through every schedule added thus far. Offering an extensive
+table of all classes and activities. This archive grants students to constantly access
+to their comprehensive scheduling history. Helpful search and filtering put students
+in full control to dig into precise details ranging from last year's exam calendar to a
+research project due next semester. No schedule is left behind or out of sight.
+
+156
+
+Table 4.13 Result User Interface: Student’s Add Schedule
+
+User Interface
+
+Student’s Add Schedule
+
+Figure 4.13 Result User Interface: Student’s Add Schedule
+
+Description
+This schedule addition page provides a straightforward form for students to populate
+important details to set up a new calendar event. Key fields include scheduling title
+and descriptions to summarize the event. The selectors then enable selecting the type
+of schedule - class timetable or activities - along with dates or days and start and
+end times. By gathering all necessary data upfront, this schedule builder allows
+students to enter the specifics once rather than having to re-access or edit the event
+later to fill in additional attributes. The consolidated input form removes friction so
+students can easily batch prep upcoming classes, assignments, meetings and more
+for their calendar in one swift workflow.
+
+157
+
+Table 4.14 Result User Interface: Student’s Edit Schedule
+
+User Interface
+
+Student’s Edit Schedule
+
+Figure 4.14 Result User Interface: Student’s Edit Schedule
+
+Description
+This Edit Schedule page mirrors the layout and fields of the creation workflow
+allowing seamless schedule adjustments. However, rather than blank inputs, all
+current schedule details auto-populate. By presenting the existing data alongside
+open form fields, students can easily review and modify specifics like titles,
+descriptions, schedule types, dates and times as needed.
+
+158
+
+Table 4.15 Result User Interface: Student’s Delete Schedule
+
+User Interface
+
+Student’s Delete Schedule
+
+Figure 4.15 Result User Interface: Student’s Delete Schedule
+
+Description
+This interface allows students to remove schedules from their calendar. When a
+schedule is clicked in the main view, a details popup appears showing information
+about that event. This popup contains a "Remove" button which, when clicked, will
+prompt the user to confirm they actually want to delete the schedule before it is
+removed. This confirmation step prevents users from accidentally deleting calendar
+items. The process is streamlined while still maintaining a safeguard against
+unintentional changes.
+
+159
+
+Table 4.16 Result User Interface: Student’s Course
+
+User Interface
+
+Student’s Course
+
+Figure 4.16 Result User Interface: Student’s Course
+
+Description
+This Courses page allows UiTM students to manage academic schedules related to
+their class enrollments. Added courses are displayed in a list showing key details at
+a glance. The specialized integration with UiTM enables intelligent schedule
+coordination - creating a course auto-populates its associated lecture times, while
+removing a course eliminates affiliated calendar items. This pairing simplifies
+scheduling by linking relevant course schedules to simplify planning. The
+centralized course hub gives UiTM students a simplified way to sync classes taken
+with accompanying schedules for a unified view of their academic commitments.
+
+160
+
+Table 4.17 Result User Interface: Student’s Add Course
+
+User Interface
+
+Student’s Add Course
+
+Figure 4.17 Result User Interface: Student’s Add Course
+
+Description
+This interface allows students to add courses to their schedule. Key details like
+course name, code, and group must be entered. Students should first confirm their
+student profile is complete for successful syncing. The system cross-checks entered
+courses against profile enrollment data, only adding valid matches to eliminate
+mismatches. For one-click addition, the "Surprise Me!" button automatically
+populates all schedules based on the student's registered classes and profile. This
+simplifies course scheduling by handling it automatically while still giving the
+option to manually add specific classes.
+
+161
+
+Table 4.18 Result User Interface: Student’s Edit Course
+
+User Interface
+
+Student’s Edit Course
+
+Figure 4.18 Result User Interface: Student’s Edit Course
+
+Description
+This Edit Course page mirrors the add course interface, automatically populating
+fields with the selected course's current details. Students can update the name, code,
+group or other information by editing the text boxes before clicking Save to commit
+changes. The identical form makes it easy to view and adjust course data seamlessly.
+
+162
+
+Table 4.19 Result User Interface: Student’s Delete Course
+
+User Interface
+
+Student’s Delete Course
+
+Figure 4.19 Result User Interface: Student’s Delete Course
+
+Description
+The trash icon allows deleting courses. For safety, this triggers a confirmation
+prompt before removing the course and its associated class schedules. This prevents
+unintentional data loss, adding an extra layer of protection for this potentially
+impactful change.
+
+163
+
+Table 4.20 Result User Interface: Student’s Preferences
+
+User Interface
+
+Student’s Preferences
+
+Figure 4.20 Result User Interface: Student’s Preferences
+
+Description
+This user interface functions as the preferences setting for the student. In this
+section, users can manage how the system should work according to their
+preferences. These preferences are typically applicable when the user has configured
+a reminder-enabled schedule. Since most of the preferences revolve around
+receiving reminders, they become relevant in this context. Additionally, users can
+integrate their Telegram account on this page to enable the reminder feature. This
+Telegram integration allows StudyMate’s Telegram Bot to send reminders to the
+user.
+
+164
+
+Table 4.21 Result User Interface: Student’s Edit Preferences
+
+User Interface
+
+Student’s Edit Preferences
+
+Figure 4.21 Result User Interface: Student’s Edit Preferences
+
+Description
+This user interface serves as the preferences editing section for the student. Here,
+users can modify how the system operates according to their preferences. These
+preferences are typically relevant when the user has set up a reminder-enabled
+schedule. Since most of the preferences center around receiving reminders, they
+become applicable in this context. Additionally, users can reintegrate their Telegram
+account on this page to enable the reminder feature. This Telegram integration
+enables StudyMate’s Telegram Bot to send reminders to the user.
+
+165
+
+Table 4.22 Result User Interface: Student’s Profile
+
+User Interface
+
+Student’s Profile
+
+Figure 4.22 Result User Interface: Student’s Profile
+
+Description
+This user interface functions as the student profile page, displaying the current
+profile information. The page consists of two sections: the profile section and the
+student information section. The student information is mandatory unless the user
+opts not to utilize the course management feature.
+
+166
+
+Table 4.23 Result User Interface: Student’s Edit Profile
+
+User Interface
+
+Student’s Edit Profile
+
+Figure 4.23 Result User Interface: Student’s Edit Profile
+
+Description
+On the same page, there is an "Enable Edit" button that allows users to make the
+input boxes editable. This serves as a precautionary measure to prevent inadvertent
+edits. Once the necessary changes are made, users can click the "Save" button to
+save the modifications.
+
+167
+
+Table 4.24 Result User Interface: Admin’s Dashboard
+
+User Interface
+
+Admin’s Dashboard
+
+Figure 4.24 Result User Interface: Admin’s Dashboard
+
+Description
+This user interface functions as the administrator dashboard, presenting various
+information such as the total number of users in the system, the overall schedules in
+the database, and the total added courses. This information is aggregated from all
+users in the system, representing the cumulative data. Additionally, there is a chart
+displaying statistics on classes and activities, categorizing them into those with or
+without reminders throughout the year.
+
+168
+
+Table 4.25 Result User Interface: Admin’s Schedules
+
+User Interface
+
+Admin’s Schedules
+
+Figure 4.25 Result User Interface: Admin’s Schedules
+
+Description
+This user interface functions as the schedules section within the admin interface. It
+contains all the schedules added in the system, displaying essential information on
+a table for the administrator. Within this section, the admin can toggle to view
+different types of schedules, including class timetables and activities.
+
+169
+
+Table 4.26 Result User Interface: Admin’s Add Schedule
+
+User Interface
+
+Admin’s Add Schedule
+
+Figure 4.26 Result User Interface: Admin’s Add Schedule
+
+Description
+This user interface serves as the admin interface for adding schedules on behalf of
+users. In this section, the admin is required to input the schedule details to be added.
+While typically students add their schedules individually, providing the capability
+for admins to add schedules on behalf of students is beneficial in cases where
+students request assistance.
+
+170
+
+Table 4.27 Result User Interface: Admin’s Edit Schedule
+
+User Interface
+
+Admin’s Edit Schedule
+
+Figure 4.27 Result User Interface: Admin’s Edit Schedule
+
+Description
+This user interface serves as the admin interface for editing schedules. This section
+enables the admin to modify a student’s schedule if necessary. Upon entering this
+section, the input fields are automatically populated with the existing schedule
+information, allowing the admin to conveniently replace the input with the updated
+details.
+
+171
+
+Table 4.28 Result User Interface: Admin’s Courses
+
+User Interface
+
+Admin’s Courses
+
+Figure 4.28 Result User Interface: Admin’s Courses
+
+Description
+This user interface functions as the admin interface for managing courses for each
+student in the system. All courses are listed in a table within this section, providing
+information such as student name, student ID, course name, course code, and group.
+
+172
+
+Table 4.29 Result User Interface: Admin’s Create Course
+
+User Interface
+
+Admin’s Create Course
+
+Figure 4.29 Result User Interface: Admin’s Create Course
+
+Description
+This user interface serves as the admin interface for creating courses. The admin can
+add a course for a student by specifying the student ID and course information.
+However, if users have not completed their student information, the course creation
+feature may not function as intended. Similarly, enabling reminders only works if
+the student has already integrated their account with Telegram.
+
+173
+
+Table 4.30 Result User Interface: Admins’ Edit Course
+
+User Interface
+
+Admins’ Edit Course
+
+Figure 4.30 Result User Interface: Admins’ Edit Course
+
+Description
+This user interface functions as the admin interface for editing courses, whether
+added by the admin or students. Despite being the edit section, the system still
+requires completion of the student's information to utilize this feature. Similarly,
+enabling reminders is contingent on the student having integrated their account with
+Telegram.
+
+174
+
+Table 4.31 Result User Interface: Admin’s Students Management
+
+User Interface
+
+Admin’s Students Management
+
+Figure 4.31 Result User Interface: Admin’s Students Management
+
+Description
+This user interface functions as the admin interface for managing users with a
+student role in the system. In this section, the admin can view crucial details such as
+name, email, student ID, program, campus, and gender. The status indicator denotes
+whether the student has completed their information. "Active" signifies completion,
+while "Pending" indicates the opposite.
+
+175
+
+Table 4.32 Result User Interface: Admin's Create Student
+
+User Interface
+
+Admin's Create Student
+
+Figure 4.32 Result User Interface: Admin's Create Student
+
+Description
+This user interface functions as the admin interface for creating a student account.
+While not a primary feature, it is useful for cases where the admin needs to add a
+student manually. This section also enables the admin to input the student's
+information during the account creation process.
+
+176
+
+Table 4.33 Result User Interface: Admin’s Edit Student
+
+User Interface
+
+Admin’s Edit Student
+
+Figure 4.33 Result User Interface: Admin’s Edit Student
+
+Description
+This user interface serves as the admin interface for editing student information.
+Clicking on the pen icon to the right of the user name and details will reveal a form,
+allowing the admin to update the user profile information.
+
+177
+
+Table 4.34 Result User Interface: Admin’s Delete Student
+
+User Interface
+
+Admin’s Delete Student
+
+Figure 4.34 Result User Interface: Admin’s Delete Student
+
+Description
+This user interface functions as the delete confirmation for the admin to remove a
+student if necessary. The popup appears when the admin clicks on the trash bin icon,
+providing a confirmation step to minimize the risk of unintentionally deleting a
+student.
+
+178
+
+Table 4.35 Result User Interface: Admin’s Setting
+
+User Interface
+
+Admin’s Setting
+
+Figure 4.35 Result User Interface: Admin’s Setting
+
+Description
+This user interface functions as the admin interface for configuring user preferences.
+Although it is labeled as the admin section, it pertains to setting preferences for
+students. All students who have interacted with their settings will be listed here.
+Students who have not accessed the settings section will not be visible in this list,
+but the admin can still manage students who are not yet listed.
+
+179
+
+Table 4.36 Result User Interface: Admin’s Create Setting
+
+User Interface
+
+Admin’s Create Setting
+
+Figure 4.36 Result User Interface: Admin’s Create Setting
+
+Description
+This user interface functions as the admin interface for creating settings for users. If
+a user has not accessed their settings yet, their name will not be visible in the list.
+Therefore, in cases where the admin needs to create new settings for a particular
+user, the admin must specify the user's email address to allow the system to identify
+which user the settings should be added to. For privacy reasons, the admin cannot
+manage any aspects of users associated with third-party integrations such as
+Telegram. These settings must be configured by the actual users themselves.
+
+180
+
+Table 4.37 Result User Interface: Admin’s Edit Setting
+
+User Interface
+
+Admin’s Edit Setting
+
+Figure 4.37 Result User Interface: Admin’s Edit Setting
+
+Description
+This user interface functions as the admin interface for editing user settings. The
+admin can choose any user from the list to edit their settings. Selecting a user will
+automatically populate the input fields in the edit section, facilitating a seamless
+process of modifying existing data without the need to recall and re-enter
+information. For privacy reasons, the admin cannot manage any aspects of users
+associated with third-party integrations such as Telegram. These settings must be
+configured by the actual users themselves.
+
+181
+
+Table 4.38 Result User Interface: Admin’s Delete Setting
+
+User Interface
+
+Admin’s Delete Setting
+
+Figure 4.38 Result User Interface: Admin’s Delete Setting
+
+Description
+This user interface functions as the admin interface for deleting user settings. The
+admin can easily click on the trash bin icon to remove the settings for a user. Similar
+to the delete setting feature, removing a user's settings will not affect third-party
+integrations made by the user. For instance, if the user has integrated their account
+with Telegram, deleting the user setting will not impact that integration.
+
+182
+
+Table 4.39 Result User Interface: Admin’s Profile
+
+User Interface
+
+Admin’s Profile
+
+Figure 4.39 Result User Interface: Admin’s Profile
+
+Description
+This user interface functions as the admin section for viewing the admin's own
+profile. The admin can view and modify their profile information within this section.
+
+183
+
+Table 4.40 Result User Interface: Admin’s Edit Profile
+
+User Interface
+
+Admin’s Edit Profile
+
+Figure 4.40 Result User Interface: Admin’s Edit Profile
+
+Description
+This user interface acts as the page for updating the admin profile. Clicking on the
+"Enable Edit" button makes the input fields editable, allowing the admin to update
+their profile. Subsequently, clicking on the "Save" button will save the modified data
+to the database.
+
+184
+
+4.2
+
+Testing
+
+Testing is crucial in the software development life cycle as it involves thorough testing
+of the developed system or application. This is designed to guarantee the quality,
+functionality, and reliability of the system. By implementing a well-defined set of test
+cases and scenarios, any defects, errors, or deviations from the expected behavior of
+the system can be identified and addressed.
+
+4.2.1 User Acceptance Test
+
+The User Acceptance Test (UAT) serves as a means to evaluate the system, assessing
+its capability to address challenges faced by students in traditional methods. During
+this test, users are required to fully utilize the developed system and provide feedback
+through a user acceptance test survey. The survey has been conducted with 15 students
+to gather feedback on StudyMate. Various questions were posed to assess the user
+acceptance of this system.
+
+Figure 4.41 User Acceptance Test: Welcome Page
+
+185
+
+Figure 4.41 displays the initial screen that users will encounter to respond to the User
+Acceptance Test questions. A "Start" button is provided to commence the process of
+answering the questions.
+
+Figure 4.42 User Acceptance Test: Question 1
+
+Figure 4.42 depicts the findings of the first question in the User Acceptance Test. It
+reveals that 80% of the 15 respondents found their overall experience with the
+StudyMate: UiTM Student Time Management System to be impressive. This indicates
+predominantly positive feedback from the test users regarding the system.
+Additionally, 6.7% of respondents rated their experience as 8 out of 10, which still
+signifies a favorable overall impression. This outcome can be attributed to StudyMate's
+user-friendly design tailored for beginners, complemented by extensive guides and
+tips, facilitating ease of use and enhancing the user experience.
+
+186
+
+Figure 4.43 User Acceptance Test: Question 2
+
+Figure 4.43 presents the results of a question querying respondents about their
+affiliation, specifically whether they are students from Universiti Teknologi MARA
+(UiTM) or from another university or college. Surprisingly, the data reveals that all 15
+respondents are from UiTM. This indicates a significant majority of testers hailing
+from UiTM. The prevalence of UiTM students among the respondents can be
+attributed to the survey's broad dissemination to all students, necessitating this
+question to ascertain the respondents' affiliations accurately.
+
+Figure 4.44 User Acceptance Test: Question 3
+
+Figure 4.44 showcases responses to a question regarding the ease of navigation
+through the StudyMate website. Remarkably, all 15 respondents agree that navigating
+StudyMate is easy. This overwhelming consensus suggests that the majority of testers
+187
+
+did not face challenges while navigating the website. Such positive feedback
+underscores the user-friendly design of StudyMate, particularly tailored to
+accommodate users with limited familiarity with technology. This success in usability
+can be attributed to StudyMate's deliberate emphasis on simplicity and intuitiveness
+in its design.
+
+Figure 4.45 User Acceptance Test: Question 4
+
+Figure 4.45 presents responses to a question regarding the functionality of the features
+provided by StudyMate. Notably, all 15 respondents confirmed that the features are
+indeed working as intended. This unanimous agreement indicates that none of the
+testers encountered issues with the provided features. This success can be attributed to
+rigorous testing conducted during the development phase, ensuring that features
+perform optimally before being rolled out into production. Such meticulous testing
+contributes to the overall reliability and functionality of StudyMate, enhancing the user
+experience and satisfaction.
+
+188
+
+Figure 4.46 User Acceptance Test: Question 5
+
+Figure 4.46 depicts responses to a question regarding the ease of obtaining and
+managing class timetables within StudyMate compared to manual methods.
+Impressively, 93.3% of the 15 respondents affirmed that managing the class timetable
+in StudyMate is indeed easier than manually retrieving timetables for each subject.
+This overwhelming majority suggests that StudyMate effectively simplifies the
+process of obtaining and managing class schedules. However, it's noteworthy that
+6.7% of respondents, equivalent to one respondent, disagreed with this statement.
+Despite this dissenting opinion, the overall consensus remains overwhelmingly in
+favor of StudyMate's efficacy in streamlining timetable management processes.
+
+Figure 4.47 User Acceptance Test: Question 6
+
+189
+
+Figure 4.47 showcases responses to a question regarding the utility of the reminder
+system provided by StudyMate. Impressively, all 15 respondents unanimously agree
+that StudyMate's reminder system, utilizing a Telegram Bot, is indeed helpful. This
+consensus highlights the effectiveness of StudyMate's reminder feature in aiding
+students with time management. The reminder system proves beneficial particularly
+for students juggling various commitments, helping them stay organized and on track
+with their class timetable schedules. This high level of satisfaction underscores the
+practical value of StudyMate's reminder system in supporting students' academic
+endeavors.
+
+Figure 4.48 User Acceptance Test: Question 7
+
+Figure 4.48 presents responses to a question regarding StudyMate's effectiveness in
+assisting users with managing their time wisely. Remarkably, all 15 respondents
+unanimously confirmed that StudyMate is indeed effective in helping them manage
+their time wisely. This overwhelming consensus highlights the significant impact of
+StudyMate on users' time management skills. The availability of features such as
+receiving reminders before scheduled events further contributes to StudyMate's
+effectiveness, ensuring that users stay organized and make the most of their time.
+
+190
+
+Figure 4.49 User Acceptance Test: Question 8
+
+Figure 4.49 presents responses to a question regarding whether respondents
+encountered any difficulties when using StudyMate. Impressively, 86.7% out of 15
+respondents reported not facing any problems, indicating that StudyMate's features are
+largely functioning as intended. However, it's notable that 13.3% of respondents did
+encounter difficulties. This feedback provides valuable insights for further enhancing
+StudyMate, ensuring a smoother user experience for all users. By addressing the
+reported issues, StudyMate can strive for continuous improvement and greater user
+satisfaction.
+
+Figure 4.50 User Acceptance Test: Question 9
+
+Figure 4.50 showcases responses to a question regarding respondents' satisfaction with
+the existing features provided in StudyMate. Remarkably, 100% out of 15 respondents
+191
+
+expressed satisfaction with the features. This overwhelming agreement suggests that
+respondents are highly content with the features offered by StudyMate. This
+satisfaction is likely attributed to the diligent development process, wherein all
+features are carefully crafted, tested, and refined to ensure optimal performance and
+usability. Such meticulous attention to detail contributes to the overall satisfaction of
+users with StudyMate's features.
+
+Figure 4.51 User Acceptance Test: Question 10
+
+Figure 4.51 presents responses to a question regarding respondents' likelihood of
+recommending StudyMate to a friend or colleague. Impressively, 73.3% out of 15
+respondents expressed a willingness to share StudyMate with their friends or
+colleagues. This positive inclination towards recommending StudyMate reflects the
+respondents' satisfaction with the system and their belief in its usefulness. Such a high
+likelihood of recommendation is a testament to StudyMate's user-friendly design and
+its effectiveness in aiding time management. This positive feedback further reinforces
+the value and utility of StudyMate in the eyes of its users.
+
+192
+
+4.2.2 Functionality Test
+
+This test is a comprehensive examination conducted by IT experts to evaluate the
+functionality of the StudyMate: UiTM Student Time Management System in realworld scenarios. The test is categorized into several sections to enhance readability.
+
+a. General Test
+
+Table 4.41 General Test
+
+No.
+
+ID
+
+Description
+
+Pass/Fail
+Mohamad
+
+Ts. Dr. Siti
+
+Mohd Ali bin
+
+Asrol bin
+
+Rahayu binti
+
+Mohd Isa
+
+Arshad
+
+Abdul Aziz
+
+1
+
+G_01
+
+Landing Page
+
+Pass
+
+Pass
+
+Pass
+
+2
+
+G_02
+
+Contact Us
+
+Pass
+
+Pass
+
+Pass
+
+3
+
+A_01
+
+Sign Up
+
+Pass
+
+Pass
+
+Pass
+
+4
+
+A_02
+
+Social Login
+
+Pass
+
+Pass
+
+Pass
+
+5
+
+A_03
+
+Sign In
+
+Pass
+
+Pass
+
+Pass
+
+6
+
+A_04
+
+Verify Email
+
+Pass
+
+Pass
+
+Pass
+
+7
+
+A_05
+
+Forgot
+
+Pass
+
+Pass
+
+Pass
+
+Password
+
+193
+
+8
+
+A_06
+
+Reset Password
+
+Pass
+
+Pass
+
+Pass
+
+9
+
+A_07
+
+Sign Out
+
+Pass
+
+Pass
+
+Pass
+
+10
+
+NV_0
+
+Navigation
+
+Pass
+
+Pass
+
+Pass
+
+Dashboard
+
+Pass
+
+Pass
+
+Pass
+
+1
+11
+
+D_01
+
+b. Student Tests
+
+Table 4.42 Student Test Table
+
+No.
+
+ID
+
+Description
+
+Pass/Fail
+Mohamad
+
+Ts. Dr. Siti
+
+Mohd Ali bin
+
+Asrol bin
+
+Rahayu binti
+
+Mohd Isa
+
+Arshad
+
+Abdul Aziz
+
+1
+
+P_01
+
+Profile View
+
+Pass
+
+Pass
+
+Pass
+
+2
+
+P_02
+
+Profile Update
+
+Pass
+
+Pass
+
+Pass
+
+3
+
+U_01
+
+Upcoming
+
+Pass
+
+Pass
+
+Pass
+
+4
+
+SC_01
+
+Schedule View
+
+Pass
+
+Pass
+
+Pass
+
+5
+
+SC_02
+
+Schedule View
+
+Pass
+
+Pass
+
+Pass
+
+Pass
+
+Pass
+
+Pass
+
+All
+6
+
+SC_03
+
+Schedule Create
+
+194
+
+7
+
+SC_04
+
+Schedule
+
+Pass
+
+Pass
+
+Pass
+
+Update
+8
+
+SC_05
+
+Schedule Delete
+
+Pass
+
+Pass
+
+Pass
+
+9
+
+C_01
+
+Course View
+
+Pass
+
+Pass
+
+Pass
+
+10
+
+C_02
+
+Course Create
+
+Pass
+
+Pass
+
+Pass
+
+11
+
+C_03
+
+One Click
+
+Pass
+
+Pass
+
+Pass
+
+Timetable
+Retrieve
+12
+
+C_04
+
+Course Update
+
+Pass
+
+Pass
+
+Pass
+
+13
+
+C_05
+
+Course Delete
+
+Pass
+
+Pass
+
+Pass
+
+14
+
+SE_01
+
+Setting View
+
+Pass
+
+Pass
+
+Pass
+
+15
+
+SE_02
+
+Setting Update
+
+Pass
+
+Pass
+
+Pass
+
+16
+
+T_01
+
+Telegram
+
+Pass
+
+Pass
+
+Pass
+
+195
+
+c. Admin Tests
+
+Table 4.43 Admin Test Table
+
+No.
+
+ID
+
+Description
+
+Pass/Fail
+Mohamad
+
+Ts. Dr. Siti
+
+Mohd Ali bin
+
+Asrol bin
+
+Rahayu binti
+
+Mohd Isa
+
+Arshad
+
+Abdul Aziz
+
+1
+
+XP_01
+
+Profile View
+
+Pass
+
+Pass
+
+Pass
+
+2
+
+XP_02
+
+Profile Update
+
+Pass
+
+Pass
+
+Pass
+
+3
+
+XSC_01 Schedule View
+
+Pass
+
+Pass
+
+Pass
+
+4
+
+XSC_02 Schedule
+
+Pass
+
+Pass
+
+Pass
+
+Pass
+
+Pass
+
+Pass
+
+Pass
+
+Pass
+
+Pass
+
+Create
+5
+
+XSC_03 Schedule
+Update
+
+6
+
+XSC_04 Schedule
+Delete
+
+7
+
+XC_01
+
+Course View
+
+Pass
+
+Pass
+
+Pass
+
+8
+
+XC_02
+
+Course Create
+
+Pass
+
+Pass
+
+Pass
+
+9
+
+XC_03
+
+Course Update
+
+Pass
+
+Pass
+
+Pass
+
+10
+
+XC_04
+
+Course Delete
+
+Pass
+
+Pass
+
+Pass
+
+11
+
+XST_01 Student View
+
+Pass
+
+Pass
+
+Pass
+
+196
+
+12
+
+XST_02 Student Create
+
+Pass
+
+Pass
+
+Pass
+
+13
+
+XST_03 Student Update
+
+Pass
+
+Pass
+
+Pass
+
+14
+
+XST_04 Student Delete
+
+Pass
+
+Pass
+
+Pass
+
+15
+
+XSE_01 Setting View
+
+Pass
+
+Pass
+
+Pass
+
+16
+
+XSE_02 Setting Create
+
+Pass
+
+Pass
+
+Pass
+
+17
+
+XSE_03 Setting Update
+
+Pass
+
+Pass
+
+Pass
+
+18
+
+XSE_04 Setting Delete
+
+Pass
+
+Pass
+
+Pass
+
+197
+
+d. System Tests
+
+Table 4.44 System Test Table
+
+No.
+
+ID
+
+Description
+
+Pass/Fail
+Mohamad
+
+Ts. Dr. Siti
+
+Mohd Ali bin
+
+Asrol bin
+
+Rahayu binti
+
+Mohd Isa
+
+Arshad
+
+Abdul Aziz
+
+1
+
+S_SCH
+
+Scheduler
+
+Pass
+
+Pass
+
+Pass
+
+2
+
+S_SCR
+
+Scraping
+
+Pass
+
+Pass
+
+Pass
+
+3
+
+S_TEL
+
+Telegram
+
+Pass
+
+Pass
+
+Pass
+
+The impressive outcome of all functionality tests being passed with flying colors,
+especially when conducted by an IT expert, speaks volumes about the quality and
+thoroughness of the system's development. Such success is indeed commendable and
+surpasses expectations for a new system. It underscores the importance of meticulous
+attention to detail and rigorous testing for each functionality during the development
+phase. While achieving such results may require significant investment of time and
+resources, the outcome proves that it's worth every cent. This diligent approach ensures
+that the system meets high standards of performance, reliability, and user satisfaction,
+ultimately contributing to its success in fulfilling its intended purpose.
+
+198
+
+4.2.3 Accuracy Test
+
+The accuracy tests for this project are split into two main components, each focusing
+on verifying specific functionalities. Within this project scope, the accuracy of two key
+features, web-scraping and the reminder system, is assessed. The web-scraping test
+aims to validate the precise retrieval of student class timetables from UiTM’s platforms
+such as ICress or myStudent, ensuring parity with the students' actual schedules.
+Meanwhile, the reminder system undergoes testing to confirm its ability to effectively
+dispatch reminders to students at designated times, ensuring prompt reception. These
+accuracy assessments are conducted utilizing five StudyMate accounts for
+comprehensive evaluation.
+
+a. Web-scraping Accuracy Test
+
+Table 4.45 Web-scraping Accuracy Test Table
+
+No.
+
+1
+
+Student ID
+
+2022937689
+
+Course Taken
+
+Web-scraping
+Result
+
+Pass/Fail
+
+ICT652
+
+ICT652
+
+Pass
+
+ITT420
+
+ITT420
+
+Pass
+
+CSP650
+
+CSP650
+
+Pass
+
+ENT600
+
+ENT600
+
+Pass
+
+ITT632
+
+ITT632
+
+Pass
+
+EET699
+
+EET699
+
+Pass
+
+199
+
+2
+
+3
+
+4
+
+5
+
+2022930735
+
+2022905495
+
+2022907921
+
+2022987975
+
+ICT653
+
+ICT653
+
+Pass
+
+DSC650
+
+DSC650
+
+Pass
+
+ENT600
+
+ENT600
+
+Pass
+
+ICT652
+
+ICT652
+
+Pass
+
+CSP650
+
+CSP650
+
+Pass
+
+CSC567
+
+CSC567
+
+Pass
+
+CSP650
+
+CSP650
+
+Pass
+
+ICT652
+
+ICT652
+
+Pass
+
+CSC536
+
+CSC536
+
+Pass
+
+ICT653
+
+ICT653
+
+Pass
+
+DSC650
+
+DSC650
+
+Pass
+
+ENT600
+
+ENT600
+
+Pass
+
+ICT652
+
+ICT652
+
+Pass
+
+CSP650
+
+CSP650
+
+Pass
+
+ICT652
+
+ICT652
+
+Pass
+
+ITT420
+
+ITT420
+
+Pass
+
+CSP650
+
+CSP650
+
+Pass
+
+200
+
+ENT600
+
+ENT600
+
+Pass
+
+ITT632
+
+ITT632
+
+Pass
+
+EET699
+
+EET699
+
+Pass
+
+According to the findings presented in Table 4.45, the algorithm and technique
+employed to extract UiTM student class timetables demonstrate reliability. The test
+data and results align accurately with manual retrieval from the UiTM website,
+indicating the project's success in facilitating easier access to timetables for students.
+Notably, the web-scraping results consistently match the courses enrolled by each
+student, affirming the achievement of the project objective.
+
+b. Automatic Reminder Accuracy Test
+
+Table 4.46 Reminder Accuracy Test Table
+
+No.
+
+Student ID
+
+Send Before
+
+Reminder
+Received?
+
+(Minutes)
+1
+
+2
+
+2022937689
+
+2022772035
+
+Pass/Fail
+
+0
+
+Yes
+
+Pass
+
+5
+
+Yes
+
+Pass
+
+10
+
+Yes
+
+Pass
+
+0
+
+Yes
+
+Pass
+
+5
+
+Yes
+
+Pass
+
+201
+
+3
+
+4
+
+5
+
+2022907921
+
+2022930735
+
+2022905495
+
+10
+
+Yes
+
+Pass
+
+0
+
+Yes
+
+Pass
+
+5
+
+Yes
+
+Pass
+
+10
+
+Yes
+
+Pass
+
+0
+
+Yes
+
+Pass
+
+5
+
+Yes
+
+Pass
+
+10
+
+Yes
+
+Pass
+
+0
+
+Yes
+
+Pass
+
+5
+
+Yes
+
+Pass
+
+10
+
+Yes
+
+Pass
+
+Table 4.46 presents the accuracy of the system in sending reminders to students at the
+specified times. The tests were conducted using three distinct time intervals: real-time
+(0 minutes), 5 minutes prior, and 10 minutes prior to the scheduled start time. The
+values denote the lead time in minutes before the event for reminder delivery. Across
+all five tests employing varied time intervals, all reminders were successfully received
+by the students. This robust performance underscores the reliability of the reminder
+system in promptly notifying students about their upcoming schedules.
+
+202
+
+CHAPTER FIVE
+
+CONCLUSION AND RECOMMENDATIONS
+
+This chapter discusses the conclusion of the StudyMate: UiTM Student Time
+Management System. Additionally, recommendations are also covered in this section.
+This marks the conclusion of all chapters within the report for this project.
+
+5.1
+
+Introduction
+
+The StudyMate project, the UiTM Student Time Management System, initially aimed
+to simplify tasks by providing a centralized platform for students to access their
+schedules. The goal was to create a class timetable that could be easily viewed in one
+place, eliminating the need to retrieve it repeatedly and avoiding scattered storage,
+such as saving it in various unsuitable locations like personal WhatsApp messages for
+future reference. However, after extensive brainstorming, numerous features were
+identified for integration to enhance the system's robustness. Implementing the
+functionality to receive reminders before the class starts was one of the notable ideas
+incorporated into the project.
+
+Implementing notification or reminders for tasks is not overly challenging. However,
+determining what the message should contain and when the system should send the
+reminder presents a crucial consideration. Opting for the schedule's title and
+description, along with additional pertinent information, and sending the reminder at
+the actual time elevates the system to another level. To address this, making the
+message customizable enables users to manage the content, and allowing them to
+specify how many minutes in advance they want the system to send the reminder
+before the event starts provides a flexible solution.
+203
+
+Contemplating useful features can be complex, considering the myriad possibilities
+for system implementation. Planning to add numerous features might lead to
+incomplete implementation, as the system should primarily achieve its main objectives
+and address current user issues. Prioritizing the attainment of objectives and problem
+resolution takes precedence over feature upgrades. However, striking a balance is key
+in managing this project.
+
+5.2
+
+Future Works
+
+a) Diverse Platforms for Receiving Reminders
+Currently, the system is integrated only with Telegram, allowing users to
+receive notifications exclusively through that platform. However, expanding
+the integration to multiple and diverse platforms would significantly enhance
+the system. Users could then choose based on their preferences or even enable
+notifications across all platforms. While implementing this functionality may
+require a substantial amount of time, the resulting enhancement in user
+satisfaction would justify the time invested in the implementation.
+
+b) Integration with Various Universities or Colleges
+Presently, the project named, "UiTM Student Time Management System" is
+specifically designed for UiTM students but not limited to them. This implies
+that users who are not UiTM students can still make use of the system's
+features, except for the course section. The course section is a special module
+integrated with the UiTM timetable, allowing users to fetch their class
+timetable from the UiTM website. However, exploring the possibility of
+integrating with other universities and colleges could be intriguing. This would
+extend the convenience of the system to users from various educational
+institutions.
+
+204
+
+5.3
+
+Limitations
+
+a) Single Platform for Receiving Reminders
+Presently, the system exclusively utilizes Telegram to dispatch reminders to
+students. Integration with other social or reminder platforms has not yet been
+implemented.
+
+b) Some Features Limited to UiTM Student Only
+Although the system is accessible to all users, its timetable retrieval functionality
+is tailored specifically for UiTM students at present. Students from other
+universities or colleges can manually input their class timetables by specifying the
+class type.
+
+5.4
+
+Summary
+
+In conclusion, the StudyMate project, the UiTM Student Time Management System,
+is designed to assist students in managing their time effectively. However, the system's
+effectiveness relies on the users being punctual, responsible, and willing to manage
+their time wisely. The project is developed as a tool to aid students in time
+management. Conveniently receiving reminders before class times and task deadlines
+may contribute to students' success in their academic and professional endeavors.
+Having a robust integration with the UiTM website simplifies the process for UiTM
+students to access their timetables. This, coupled with the easily enabled reminder
+feature in the settings, ensures that students receive timely reminders before each class
+begins.
+
+205
+
+REFERENCES
+Ajam, G., Rodriguez, C., & Benatallah, B. (2020). API Topic Issues Indexing,
+Exploration and Discovery for API Community Knowledge. Proceedings - 2020 46th
+Latin
+
+American
+
+Computing
+
+Conference,
+
+CLEI
+
+2020,
+
+178–185.
+
+https://doi.org/10.1109/CLEI52000.2020.00028
+Cubukcu, U., Erdogan, O., Pathak, S., Sannakkayala, S., & Slot, M. (2021). Citus:
+Distributed PostgreSQL for Data-Intensive Applications. Proceedings of the ACM
+SIGMOD International Conference on Management of Data, 2490–2502.
+https://doi.org/10.1145/3448016.3457551
+Dmytryshyn, M., & Goran, T. (2022). PROPOSAL OF AN EFFECTIVE TIME
+MANAGEMENT
+
+SYSTEM.
+
+Management
+
+(Croatia),
+
+27(2),
+
+283–298.
+
+https://doi.org/10.30924/mjcmi.27.2.15
+Fazliakhmetov, T. R., Salekhova, L. L., Muhutdinova, G. I., & Aslanov, R. M. (2021).
+Using the messenger software opportunities in distance education. Revista on Line de
+Política
+
+e
+
+Gestão
+
+Educacional,
+
+378–386.
+
+https://doi.org/10.22633/rpge.v25iesp.1.14974
+Hadi Hedayati, M., Ahmad Baktash, J., & Latif Erfan, A. (2019). Facebook MySQL
+Performance vs MySQL Performance; Facebook MySQL Performance vs MySQL
+Performance. In 2019 IEEE 10th Annual Information Technology, Electronics and
+Mobile Communication Conference (IEMCON).
+Hazwam Abd Halim, I., Rosli Razak, T., & Hafiz mypapit Ismail, M. (2019). Reducing
+Honeypot Log Storage Capacity Consumption-Cron Job with Perl-Script Approach
+Explainable
+
+Fuzzy
+
+Systems
+
+View
+
+project
+
+Virtual
+
+Tour
+
+View
+
+project.
+
+https://www.researchgate.net/publication/337337024
+Husain, H., Herlinda, H., Hasriani, H., Ahyuna, A., Kasmawaru, K., & Ahmad, A.
+(2021). Increasing the Smart Home Automation by using Facebook Messenger
+Application. 3rd International Conference on Cybernetics and Intelligent Systems,
+ICORIS 2021. https://doi.org/10.1109/ICORIS52787.2021.9649442
+
+206
+
+Kao, C. H., Chang, C. Y., & Jiau, H. C. (2022). Towards cost-effective API
+deprecation: A win–win strategy for API developers and API users. Information and
+Software Technology, 142. https://doi.org/10.1016/j.infsof.2021.106746
+Kausar Bagwan, M. I., & Swati Ghule, P. D. (2019). A Modern Review on LaravelPHP Framework.
+Khiat, H. (2022). Using automated time management enablers to improve selfregulated
+
+learning. Active
+
+Learning
+
+in
+
+Higher
+
+Education,
+
+23(1),
+
+3–15.
+
+https://doi.org/10.1177/1469787419866304
+Krotov, V., Johnson, L., & Silva, L. (2020). Tutorial: Legality and ethics of web
+scraping. Communications of the Association for Information Systems, 47(1), 539–
+563. https://doi.org/10.17705/1CAIS.04724
+Lumba, E., & Waworuntu, A. (2021). Implementation of Model View Controller
+Architecture in Object Oriented Programming Learning. International Journal of New
+Media Technology), 8(2), 102.
+Ma, S. P., Hsu, M. J., Chen, H. J., & Lin, C. J. (2023). RESTful API Analysis,
+Recommendation, and Client Code Retrieval. Electronics (Switzerland), 12(5).
+https://doi.org/10.3390/electronics12051252
+Maksimova, R., & Kolev, K. (2020, October 1). Information Graphers - COVID-19
+MoniToR. 2020 International Conference Automatics and Informatics, ICAI 2020 Proceedings. https://doi.org/10.1109/ICAI50593.2020.9311326
+Mishra, D. P., Rout, K. K., & Salkuti, S. R. (2021). Modern tools and current trends in
+web-development. Indonesian Journal of Electrical Engineering and Computer
+Science, 24(2), 978–985. https://doi.org/10.11591/ijeecs.v24.i2.pp978-985
+Motz, B. A., Mallon, M. G., & Quick, J. D. (2021). Automated Educative Nudges to
+Reduce Missed Assignments in College. IEEE Transactions on Learning
+Technologies, 14(2), 189–200. https://doi.org/10.1109/TLT.2021.3064613
+Nawaz, M. S., Khan, S. U. R., Ahmad, B., Iqbal, J., & Inayat-Ur-Rehman. (2022).
+CAPIRS: COVID-19-Based Application Programming Interface Recommendation
+System for the Developers. Journal of Information and Knowledge Management, 21.
+https://doi.org/10.1142/S0219649222400044
+207
+
+Novac, C. M., Novac, O. C., Sferle, R. M., Gordan, M. I., Bujdoso, G., & Dindelegan,
+C. M. (2021, June 10). Comparative study of some applications made in the Vue.js and
+React.js frameworks. 2021 16th International Conference on Engineering of Modern
+Electric
+
+Systems,
+
+EMES
+
+2021
+
+-
+
+Proceedings.
+
+https://doi.org/10.1109/EMES52337.2021.9484149
+Novac, O. C., Chilba, C., Novac, C. M., Gordan, C., Gordan, M., & Bujdoso, G. (2020,
+June 1). Comparison of DotKernel and Symfony as PHP frameworks. Proceedings of
+the 12th International Conference on Electronics, Computers and Artificial
+Intelligence, ECAI 2020. https://doi.org/10.1109/ECAI50035.2020.9223157
+Prasad, V., Shallam, R., Sharma, A., Varghese, D., & Mehta, D. (2021, May 8). A
+Hybrid Multi-Modal System for Conducting Virtual Workshops Using Interactive
+Voice Response and the WhatsApp Business API. Conference on Human Factors in
+Computing Systems - Proceedings. https://doi.org/10.1145/3411763.3451820
+Prates, L. (2022). Systematic Literature Review: Software Engineering Frameworks.
+https://doi.org/10.21203/rs.3.rs-1637463/v1
+Qi, L., He, Q., Chen, F., Zhang, X., Dou, W., & Ni, Q. (2022). Data-Driven Web APIs
+Recommendation for Building Web Applications. IEEE Transactions on Big Data,
+8(3), 685–698. https://doi.org/10.1109/TBDATA.2020.2975587
+Saputra, D., Irmayani, W., Sidauruk, J., Eka Jayanti, W., Widianto, K., & Rahman, A.
+(2020). Application of Web-Based Competency Test (UKSI) with Framework Code
+Igniter (CI). International Journal of Advanced Science and Technology, 29(4), 4500–
+4520. https://www.researchgate.net/publication/349518493
+Singrodia, V., Mitra, A., & Paul, S. (2019, January 1). A Review on Web Scrapping
+and its Applications. 2019 International Conference on Computer Communication and
+Informatics, ICCCI 2019. https://doi.org/10.1109/ICCCI.2019.8821809
+Smutny, P., & Schreiberova, P. (2020). Chatbots for learning: A review of educational
+chatbots
+
+for
+
+the
+
+Facebook
+
+Messenger.
+
+https://doi.org/10.1016/j.compedu.2020.103862
+
+208
+
+Computers
+
+and
+
+Education,
+
+151.
+
+Song, J., Zhang, M., & Xie, H. (2019). Design and implementation of a Vue.js-based
+college teaching system. International Journal of Emerging Technologies in Learning,
+14(13), 59–69. https://doi.org/10.3991/ijet.v14i13.10709
+Sunardi, A., & Suharjito. (2019). MVC architecture: A comparative study between
+laravel framework and slim framework in freelancer project monitoring system web
+based.
+
+Procedia
+
+Computer
+
+Science,
+
+157,
+
+134–141.
+
+https://doi.org/10.1016/j.procs.2019.08.150
+Trentepohl, S., Waldeyer, J., Fleischer, J., Roelle, J., Leutner, D., & Wirth, J. (2022).
+How Did It Get So Late So Soon? The Effects of Time Management Knowledge and
+Practice on Students’ Time Management Skills and Academic Performance.
+Sustainability (Switzerland), 14(9). https://doi.org/10.3390/su14095097
+van Ommeren, J. K., Al Hanbali, A., & Boucherie, R. J. (2020). Analysis of polling
+models
+
+with
+
+a
+
+self-ruling
+
+server.
+
+Queueing
+
+Systems,
+
+94(1–2),
+
+77–107.
+
+https://doi.org/10.1007/s11134-019-09639-6
+Vidal-Silva, C., Jiménez, C., Madariaga, E., & Urzúa, L. (2020). Applying PHP
+Codeigniter For Easy Web Development. https://doi.org/10.4067/S0718
+Glez-Peña, Daniel, et al. “Web Scraping Technologies in an API World.” Briefings in
+Bioinformatics, no. 5, Oxford University Press (OUP), Apr. 2013, pp. 788–97.
+Crossref, doi:10.1093/bib/bbt026.
+
+209
+
+APPENDIX A
+PROBLEM STATEMENT SURVEY
+
+210
+
+Copy
+
+Do you have difficulty remembering the course code?
+35 responses
+
+Yes
+No
+20%
+
+80%
+
+Copy
+
+Do you have difficulty obtaining your class timetable?
+35 responses
+
+Yes
+No
+
+20%
+
+80%
+
+Do you have difficulty remembering task or assignment due dates?
+35 responses
+
+Yes
+No
+
+11.4%
+
+88.6%
+
+Copy
+
+Do you use an application to remind you about class and assignment due dates?
+
+Copy
+
+35 responses
+
+Yes
+No
+
+71.4%
+
+28.6%
+
+Do you think a system that reminds you before each class starts and assignment due
+
+Copy
+
+dates would be helpful?
+35 responses
+
+Yes
+No
+
+8.6%
+91.4%
+
+Do you think Developing UiTM Student Time Management System using Web-
+
+Scraping and Telegram Bot API with Advanced Notification Reminder can help
+improving your productivity?
+35 responses
+
+Yes
+No
+
+97.1%
+
+Copy
+
+APPENDIX B
+FUNCTIONALITY TEST
+
+211
+
+Functionality Test Agreement
+The test to verify the functionality of the system is conducted by the tester and the developer
+under the terms of this agreement. This agreement includes:
+Purpose of testing and objective:
+This test's objectives are to ascertain whether the system is operating correctly and to reveal
+any mistakes or issues that may exist. The system is tested using modules as the basis.
+Requirements:
+•
+
+The tester receives the test agreement and test form.
+
+•
+
+The system is tested on a computer or laptop.
+
+•
+
+It is necessary to fill in the test results field on the form.
+
+•
+
+All the testers information is required.
+
+Tester
+
+Information
+
+Developer
+
+DR. SITI RAHAYU BINTI ABDUL
+
+MUHAMMAD AMIRUL BIN
+
+AZIZ
+
+MAMAT
+
+Position
+
+SENIOR LECTURER
+
+STUDENT
+
+Phone
+
+0192361615
+
+0168000782
+
+24/01/2024
+
+24/01/2024
+
+Name
+
+Number
+Signature
+Date
+
+1. General Tests
+
+No.
+
+ID
+
+1
+
+G_01
+
+Description
+Landing Page
+
+Expected Output
+•
+
+The Landing Page is
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+accessible. Including
+the Features &
+Contact Us sections.
+2
+
+G_02
+
+Contact Us
+
+•
+
+The Contact Us
+section is loaded.
+
+•
+
+The system will
+redirect the user to
+the user’s default
+mailbox with the
+subject & message
+they entered.
+
+3
+
+A_01
+
+Sign Up
+Notes: You can sign up
+using any of your email.
+
+•
+
+The Sign-Up page is
+accessible.
+
+•
+
+Successfully created
+an account. The
+
+But alternatively, you can
+
+system redirects the
+
+also use a temporary
+
+user to the page for
+
+email at,
+
+verifying the email
+
+https://tempmail.ac.id.
+
+address.
+
+The system will ask for
+email verification. Check
+your inbox for
+verification link.
+
+•
+
+The system sends the
+verification link to
+the user’s email
+address.
+
+•
+
+This does not apply
+for authentication
+using Social Login.
+
+4
+
+A_02
+
+Social Login
+Notes: Sign in with any
+of your Google or
+GitHub account.
+
+•
+
+The Social Login
+
+/
+
+Pass
+
+/
+
+Pass
+
+options are available.
+•
+
+The system logins the
+user into the system.
+
+•
+
+If the user does not
+yet exist, the system
+will create a new
+user.
+
+•
+
+The system then
+redirects the users to
+the Dashboard page.
+
+5
+
+A_03
+
+Sign In
+Notes: Sign in using the
+account you created
+earlier.
+OR
+Use this sample account:
+Student
+Email:
+student@amlxv.com
+Password: password
+
+•
+
+The Sign In page is
+accessible.
+
+•
+
+Successfully logged
+into the system.
+
+•
+
+The system redirects
+the user into the
+Dashboard.
+
+Admin
+Email:
+admin@amlxv.com
+Password: password
+
+6
+
+A_04
+
+Verify Email
+
+•
+
+The Verify Email
+page is accessible
+
+Notes: Check the inbox,
+
+using the email
+
+there will be an email
+
+verification link sent
+
+from StudyMate for
+
+to the user’s email
+
+verifying the email.
+
+address.
+•
+
+The user received the
+email verification
+link in their email
+inbox.
+
+•
+
+If the resend button is
+clicked, the system
+will again send the
+email verification
+link to the user’s
+email address.
+
+•
+
+Clicking on the
+“Verify Email
+Address” or
+verification link in
+the email inbox will
+redirect the user into
+the Dashboard.
+
+/
+
+Pass
+
+•
+
+This does not apply
+for authentication
+using Social Login.
+
+7
+
+A_05
+
+Forgot Password
+
+•
+
+The Forgot Password
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+page is accessible.
+•
+
+A reset password link
+is sent to the user’s
+email address upon
+request.
+
+•
+
+The user received the
+reset password link.
+
+8
+
+A_06
+
+Reset Password
+
+•
+
+page is accessible
+
+Notes: Check the inbox,
+
+using the password
+
+there will be an email
+
+reset link sent to the
+
+from StudyMate for reset
+the password.
+
+The Reset Password
+
+user’s email address.
+•
+
+Successfully reset the
+password.
+
+•
+
+The system will
+redirect the users to
+the Sign In page.
+
+•
+
+Able to sign in using
+the new password.
+
+9
+
+A_07
+
+Sign Out
+
+•
+
+Terminate the user’s
+current session.
+
+•
+
+The system will bring
+the user to the
+landing page.
+
+10
+
+NV_01
+
+Navigation
+
+•
+
+Able to navigate
+
+/
+
+Pass
+
+/
+
+Pass
+
+through the
+
+Notes: Sign in again to
+
+Dashboard,
+
+the system.
+
+Upcoming,
+Schedules, Courses,
+Settings & Profile.
+
+11
+
+D_01
+
+Dashboard
+
+•
+
+The Dashboard page
+is accessible.
+
+•
+
+The statistics and
+graph can be seen
+(but the data may be
+empty).
+
+2. Student Tests
+No.
+
+ID
+
+1
+
+P_01
+
+Description
+Profile View
+
+Expected Output
+•
+
+The Profile page is
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+accessible.
+•
+
+Able to see the user’s
+general & student
+profile information.
+
+•
+
+Toggle click on
+“Enable Edit” will
+allow or disallow the
+users to make
+changes to the
+information.
+
+2
+
+P_02
+
+Profile Update
+
+•
+
+except an email
+
+Notes: For student
+information, which is
+required for upcoming
+tests, you can use any of
+the student’s details. But
+you can also use this
+sample data:
+Student ID: 2022988117
+Campus: UITM
+KAMPUS JASIN
+Faculty: COLLEGE OF
+COMPUTING INFORMATICS AND
+
+All the information
+address is editable.
+
+•
+
+There is an option for
+selecting the campus.
+
+•
+
+There is an option for
+selecting the faculty.
+
+•
+
+Successfully updated
+the information on
+save.
+
+MATHEMATICS
+Program: CS251
+3
+
+U_01
+
+Upcoming
+
+•
+
+The Upcoming page
+
+/
+
+Pass
+
+/
+
+Pass
+
+is accessible.
+•
+
+If there is no
+upcoming schedule,
+there will be a button
+for adding the
+schedule.
+
+•
+
+Clicking on the “New
+Schedule” will bring
+the user to the create
+schedule page.
+
+•
+
+If there is an
+upcoming schedule,
+the card containing
+the schedule’s
+information will
+appear.
+
+•
+
+Clicking on the card
+will redirect the user
+to the edit page for
+the selected schedule.
+
+4
+
+SC_01
+
+Schedule View
+
+•
+
+The Schedule page is
+accessible.
+
+•
+
+Able to see a
+calendar-like
+interface showing the
+
+current schedule in a
+month.
+•
+
+If exist a schedule in
+the current month,
+user should be able to
+click on the schedule
+to see more details
+about the schedule,
+manage & delete the
+schedule.
+
+5
+
+SC_02
+
+Schedule View All
+
+•
+
+The View All
+
+/
+
+Pass
+
+/
+
+Pass
+
+Schedule page is
+accessible.
+•
+
+Toggle between
+“Class Timetable” &
+“Activities” will
+change the schedules
+being displayed based
+on their type.
+
+•
+
+Able to see all the
+schedule that has
+been created.
+
+6
+
+SC_03
+
+Schedule Create
+Notes: Enabling
+notification feature
+requires Telegram
+Integration. Refer to
+Student Test (No. 15) or
+test ID: T_01
+
+•
+
+The Create Schedule
+page is accessible.
+
+•
+
+Toggle between
+“Class Timetable” &
+“Activities” will
+change the schedule’s
+type.
+
+•
+
+Able to create a new
+schedule.
+
+7
+
+SC_04
+
+Schedule Update
+Notes: Enabling
+notification feature
+
+•
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+page is accessible.
+•
+
+Toggle between
+“Class Timetable” &
+
+requires Telegram
+
+“Activities” will
+
+Integration. Refer to
+
+change the schedule’s
+
+Student Test (No. 15) or
+test ID: T_01
+
+The Update Schedule
+
+type.
+•
+
+Able to save the
+schedule with the
+new information.
+
+8
+
+SC_05
+
+Schedule Delete
+
+•
+
+Able to delete the
+schedule.
+
+•
+
+The schedule should
+be removed from the
+lists.
+
+9
+
+C_01
+
+Course View
+
+•
+
+The Course page is
+accessible.
+
+•
+
+If the course exists,
+able to see the list of
+course in a table.
+
+10
+
+C_02
+
+Course Create
+Notes: Enabling
+notification feature
+requires Telegram
+Integration. Refer to
+
+•
+
+Users should be able
+to add a new course
+with or without the
+reminder being
+turned on.
+
+Student Test (No. 15) or
+
+•
+
+test ID: T_01
+For creating the course,
+the course details are
+required. You can use any
+UiTM’s courses
+information.
+
+On success, the new
+course will be added
+to the courses list.
+
+•
+
+The schedule that
+belongs to the course
+will also being added
+in the background.
+Kindly check the
+
+For UiTM’s lecturers, to
+
+schedules page for
+
+get to know what
+
+confirmation.
+
+subjects that the student
+taken, you can follow
+this step:
+-
+
+Visit the link to
+https://simsacademic.uitm.ed
+u.my/sims/index.
+htm
+
+-
+
+Sign in with your
+credentials.
+
+-
+
+Click on “Student
+Details” or
+“Maklumat
+Pelajar”.
+
+-
+
+Fill in the student
+ID.
+
+-
+
+Click on quick
+search.
+
+-
+
+Choose
+“academic”.
+
+-
+
+Scroll to view the
+subject has been
+taken.
+
+But alternatively, you can
+also use these sample:
+Sample 1
+Name: PROJECT
+Code: CSP650
+Group: M3CS2516A
+Sample 2
+Name: TECHNOLOGY
+ENTREPRENEURSHIP
+Code: ENT600
+Group: M3CS2516A
+Sample 3
+Name: NETWORK
+AND SYSTEM
+ADMINISTRATION
+Code: ITT420
+Group: M3CS2516A
+11
+
+C_03
+
+One Click Timetable
+
+•
+
+Retrieve
+
+to add their courses
+taken with only a
+
+Notes: This feature
+requires a student
+information being setup
+properly. Refer to
+
+Users should be able
+
+single click.
+•
+
+The system should
+retrieve all the
+
+/
+
+Pass
+
+Student Test (No. 2) for
+
+courses and
+
+updating the student
+
+timetables for the
+
+information.
+
+corresponding user
+and save them into
+
+To use this feature,
+simply click on the
+button called “Surprise
+
+the database.
+•
+
+On success, the
+courses will be
+
+Me!” in the course
+
+shown on the courses
+
+section.
+
+list.
+•
+
+The schedules for the
+courses should also
+being added.
+
+12
+
+C_04
+
+Course Update
+
+•
+
+Users should be able
+to update the existing
+course with or
+without the reminder
+being turned on.
+
+•
+
+On success, the
+course will be
+updated and shown
+on the courses list.
+
+•
+
+The schedule that
+belongs to the course
+will also being
+updated in the
+background. Kindly
+check the schedules
+page for
+confirmation.
+
+/
+
+Pass
+
+13
+
+C_05
+
+Course Delete
+
+•
+
+The users should be
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+able to delete the
+course.
+•
+
+The course will be
+deleted from the
+courses list.
+
+•
+
+The schedule that
+belongs to the
+corresponding course
+will also being
+deleted as well.
+
+14
+
+SE_01
+
+Setting View
+
+•
+
+The Setting page is
+accessible.
+
+•
+
+Toggle click on
+“Enable Edit” will
+allow or disallow the
+users to make
+changes to the
+information.
+
+15
+
+SE_02
+
+Setting Update
+
+•
+
+All the information
+except the telegram
+username can be
+manually edited.
+
+•
+
+Successfully updated
+the information on
+save.
+
+16
+
+T_01
+
+Telegram
+
+•
+
+On Setting page,
+clicking on the
+
+Telegram button will
+
+Notes: This requires you
+
+integrate the
+
+to have a Telegram
+
+StudyMate with
+
+account. The Telegram
+
+user’s Telegram
+
+widget will pop-up for a
+verification.
+
+account.
+•
+
+Users should be able
+to see their username
+on the Telegram
+Username on the
+setting page.
+
+•
+
+Users should receive
+a message from
+StudyMate Telegram
+Bot.
+
+3. Admin Tests
+* Sign in with the “Admin” test account. Email: admin@amlxv.com | Password: password
+No.
+
+ID
+
+1
+
+XP_01
+
+Description
+Profile View
+
+Expected Output
+•
+
+The Profile page is
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+accessible.
+•
+
+Able to see the user’s
+profile information.
+
+•
+
+Toggle click on
+“Enable Edit” will
+allow or disallow the
+users to make
+changes to the
+information.
+
+2
+
+XP_02
+
+Profile Update
+
+•
+
+All the information
+except an email
+address is editable.
+
+•
+
+Successfully updated
+the information on
+save.
+
+3
+
+XSC_01 Schedule View
+
+•
+
+The Schedule page is
+accessible.
+
+•
+
+Able to see all
+schedules in a table.
+
+4
+
+XSC_02 Schedule Create
+Notes: Enabling
+notification feature
+
+•
+
+The Create Schedule
+page is accessible.
+
+requires Telegram
+
+•
+
+Toggle between
+
+Integration. Refer to
+
+“Class Timetable” &
+
+Student Test (No. 15) or
+
+“Activities” will
+
+test ID: T_01
+
+change the schedule’s
+type.
+•
+
+Able to create a new
+schedule.
+
+5
+
+XSC_03 Schedule Update
+Notes: Enabling
+notification feature
+
+•
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+page is accessible.
+•
+
+Toggle between
+“Class Timetable” &
+
+requires Telegram
+
+“Activities” will
+
+Integration. Refer to
+
+change the schedule’s
+
+Student Test (No. 15) or
+test ID: T_01
+
+The Update Schedule
+
+type.
+•
+
+Able to save the
+schedule with the
+new information.
+
+6
+
+XSC_04 Schedule Delete
+
+•
+
+Able to delete the
+schedule.
+
+•
+
+The schedule should
+be removed from the
+lists.
+
+7
+
+XC_01
+
+Course View
+
+•
+
+The Course page is
+accessible.
+
+•
+
+Able to see all
+courses in a table.
+
+8
+
+XC_02
+
+Course Create
+
+•
+
+Able to create a new
+course with or
+
+without the reminder
+
+Notes: Enabling
+notification feature
+requires Telegram
+
+being turned on.
+•
+
+course will be added
+
+Integration. Refer to
+Student Test (No. 15) or
+test ID: T_01
+
+On success, the new
+to the courses list.
+
+•
+
+The schedule that
+belongs to the course
+
+For creating the course,
+
+and student will also
+
+the course details are
+
+being added in the
+
+required.
+
+background.
+
+For UiTM’s lecturers, to
+get to know what
+subjects that the student
+taken, you can follow
+this step:
+-
+
+Visit the link to
+https://simsacademic.uitm.e
+du.my/sims/inde
+x.htm
+
+-
+
+Sign in with your
+credentials.
+
+-
+
+Click on
+“Student
+Details” or
+“Maklumat
+Pelajar”.
+
+-
+
+Fill in the
+student ID.
+
+-
+
+Click on quick
+search.
+
+-
+
+Choose
+“academic”.
+
+-
+
+Scroll to view
+the subject has
+been taken.
+
+But alternatively, you
+can also use these
+sample:
+Sample 1
+Student ID:
+2022988117
+Name: ETHICAL IN
+ICT
+Code: ICT652
+Group: M3CS2516A
+Sample 2
+Student ID:
+2022988117
+Name: MOBILE
+CLOUD COMPUTING
+Code: ITT632
+Group: M3CS2516A
+9
+
+XC_03
+
+Course Update
+Notes: Enabling
+notification feature
+
+•
+
+Able to update an
+existing course with
+or without the
+
+/
+
+Pass
+
+requires Telegram
+
+reminder being
+
+Integration. Refer to
+
+turned on.
+
+Student Test (No. 15) or
+
+•
+
+test ID: T_01
+
+On success, the
+course will be
+updated and shown
+on the courses list.
+
+•
+
+The schedule that
+belongs to the course
+and student will also
+being updated in the
+background.
+
+10
+
+XC_04
+
+Course Delete
+
+•
+
+Able to delete the
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+course.
+•
+
+The course will be
+deleted from the
+courses list.
+
+•
+
+The schedule that
+belongs to the
+corresponding course
+will also being
+deleted as well.
+
+11
+
+XST_01 Student View
+
+•
+
+The Student page is
+accessible.
+
+•
+
+Able to see all the
+students in a table.
+
+12
+
+XST_02 Student Create
+Notes: You can create
+using any student’s
+
+•
+
+Able to create new
+students.
+
+information. But
+
+•
+
+On successful, the
+
+alternatively, you can
+
+new students will be
+
+also use this sample
+
+listed in the table.
+
+data:
+Sample 1
+Name: Ahmad
+Email:
+ahmad@test.com
+Password: 123456
+Sample 2
+Name: Siti
+Email: siti@test.com
+Password: 123456
+13
+
+XST_03 Student Update
+
+•
+
+Able to update an
+
+/
+
+Pass
+
+/
+
+Pass
+
+existing student.
+•
+
+Successfully updated
+the information on
+save.
+
+14
+
+XST_04 Student Delete
+Notes: If you’re adding
+the student using the
+sample data included,
+find the user with name
+“Siti” and delete this
+user. If not, try to delete
+any user.
+
+•
+
+Able to delete the
+existing student.
+
+15
+
+XSE_01 Setting View
+
+•
+
+The Setting page is
+accessible.
+
+•
+
+Able to see all the
+user’s setting in a
+table.
+
+16
+
+XSE_02 Setting Create
+Notes: If you’re not
+using the included
+sample data for creating
+the student, you can find
+any student to create the
+setting for them. But if
+yes, you can use this
+sample data:
+Email: ahmad@test.com
+Time Before: 10
+Custom Message: Hi,
+there! {title} will start
+soon.
+The sample data for
+custom message may
+look terrifying, but you
+can simply copy and
+paste to the relevant
+input. However, you can
+also customize the
+message as you want.
+
+•
+
+Able to create a new
+setting for the users.
+
+•
+
+On successful, the
+settings will be listed
+in the table.
+
+/
+
+Pass
+
+17
+
+XSE_03 Setting Update
+
+•
+
+Able to update an
+
+/
+
+Pass
+
+/
+
+Pass
+
+existing setting for
+the users.
+•
+
+Successfully updated
+the information on
+save.
+
+18
+
+XSE_04 Setting Delete
+
+•
+
+Able to delete an
+existing setting for
+the users.
+
+4. System Tests
+No.
+
+ID
+
+1
+
+S_SCH
+
+Description
+Scheduler
+
+Expected Output
+•
+
+For a schedule with
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+notification enabled,
+
+Notes: For verifying the
+
+users should receive
+
+scheduler is working
+
+the reminder from
+
+properly, simply add the
+
+StudyMate’s
+
+schedule with a
+
+Telegram Bot at the
+
+notification enabled.
+
+provided timestamp.
+
+You will receive the
+reminder as soon as it
+reached the given time
+thru the Telegram bot.
+2
+
+S_SCR
+
+Scraping
+Notes: Scraping
+happened when the
+course is added. The
+timetable for the
+corresponding course
+will be retrieved.
+For determining whether
+the timetables are being
+fetched correctly or not,
+you can navigate to the
+“Schedule”, and
+compare them using
+iCress, an official
+
+•
+
+Successfully fetched
+the timetable at the
+course section.
+
+UiTM’s website for
+retrieving timetables:
+https://simsweb4.uitm.e
+du.my/estudent/class_ti
+metable/index.htm
+3
+
+S_TEL
+
+Telegram
+
+•
+
+integrated the account
+
+Notes: For verifying
+whether your account
+has been linked with
+your Telegram account,
+kindly check the
+message from
+@studymate_amlxv_bot
+in Telegram. You will
+receive the notification
+when the integration
+succeeds.
+
+Successfully
+with Telegram.
+
+•
+
+StudyMate’s
+Telegram Bot able to
+send message to the
+users.
+
+/
+
+Pass
+
+Functionality Test Agreement
+The test to verify the functionality of the system is conducted by the tester and the developer
+under the terms of this agreement. This agreement includes:
+Purpose of testing and objective:
+This test's objectives are to ascertain whether the system is operating correctly and to reveal
+any mistakes or issues that may exist. The system is tested using modules as the basis.
+Requirements:
+•
+
+The tester receives the test agreement and test form.
+
+•
+
+The system is tested on a computer or laptop.
+
+•
+
+It is necessary to fill in the test results field on the form.
+
+•
+
+All the testers information is required.
+
+Tester
+
+Information
+
+Developer
+MUHAMMAD AMIRUL BIN
+
+Name
+
+MOHAMAD ASROL BIN
+ARSHAD
+
+Position
+
+LECTURER
+
+STUDENT
+
+Phone
+
+0129146490
+
+0168000782
+
+31/01/2024
+
+24/01/2024
+
+Number
+
+MAMAT
+
+Signature
+Date
+
+1. General Tests
+
+No.
+
+ID
+
+1
+
+G_01
+
+Description
+Landing Page
+
+Expected Output
+•
+
+The Landing Page is
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+accessible. Including
+the Features &
+Contact Us sections.
+2
+
+G_02
+
+Contact Us
+
+•
+
+The Contact Us
+section is loaded.
+
+•
+
+The system will
+redirect the user to
+the user’s default
+mailbox with the
+subject & message
+they entered.
+
+3
+
+A_01
+
+Sign Up
+Notes: You can sign up
+using any of your email.
+
+•
+
+The Sign-Up page is
+accessible.
+
+•
+
+Successfully created
+an account. The
+
+But alternatively, you can
+
+system redirects the
+
+also use a temporary
+
+user to the page for
+
+email at,
+
+verifying the email
+
+https://tempmail.ac.id.
+
+address.
+
+The system will ask for
+email verification. Check
+your inbox for
+verification link.
+
+•
+
+The system sends the
+verification link to
+the user’s email
+address.
+
+•
+
+This does not apply
+for authentication
+using Social Login.
+
+4
+
+A_02
+
+Social Login
+Notes: Sign in with any
+of your Google or
+GitHub account.
+
+•
+
+The Social Login
+
+/
+
+Pass
+
+/
+
+Pass
+
+options are available.
+•
+
+The system logins the
+user into the system.
+
+•
+
+If the user does not
+yet exist, the system
+will create a new
+user.
+
+•
+
+The system then
+redirects the users to
+the Dashboard page.
+
+5
+
+A_03
+
+Sign In
+Notes: Sign in using the
+account you created
+earlier.
+OR
+Use this sample account:
+Student
+Email:
+student@amlxv.com
+Password: password
+
+•
+
+The Sign In page is
+accessible.
+
+•
+
+Successfully logged
+into the system.
+
+•
+
+The system redirects
+the user into the
+Dashboard.
+
+Admin
+Email:
+admin@amlxv.com
+Password: password
+
+6
+
+A_04
+
+Verify Email
+
+•
+
+The Verify Email
+page is accessible
+
+Notes: Check the inbox,
+
+using the email
+
+there will be an email
+
+verification link sent
+
+from StudyMate for
+
+to the user’s email
+
+verifying the email.
+
+address.
+•
+
+The user received the
+email verification
+link in their email
+inbox.
+
+•
+
+If the resend button is
+clicked, the system
+will again send the
+email verification
+link to the user’s
+email address.
+
+•
+
+Clicking on the
+“Verify Email
+Address” or
+verification link in
+the email inbox will
+redirect the user into
+the Dashboard.
+
+/
+
+Pass
+
+•
+
+This does not apply
+for authentication
+using Social Login.
+
+7
+
+A_05
+
+Forgot Password
+
+•
+
+The Forgot Password
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+page is accessible.
+•
+
+A reset password link
+is sent to the user’s
+email address upon
+request.
+
+•
+
+The user received the
+reset password link.
+
+8
+
+A_06
+
+Reset Password
+
+•
+
+page is accessible
+
+Notes: Check the inbox,
+
+using the password
+
+there will be an email
+
+reset link sent to the
+
+from StudyMate for reset
+the password.
+
+The Reset Password
+
+user’s email address.
+•
+
+Successfully reset the
+password.
+
+•
+
+The system will
+redirect the users to
+the Sign In page.
+
+•
+
+Able to sign in using
+the new password.
+
+9
+
+A_07
+
+Sign Out
+
+•
+
+Terminate the user’s
+current session.
+
+•
+
+The system will bring
+the user to the
+landing page.
+
+10
+
+NV_01
+
+Navigation
+
+•
+
+Able to navigate
+
+/
+
+Pass
+
+/
+
+Pass
+
+through the
+
+Notes: Sign in again to
+
+Dashboard,
+
+the system.
+
+Upcoming,
+Schedules, Courses,
+Settings & Profile.
+
+11
+
+D_01
+
+Dashboard
+
+•
+
+The Dashboard page
+is accessible.
+
+•
+
+The statistics and
+graph can be seen
+(but the data may be
+empty).
+
+2. Student Tests
+No.
+
+ID
+
+1
+
+P_01
+
+Description
+Profile View
+
+Expected Output
+•
+
+The Profile page is
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+accessible.
+•
+
+Able to see the user’s
+general & student
+profile information.
+
+•
+
+Toggle click on
+“Enable Edit” will
+allow or disallow the
+users to make
+changes to the
+information.
+
+2
+
+P_02
+
+Profile Update
+
+•
+
+except an email
+
+Notes: For student
+information, which is
+required for upcoming
+tests, you can use any of
+the student’s details. But
+you can also use this
+sample data:
+Student ID: 2022988117
+Campus: UITM
+KAMPUS JASIN
+Faculty: COLLEGE OF
+COMPUTING INFORMATICS AND
+
+All the information
+address is editable.
+
+•
+
+There is an option for
+selecting the campus.
+
+•
+
+There is an option for
+selecting the faculty.
+
+•
+
+Successfully updated
+the information on
+save.
+
+MATHEMATICS
+Program: CS251
+3
+
+U_01
+
+Upcoming
+
+•
+
+The Upcoming page
+
+/
+
+Pass
+
+/
+
+Pass
+
+is accessible.
+•
+
+If there is no
+upcoming schedule,
+there will be a button
+for adding the
+schedule.
+
+•
+
+Clicking on the “New
+Schedule” will bring
+the user to the create
+schedule page.
+
+•
+
+If there is an
+upcoming schedule,
+the card containing
+the schedule’s
+information will
+appear.
+
+•
+
+Clicking on the card
+will redirect the user
+to the edit page for
+the selected schedule.
+
+4
+
+SC_01
+
+Schedule View
+
+•
+
+The Schedule page is
+accessible.
+
+•
+
+Able to see a
+calendar-like
+interface showing the
+
+current schedule in a
+month.
+•
+
+If exist a schedule in
+the current month,
+user should be able to
+click on the schedule
+to see more details
+about the schedule,
+manage & delete the
+schedule.
+
+5
+
+SC_02
+
+Schedule View All
+
+•
+
+The View All
+
+/
+
+Pass
+
+/
+
+Pass
+
+Schedule page is
+accessible.
+•
+
+Toggle between
+“Class Timetable” &
+“Activities” will
+change the schedules
+being displayed based
+on their type.
+
+•
+
+Able to see all the
+schedule that has
+been created.
+
+6
+
+SC_03
+
+Schedule Create
+Notes: Enabling
+notification feature
+requires Telegram
+Integration. Refer to
+Student Test (No. 15) or
+test ID: T_01
+
+•
+
+The Create Schedule
+page is accessible.
+
+•
+
+Toggle between
+“Class Timetable” &
+“Activities” will
+change the schedule’s
+type.
+
+•
+
+Able to create a new
+schedule.
+
+7
+
+SC_04
+
+Schedule Update
+Notes: Enabling
+notification feature
+
+•
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+page is accessible.
+•
+
+Toggle between
+“Class Timetable” &
+
+requires Telegram
+
+“Activities” will
+
+Integration. Refer to
+
+change the schedule’s
+
+Student Test (No. 15) or
+test ID: T_01
+
+The Update Schedule
+
+type.
+•
+
+Able to save the
+schedule with the
+new information.
+
+8
+
+SC_05
+
+Schedule Delete
+
+•
+
+Able to delete the
+schedule.
+
+•
+
+The schedule should
+be removed from the
+lists.
+
+9
+
+C_01
+
+Course View
+
+•
+
+The Course page is
+accessible.
+
+•
+
+If the course exists,
+able to see the list of
+course in a table.
+
+10
+
+C_02
+
+Course Create
+Notes: Enabling
+notification feature
+requires Telegram
+Integration. Refer to
+
+•
+
+Users should be able
+to add a new course
+with or without the
+reminder being
+turned on.
+
+Student Test (No. 15) or
+
+•
+
+test ID: T_01
+For creating the course,
+the course details are
+required. You can use any
+UiTM’s courses
+information.
+
+On success, the new
+course will be added
+to the courses list.
+
+•
+
+The schedule that
+belongs to the course
+will also being added
+in the background.
+Kindly check the
+
+For UiTM’s lecturers, to
+
+schedules page for
+
+get to know what
+
+confirmation.
+
+subjects that the student
+taken, you can follow
+this step:
+-
+
+Visit the link to
+https://simsacademic.uitm.ed
+u.my/sims/index.
+htm
+
+-
+
+Sign in with your
+credentials.
+
+-
+
+Click on “Student
+Details” or
+“Maklumat
+Pelajar”.
+
+-
+
+Fill in the student
+ID.
+
+-
+
+Click on quick
+search.
+
+-
+
+Choose
+“academic”.
+
+-
+
+Scroll to view the
+subject has been
+taken.
+
+But alternatively, you can
+also use these sample:
+Sample 1
+Name: PROJECT
+Code: CSP650
+Group: M3CS2516A
+Sample 2
+Name: TECHNOLOGY
+ENTREPRENEURSHIP
+Code: ENT600
+Group: M3CS2516A
+Sample 3
+Name: NETWORK
+AND SYSTEM
+ADMINISTRATION
+Code: ITT420
+Group: M3CS2516A
+11
+
+C_03
+
+One Click Timetable
+
+•
+
+Retrieve
+
+to add their courses
+taken with only a
+
+Notes: This feature
+requires a student
+information being setup
+properly. Refer to
+
+Users should be able
+
+single click.
+•
+
+The system should
+retrieve all the
+
+/
+
+Pass
+
+Student Test (No. 2) for
+
+courses and
+
+updating the student
+
+timetables for the
+
+information.
+
+corresponding user
+and save them into
+
+To use this feature,
+simply click on the
+button called “Surprise
+
+the database.
+•
+
+On success, the
+courses will be
+
+Me!” in the course
+
+shown on the courses
+
+section.
+
+list.
+•
+
+The schedules for the
+courses should also
+being added.
+
+12
+
+C_04
+
+Course Update
+
+•
+
+Users should be able
+to update the existing
+course with or
+without the reminder
+being turned on.
+
+•
+
+On success, the
+course will be
+updated and shown
+on the courses list.
+
+•
+
+The schedule that
+belongs to the course
+will also being
+updated in the
+background. Kindly
+check the schedules
+page for
+confirmation.
+
+/
+
+Pass
+
+13
+
+C_05
+
+Course Delete
+
+•
+
+The users should be
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+able to delete the
+course.
+•
+
+The course will be
+deleted from the
+courses list.
+
+•
+
+The schedule that
+belongs to the
+corresponding course
+will also being
+deleted as well.
+
+14
+
+SE_01
+
+Setting View
+
+•
+
+The Setting page is
+accessible.
+
+•
+
+Toggle click on
+“Enable Edit” will
+allow or disallow the
+users to make
+changes to the
+information.
+
+15
+
+SE_02
+
+Setting Update
+
+•
+
+All the information
+except the telegram
+username can be
+manually edited.
+
+•
+
+Successfully updated
+the information on
+save.
+
+16
+
+T_01
+
+Telegram
+
+•
+
+On Setting page,
+clicking on the
+
+Telegram button will
+
+Notes: This requires you
+
+integrate the
+
+to have a Telegram
+
+StudyMate with
+
+account. The Telegram
+
+user’s Telegram
+
+widget will pop-up for a
+verification.
+
+account.
+•
+
+Users should be able
+to see their username
+on the Telegram
+Username on the
+setting page.
+
+•
+
+Users should receive
+a message from
+StudyMate Telegram
+Bot.
+
+3. Admin Tests
+* Sign in with the “Admin” test account. Email: admin@amlxv.com | Password: password
+No.
+
+ID
+
+1
+
+XP_01
+
+Description
+Profile View
+
+Expected Output
+•
+
+The Profile page is
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+accessible.
+•
+
+Able to see the user’s
+profile information.
+
+•
+
+Toggle click on
+“Enable Edit” will
+allow or disallow the
+users to make
+changes to the
+information.
+
+2
+
+XP_02
+
+Profile Update
+
+•
+
+All the information
+except an email
+address is editable.
+
+•
+
+Successfully updated
+the information on
+save.
+
+3
+
+XSC_01 Schedule View
+
+•
+
+The Schedule page is
+accessible.
+
+•
+
+Able to see all
+schedules in a table.
+
+4
+
+XSC_02 Schedule Create
+Notes: Enabling
+notification feature
+
+•
+
+The Create Schedule
+page is accessible.
+
+requires Telegram
+
+•
+
+Toggle between
+
+Integration. Refer to
+
+“Class Timetable” &
+
+Student Test (No. 15) or
+
+“Activities” will
+
+test ID: T_01
+
+change the schedule’s
+type.
+•
+
+Able to create a new
+schedule.
+
+5
+
+XSC_03 Schedule Update
+Notes: Enabling
+notification feature
+
+•
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+page is accessible.
+•
+
+Toggle between
+“Class Timetable” &
+
+requires Telegram
+
+“Activities” will
+
+Integration. Refer to
+
+change the schedule’s
+
+Student Test (No. 15) or
+test ID: T_01
+
+The Update Schedule
+
+type.
+•
+
+Able to save the
+schedule with the
+new information.
+
+6
+
+XSC_04 Schedule Delete
+
+•
+
+Able to delete the
+schedule.
+
+•
+
+The schedule should
+be removed from the
+lists.
+
+7
+
+XC_01
+
+Course View
+
+•
+
+The Course page is
+accessible.
+
+•
+
+Able to see all
+courses in a table.
+
+8
+
+XC_02
+
+Course Create
+
+•
+
+Able to create a new
+course with or
+
+without the reminder
+
+Notes: Enabling
+notification feature
+requires Telegram
+
+being turned on.
+•
+
+course will be added
+
+Integration. Refer to
+Student Test (No. 15) or
+test ID: T_01
+
+On success, the new
+to the courses list.
+
+•
+
+The schedule that
+belongs to the course
+
+For creating the course,
+
+and student will also
+
+the course details are
+
+being added in the
+
+required.
+
+background.
+
+For UiTM’s lecturers, to
+get to know what
+subjects that the student
+taken, you can follow
+this step:
+-
+
+Visit the link to
+https://simsacademic.uitm.e
+du.my/sims/inde
+x.htm
+
+-
+
+Sign in with your
+credentials.
+
+-
+
+Click on
+“Student
+Details” or
+“Maklumat
+Pelajar”.
+
+-
+
+Fill in the
+student ID.
+
+-
+
+Click on quick
+search.
+
+-
+
+Choose
+“academic”.
+
+-
+
+Scroll to view
+the subject has
+been taken.
+
+But alternatively, you
+can also use these
+sample:
+Sample 1
+Student ID:
+2022988117
+Name: ETHICAL IN
+ICT
+Code: ICT652
+Group: M3CS2516A
+Sample 2
+Student ID:
+2022988117
+Name: MOBILE
+CLOUD COMPUTING
+Code: ITT632
+Group: M3CS2516A
+9
+
+XC_03
+
+Course Update
+Notes: Enabling
+notification feature
+
+•
+
+Able to update an
+existing course with
+or without the
+
+/
+
+Pass
+
+requires Telegram
+
+reminder being
+
+Integration. Refer to
+
+turned on.
+
+Student Test (No. 15) or
+
+•
+
+test ID: T_01
+
+On success, the
+course will be
+updated and shown
+on the courses list.
+
+•
+
+The schedule that
+belongs to the course
+and student will also
+being updated in the
+background.
+
+10
+
+XC_04
+
+Course Delete
+
+•
+
+Able to delete the
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+course.
+•
+
+The course will be
+deleted from the
+courses list.
+
+•
+
+The schedule that
+belongs to the
+corresponding course
+will also being
+deleted as well.
+
+11
+
+XST_01 Student View
+
+•
+
+The Student page is
+accessible.
+
+•
+
+Able to see all the
+students in a table.
+
+12
+
+XST_02 Student Create
+Notes: You can create
+using any student’s
+
+•
+
+Able to create new
+students.
+
+information. But
+
+•
+
+On successful, the
+
+alternatively, you can
+
+new students will be
+
+also use this sample
+
+listed in the table.
+
+data:
+Sample 1
+Name: Ahmad
+Email:
+ahmad@test.com
+Password: 123456
+Sample 2
+Name: Siti
+Email: siti@test.com
+Password: 123456
+13
+
+XST_03 Student Update
+
+•
+
+Able to update an
+
+/
+
+Pass
+
+/
+
+Pass
+
+existing student.
+•
+
+Successfully updated
+the information on
+save.
+
+14
+
+XST_04 Student Delete
+Notes: If you’re adding
+the student using the
+sample data included,
+find the user with name
+“Siti” and delete this
+user. If not, try to delete
+any user.
+
+•
+
+Able to delete the
+existing student.
+
+15
+
+XSE_01 Setting View
+
+•
+
+The Setting page is
+accessible.
+
+•
+
+Able to see all the
+user’s setting in a
+table.
+
+16
+
+XSE_02 Setting Create
+Notes: If you’re not
+using the included
+sample data for creating
+the student, you can find
+any student to create the
+setting for them. But if
+yes, you can use this
+sample data:
+Email: ahmad@test.com
+Time Before: 10
+Custom Message: Hi,
+there! {title} will start
+soon.
+The sample data for
+custom message may
+look terrifying, but you
+can simply copy and
+paste to the relevant
+input. However, you can
+also customize the
+message as you want.
+
+•
+
+Able to create a new
+setting for the users.
+
+•
+
+On successful, the
+settings will be listed
+in the table.
+
+/
+
+Pass
+
+17
+
+XSE_03 Setting Update
+
+•
+
+Able to update an
+
+/
+
+Pass
+
+/
+
+Pass
+
+existing setting for
+the users.
+•
+
+Successfully updated
+the information on
+save.
+
+18
+
+XSE_04 Setting Delete
+
+•
+
+Able to delete an
+existing setting for
+the users.
+
+4. System Tests
+No.
+
+ID
+
+1
+
+S_SCH
+
+Description
+Scheduler
+
+Expected Output
+•
+
+For a schedule with
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+notification enabled,
+
+Notes: For verifying the
+
+users should receive
+
+scheduler is working
+
+the reminder from
+
+properly, simply add the
+
+StudyMate’s
+
+schedule with a
+
+Telegram Bot at the
+
+notification enabled.
+
+provided timestamp.
+
+You will receive the
+reminder as soon as it
+reached the given time
+thru the Telegram bot.
+2
+
+S_SCR
+
+Scraping
+Notes: Scraping
+happened when the
+course is added. The
+timetable for the
+corresponding course
+will be retrieved.
+For determining whether
+the timetables are being
+fetched correctly or not,
+you can navigate to the
+“Schedule”, and
+compare them using
+iCress, an official
+
+•
+
+Successfully fetched
+the timetable at the
+course section.
+
+UiTM’s website for
+retrieving timetables:
+https://simsweb4.uitm.e
+du.my/estudent/class_ti
+metable/index.htm
+3
+
+S_TEL
+
+Telegram
+
+•
+
+integrated the account
+
+Notes: For verifying
+whether your account
+has been linked with
+your Telegram account,
+kindly check the
+message from
+@studymate_amlxv_bot
+in Telegram. You will
+receive the notification
+when the integration
+succeeds.
+
+Successfully
+with Telegram.
+
+•
+
+StudyMate’s
+Telegram Bot able to
+send message to the
+users.
+
+/
+
+Pass
+
+Functionality Test Agreement
+The test to verify the functionality of the system is conducted by the tester and the developer
+under the terms of this agreement. This agreement includes:
+Purpose of testing and objective:
+This test's objectives are to ascertain whether the system is operating correctly and to reveal
+any mistakes or issues that may exist. The system is tested using modules as the basis.
+Requirements:
+x
+
+The tester receives the test agreement and test form.
+
+x
+
+The system is tested on a computer or laptop.
+
+x
+
+It is necessary to fill in the test results field on the form.
+
+x
+
+All the testers information is required.
+
+Information
+Name
+Position
+
+Tester
+MOHD ALI BIN MOHD ISA
+
+LECTURER
+
+Phone
+Number
+
+Developer
+MUHAMMAD AMIRUL BIN
+MAMAT
+STUDENT
+
+0168000782
+6013-3995815
+
+Signature
+Date
+
+31/1/2024
+
+24/01/2024
+
+1. General Tests
+
+No.
+
+ID
+
+1
+
+G_01
+
+Description
+Landing Page
+
+Expected Output
+x
+
+The Landing Page is
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+accessible. Including
+the Features &
+Contact Us sections.
+2
+
+G_02
+
+Contact Us
+
+x
+
+The Contact Us
+section is loaded.
+
+x
+
+The system will
+redirect the user to
+the user’s default
+mailbox with the
+subject & message
+they entered.
+
+3
+
+A_01
+
+Sign Up
+Notes: You can sign up
+using any of your email.
+
+x
+
+The Sign-Up page is
+accessible.
+
+x
+
+Successfully created
+an account. The
+
+But alternatively, you can
+
+system redirects the
+
+also use a temporary
+
+user to the page for
+
+email at,
+
+verifying the email
+
+https://tempmail.ac.id.
+
+address.
+
+The system will ask for
+email verification. Check
+your inbox for
+verification link.
+
+x
+
+The system sends the
+verification link to
+the user’s email
+address.
+
+x
+
+This does not apply
+for authentication
+using Social Login.
+
+4
+
+A_02
+
+Social Login
+Notes: Sign in with any
+of your Google or
+GitHub account.
+
+x
+
+The Social Login
+
+/
+
+Pass
+
+/
+
+Pass
+
+options are available.
+x
+
+The system logins the
+user into the system.
+
+x
+
+If the user does not
+yet exist, the system
+will create a new
+user.
+
+x
+
+The system then
+redirects the users to
+the Dashboard page.
+
+5
+
+A_03
+
+Sign In
+Notes: Sign in using the
+account you created
+earlier.
+OR
+Use this sample account:
+Student
+Email:
+student@amlxv.com
+Password: password
+
+x
+
+The Sign In page is
+accessible.
+
+x
+
+Successfully logged
+into the system.
+
+x
+
+The system redirects
+the user into the
+Dashboard.
+
+Admin
+Email:
+admin@amlxv.com
+Password: password
+
+6
+
+A_04
+
+Verify Email
+
+x
+
+The Verify Email
+page is accessible
+
+Notes: Check the inbox,
+
+using the email
+
+there will be an email
+
+verification link sent
+
+from StudyMate for
+
+to the user’s email
+
+verifying the email.
+
+address.
+x
+
+The user received the
+email verification
+link in their email
+inbox.
+
+x
+
+If the resend button is
+clicked, the system
+will again send the
+email verification
+link to the user’s
+email address.
+
+x
+
+Clicking on the
+“Verify Email
+Address” or
+verification link in
+the email inbox will
+redirect the user into
+the Dashboard.
+
+/
+
+Pass
+
+x
+
+This does not apply
+for authentication
+using Social Login.
+
+7
+
+A_05
+
+Forgot Password
+
+x
+
+The Forgot Password
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+page is accessible.
+x
+
+A reset password link
+is sent to the user’s
+email address upon
+request.
+
+x
+
+The user received the
+reset password link.
+
+8
+
+A_06
+
+Reset Password
+
+x
+
+page is accessible
+
+Notes: Check the inbox,
+
+using the password
+
+there will be an email
+
+reset link sent to the
+
+from StudyMate for reset
+the password.
+
+The Reset Password
+
+user’s email address.
+x
+
+Successfully reset the
+password.
+
+x
+
+The system will
+redirect the users to
+the Sign In page.
+
+x
+
+Able to sign in using
+the new password.
+
+9
+
+A_07
+
+Sign Out
+
+x
+
+Terminate the user’s
+current session.
+
+x
+
+The system will bring
+the user to the
+landing page.
+
+10
+
+NV_01
+
+Navigation
+
+x
+
+Able to navigate
+
+/
+
+Pass
+
+/
+
+Pass
+
+through the
+
+Notes: Sign in again to
+
+Dashboard,
+
+the system.
+
+Upcoming,
+Schedules, Courses,
+Settings & Profile.
+
+11
+
+D_01
+
+Dashboard
+
+x
+
+The Dashboard page
+is accessible.
+
+x
+
+The statistics and
+graph can be seen
+(but the data may be
+empty).
+
+2. Student Tests
+No.
+
+ID
+
+1
+
+P_01
+
+Description
+Profile View
+
+Expected Output
+x
+
+The Profile page is
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+accessible.
+x
+
+Able to see the user’s
+general & student
+profile information.
+
+x
+
+Toggle click on
+“Enable Edit” will
+allow or disallow the
+users to make
+changes to the
+information.
+
+2
+
+P_02
+
+Profile Update
+
+x
+
+except an email
+
+Notes: For student
+information, which is
+required for upcoming
+tests, you can use any of
+the student’s details. But
+you can also use this
+sample data:
+Student ID: 2022988117
+Campus: UITM
+KAMPUS JASIN
+Faculty: COLLEGE OF
+COMPUTING INFORMATICS AND
+
+All the information
+address is editable.
+
+x
+
+There is an option for
+selecting the campus.
+
+x
+
+There is an option for
+selecting the faculty.
+
+x
+
+Successfully updated
+the information on
+save.
+
+MATHEMATICS
+Program: CS251
+3
+
+U_01
+
+Upcoming
+
+x
+
+The Upcoming page
+
+/
+
+Pass
+
+/
+
+Pass
+
+is accessible.
+x
+
+If there is no
+upcoming schedule,
+there will be a button
+for adding the
+schedule.
+
+x
+
+Clicking on the “New
+Schedule” will bring
+the user to the create
+schedule page.
+
+x
+
+If there is an
+upcoming schedule,
+the card containing
+the schedule’s
+information will
+appear.
+
+x
+
+Clicking on the card
+will redirect the user
+to the edit page for
+the selected schedule.
+
+4
+
+SC_01
+
+Schedule View
+
+x
+
+The Schedule page is
+accessible.
+
+x
+
+Able to see a
+calendar-like
+interface showing the
+
+current schedule in a
+month.
+x
+
+If exist a schedule in
+the current month,
+user should be able to
+click on the schedule
+to see more details
+about the schedule,
+manage & delete the
+schedule.
+
+5
+
+SC_02
+
+Schedule View All
+
+x
+
+The View All
+
+/
+
+Pass
+
+/
+
+Pass
+
+Schedule page is
+accessible.
+x
+
+Toggle between
+“Class Timetable” &
+“Activities” will
+change the schedules
+being displayed based
+on their type.
+
+x
+
+Able to see all the
+schedule that has
+been created.
+
+6
+
+SC_03
+
+Schedule Create
+Notes: Enabling
+notification feature
+requires Telegram
+Integration. Refer to
+Student Test (No. 15) or
+test ID: T_01
+
+x
+
+The Create Schedule
+page is accessible.
+
+x
+
+Toggle between
+“Class Timetable” &
+“Activities” will
+change the schedule’s
+type.
+
+x
+
+Able to create a new
+schedule.
+
+7
+
+SC_04
+
+Schedule Update
+Notes: Enabling
+notification feature
+
+x
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+page is accessible.
+x
+
+Toggle between
+“Class Timetable” &
+
+requires Telegram
+
+“Activities” will
+
+Integration. Refer to
+
+change the schedule’s
+
+Student Test (No. 15) or
+test ID: T_01
+
+The Update Schedule
+
+type.
+x
+
+Able to save the
+schedule with the
+new information.
+
+8
+
+SC_05
+
+Schedule Delete
+
+x
+
+Able to delete the
+schedule.
+
+x
+
+The schedule should
+be removed from the
+lists.
+
+9
+
+C_01
+
+Course View
+
+x
+
+The Course page is
+accessible.
+
+x
+
+If the course exists,
+able to see the list of
+course in a table.
+
+10
+
+C_02
+
+Course Create
+Notes: Enabling
+notification feature
+requires Telegram
+Integration. Refer to
+
+x
+
+Users should be able
+to add a new course
+with or without the
+reminder being
+turned on.
+
+Student Test (No. 15) or
+
+x
+
+test ID: T_01
+For creating the course,
+the course details are
+required. You can use any
+UiTM’s courses
+information.
+
+On success, the new
+course will be added
+to the courses list.
+
+x
+
+The schedule that
+belongs to the course
+will also being added
+in the background.
+Kindly check the
+
+For UiTM’s lecturers, to
+
+schedules page for
+
+get to know what
+
+confirmation.
+
+subjects that the student
+taken, you can follow
+this step:
+-
+
+Visit the link to
+https://simsacademic.uitm.ed
+u.my/sims/index.
+htm
+
+-
+
+Sign in with your
+credentials.
+
+-
+
+Click on “Student
+Details” or
+“Maklumat
+Pelajar”.
+
+-
+
+Fill in the student
+ID.
+
+-
+
+Click on quick
+search.
+
+-
+
+Choose
+“academic”.
+
+-
+
+Scroll to view the
+subject has been
+taken.
+
+But alternatively, you can
+also use these sample:
+Sample 1
+Name: PROJECT
+Code: CSP650
+Group: M3CS2516A
+Sample 2
+Name: TECHNOLOGY
+ENTREPRENEURSHIP
+Code: ENT600
+Group: M3CS2516A
+Sample 3
+Name: NETWORK
+AND SYSTEM
+ADMINISTRATION
+Code: ITT420
+Group: M3CS2516A
+11
+
+C_03
+
+One Click Timetable
+
+x
+
+Retrieve
+
+to add their courses
+taken with only a
+
+Notes: This feature
+requires a student
+information being setup
+properly. Refer to
+
+Users should be able
+
+single click.
+x
+
+The system should
+retrieve all the
+
+/
+
+Pass
+
+Student Test (No. 2) for
+
+courses and
+
+updating the student
+
+timetables for the
+
+information.
+
+corresponding user
+and save them into
+
+To use this feature,
+simply click on the
+button called “Surprise
+
+the database.
+x
+
+On success, the
+courses will be
+
+Me!” in the course
+
+shown on the courses
+
+section.
+
+list.
+x
+
+The schedules for the
+courses should also
+being added.
+
+12
+
+C_04
+
+Course Update
+
+x
+
+Users should be able
+to update the existing
+course with or
+without the reminder
+being turned on.
+
+x
+
+On success, the
+course will be
+updated and shown
+on the courses list.
+
+x
+
+The schedule that
+belongs to the course
+will also being
+updated in the
+background. Kindly
+check the schedules
+page for
+confirmation.
+
+/
+
+Pass
+
+13
+
+C_05
+
+Course Delete
+
+x
+
+The users should be
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+able to delete the
+course.
+x
+
+The course will be
+deleted from the
+courses list.
+
+x
+
+The schedule that
+belongs to the
+corresponding course
+will also being
+deleted as well.
+
+14
+
+SE_01
+
+Setting View
+
+x
+
+The Setting page is
+accessible.
+
+x
+
+Toggle click on
+“Enable Edit” will
+allow or disallow the
+users to make
+changes to the
+information.
+
+15
+
+SE_02
+
+Setting Update
+
+x
+
+All the information
+except the telegram
+username can be
+manually edited.
+
+x
+
+Successfully updated
+the information on
+save.
+
+16
+
+T_01
+
+Telegram
+
+x
+
+On Setting page,
+clicking on the
+
+Telegram button will
+
+Notes: This requires you
+
+integrate the
+
+to have a Telegram
+
+StudyMate with
+
+account. The Telegram
+
+user’s Telegram
+
+widget will pop-up for a
+verification.
+
+account.
+x
+
+Users should be able
+to see their username
+on the Telegram
+Username on the
+setting page.
+
+x
+
+Users should receive
+a message from
+StudyMate Telegram
+Bot.
+
+3. Admin Tests
+* Sign in with the “Admin” test account. Email: admin@amlxv.com | Password: password
+No.
+
+ID
+
+1
+
+XP_01
+
+Description
+Profile View
+
+Expected Output
+x
+
+The Profile page is
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+accessible.
+x
+
+Able to see the user’s
+profile information.
+
+x
+
+Toggle click on
+“Enable Edit” will
+allow or disallow the
+users to make
+changes to the
+information.
+
+2
+
+XP_02
+
+Profile Update
+
+x
+
+All the information
+except an email
+address is editable.
+
+x
+
+Successfully updated
+the information on
+save.
+
+3
+
+XSC_01 Schedule View
+
+x
+
+The Schedule page is
+accessible.
+
+x
+
+Able to see all
+schedules in a table.
+
+4
+
+XSC_02 Schedule Create
+Notes: Enabling
+notification feature
+
+x
+
+The Create Schedule
+page is accessible.
+
+requires Telegram
+
+x
+
+Toggle between
+
+Integration. Refer to
+
+“Class Timetable” &
+
+Student Test (No. 15) or
+
+“Activities” will
+
+test ID: T_01
+
+change the schedule’s
+type.
+x
+
+Able to create a new
+schedule.
+
+5
+
+XSC_03 Schedule Update
+Notes: Enabling
+notification feature
+
+x
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+page is accessible.
+x
+
+Toggle between
+“Class Timetable” &
+
+requires Telegram
+
+“Activities” will
+
+Integration. Refer to
+
+change the schedule’s
+
+Student Test (No. 15) or
+test ID: T_01
+
+The Update Schedule
+
+type.
+x
+
+Able to save the
+schedule with the
+new information.
+
+6
+
+XSC_04 Schedule Delete
+
+x
+
+Able to delete the
+schedule.
+
+x
+
+The schedule should
+be removed from the
+lists.
+
+7
+
+XC_01
+
+Course View
+
+x
+
+The Course page is
+accessible.
+
+x
+
+Able to see all
+courses in a table.
+
+8
+
+XC_02
+
+Course Create
+
+x
+
+Able to create a new
+course with or
+
+without the reminder
+
+Notes: Enabling
+notification feature
+requires Telegram
+
+being turned on.
+x
+
+course will be added
+
+Integration. Refer to
+Student Test (No. 15) or
+test ID: T_01
+
+On success, the new
+to the courses list.
+
+x
+
+The schedule that
+belongs to the course
+
+For creating the course,
+
+and student will also
+
+the course details are
+
+being added in the
+
+required.
+
+background.
+
+For UiTM’s lecturers, to
+get to know what
+subjects that the student
+taken, you can follow
+this step:
+-
+
+Visit the link to
+https://simsacademic.uitm.e
+du.my/sims/inde
+x.htm
+
+-
+
+Sign in with your
+credentials.
+
+-
+
+Click on
+“Student
+Details” or
+“Maklumat
+Pelajar”.
+
+-
+
+Fill in the
+student ID.
+
+-
+
+Click on quick
+search.
+
+-
+
+Choose
+“academic”.
+
+-
+
+Scroll to view
+the subject has
+been taken.
+
+But alternatively, you
+can also use these
+sample:
+Sample 1
+Student ID:
+2022988117
+Name: ETHICAL IN
+ICT
+Code: ICT652
+Group: M3CS2516A
+Sample 2
+Student ID:
+2022988117
+Name: MOBILE
+CLOUD COMPUTING
+Code: ITT632
+Group: M3CS2516A
+9
+
+XC_03
+
+Course Update
+Notes: Enabling
+notification feature
+
+x
+
+Able to update an
+existing course with
+or without the
+
+/
+
+Pass
+
+requires Telegram
+
+reminder being
+
+Integration. Refer to
+
+turned on.
+
+Student Test (No. 15) or
+
+x
+
+test ID: T_01
+
+On success, the
+course will be
+updated and shown
+on the courses list.
+
+x
+
+The schedule that
+belongs to the course
+and student will also
+being updated in the
+background.
+
+10
+
+XC_04
+
+Course Delete
+
+x
+
+Able to delete the
+
+/
+
+Pass
+
+/
+
+Pass
+
+/
+
+Pass
+
+course.
+x
+
+The course will be
+deleted from the
+courses list.
+
+x
+
+The schedule that
+belongs to the
+corresponding course
+will also being
+deleted as well.
+
+11
+
+XST_01 Student View
+
+x
+
+The Student page is
+accessible.
+
+x
+
+Able to see all the
+students in a table.
+
+12
+
+XST_02 Student Create
+Notes: You can create
+using any student’s
+
+x
+
+Able to create new
+students.
+
+information. But
+
+x
+
+On successful, the
+
+alternatively, you can
+
+new students will be
+
+also use this sample
+
+listed in the table.
+
+data:
+Sample 1
+Name: Ahmad
+Email:
+ahmad@test.com
+Password: 123456
+Sample 2
+Name: Siti
+Email: siti@test.com
+Password: 123456
+13
+
+XST_03 Student Update
+
+x
+
+Able to update an
+
+/
+
+Pass
+
+/
+
+Pass
+
+existing student.
+x
+
+Successfully updated
+the information on
+save.
+
+14
+
+XST_04 Student Delete
+Notes: If you’re adding
+the student using the
+sample data included,
+find the user with name
+“Siti” and delete this
+user. If not, try to delete
+any user.
+
+x
+
+Able to delete the
+existing student.
+
+15
+
+XSE_01 Setting View
+
+x
+
+The Setting page is
+accessible.
+
+x
+
+Able to see all the
+user’s setting in a
+table.
+
+16
+
+XSE_02 Setting Create
+Notes: If you’re not
+using the included
+sample data for creating
+the student, you can find
+any student to create the
+setting for them. But if
+yes, you can use this
+sample data:
+Email: ahmad@test.com
+Time Before: 10
+Custom Message: Hi,
+there! {title} will start
+soon.
+The sample data for
+custom message may
+look terrifying, but you
+can simply copy and
+paste to the relevant
+input. However, you can
+also customize the
+message as you want.
+
+x
+
+Able to create a new
+setting for the users.
+
+x
+
+On successful, the
+settings will be listed
+in the table.
+
+/
+
+Pass
+
+17
+
+XSE_03 Setting Update
+
+x
+
+Able to update an
+
+/
+
+Pass
+
+/
+
+Pass
+
+existing setting for
+the users.
+x
+
+Successfully updated
+the information on
+save.
+
+18
+
+XSE_04 Setting Delete
+
+x
+
+Able to delete an
+existing setting for
+the users.
+
+4. System Tests
+No.
+
+ID
+
+1
+
+S_SCH
+
+Description
+Scheduler
+
+Expected Output
+x
+
+For a schedule with
+
+Result
+
+Pass/Fail
+
+/
+
+Pass
+
+/
+
+Pass
+
+notification enabled,
+
+Notes: For verifying the
+
+users should receive
+
+scheduler is working
+
+the reminder from
+
+properly, simply add the
+
+StudyMate’s
+
+schedule with a
+
+Telegram Bot at the
+
+notification enabled.
+
+provided timestamp.
+
+You will receive the
+reminder as soon as it
+reached the given time
+thru the Telegram bot.
+2
+
+S_SCR
+
+Scraping
+Notes: Scraping
+happened when the
+course is added. The
+timetable for the
+corresponding course
+will be retrieved.
+For determining whether
+the timetables are being
+fetched correctly or not,
+you can navigate to the
+“Schedule”, and
+compare them using
+iCress, an official
+
+x
+
+Successfully fetched
+the timetable at the
+course section.
+
+UiTM’s website for
+retrieving timetables:
+https://simsweb4.uitm.e
+du.my/estudent/class_ti
+metable/index.htm
+3
+
+S_TEL
+
+Telegram
+
+x
+
+integrated the account
+
+Notes: For verifying
+whether your account
+has been linked with
+your Telegram account,
+kindly check the
+message from
+@studymate_amlxv_bot
+in Telegram. You will
+receive the notification
+when the integration
+succeeds.
+
+Successfully
+with Telegram.
+
+x
+
+StudyMate’s
+Telegram Bot able to
+send message to the
+users.
+
+/
+
+Pass
+
+APPENDIX C
+USER ACCEPTANCE TEST
+
+212
+
+StudyMate Feedback Form
+15 responses
+
+What is your overall experience with StudyMate?
+15 out of 15 answered
+
+9.7 Average rating
+0%
+
+0%
+
+0%
+
+0%
+
+0%
+
+0%
+
+0%
+
+0%
+
+6.7%
+
+13.3%
+
+80%
+
+0
+resp.
+
+0
+resp.
+
+0
+resp.
+
+0
+resp.
+
+0
+resp.
+
+0
+resp.
+
+0
+resp.
+
+0
+resp.
+
+1
+resp.
+
+2
+resp.
+
+12
+resp.
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+Terrible
+
+Good
+
+Impressive
+
+Are you a student from Universiti Teknologi MARA (UiTM)?
+15 out of 15 answered
+
+Yes
+
+15 resp.
+
+100%
+
+No
+
+0 resp.
+
+0%
+
+Yes
+
+15 resp.
+
+100%
+
+No
+
+0 resp.
+
+0%
+
+Yes
+
+15 resp.
+
+100%
+
+No
+
+0 resp.
+
+0%
+
+Do you think it is easy to navigate through the StudyMate?
+15 out of 15 answered
+
+Did you find that the StudyMate features function well?
+15 out of 15 answered
+
+Did you find that obtaining and managing your class timetable in StudyMate is easier than do it manually?
+15 out of 15 answered
+
+Yes
+
+14 resp.
+
+93.3%
+
+No
+
+1 resp.
+
+6.7%
+
+Yes
+
+15 resp.
+
+100%
+
+No
+
+0 resp.
+
+0%
+
+Yes
+
+15 resp.
+
+100%
+
+No
+
+0 resp.
+
+0%
+
+2 resp.
+
+13.3%
+
+Did you find StudyMate's reminder system is helpful?
+15 out of 15 answered
+
+Did you find that StudyMate can help you manage your time wisely?
+15 out of 15 answered
+
+Have you ever encountered difficulty when using StudyMate?
+15 out of 15 answered
+
+Yes
+
+No
+
+13 resp.
+
+86.7%
+
+Yes
+
+15 resp.
+
+100%
+
+No
+
+0 resp.
+
+0%
+
+Are you satisfied with the features provided by StudyMate?
+15 out of 15 answered
+
+How likely are you to recommend StudyMate to a friend or colleague?
+15 out of 15 answered
+
+Net Promoter Score® (?)
+
+80
+Detractors
+0% (0)
+
+Passives
+20% (3)
+
+Promoters
+80% (12)
+
+0%
+
+0%
+
+0%
+
+0%
+
+0%
+
+0%
+
+0%
+
+0%
+
+20%
+
+6.7%
+
+73.3%
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+3
+
+1
+
+11
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+Not likely at all
+
+Powered by Typeform
+
+Extremely likely
+
+APPENDIX D
+ACCURACY TEST
+
+213
+
+ERSITI
+
+α
+
+Search...
+
+Administrator
+
+MARA
+
+Students
+
+Dashboard
+
+Create
+
+Manage all registered student in this section.
+
+Schedules
+Courses
+
+Student ID
+
+Name
+
+Students
+
+Mohamad Afiq Afifi
+
+afiqafifi0609@gmail.com
+
+Mohamad Usamah Thani
+usamahsamah@gmail.com
+
+Yamin
+yamin.multi09@gmail.com
+
+2022970393
+
+2022907921
+
+2022987975
+
+Gender
+
+Campus
+
+Program
+
+CS253
+
+FACULTY OF COMPUTER AND MATHEMATICAL SCIENCES
+
+CS240
+FACULTY OF COMPUTER AND MATHEMATICAL SCIENCES
+
+CS251
+
+FACULTY OF COMPUTER AND MATHEMATICAL SCIENCES
+
+SELANGOR CAMPUS
+
+-
+
+(Please Select a Faculty)
+
+UITM KAMPUS MACHANG
+
+Male
+
+Active
+
+Male
+
+Active
+
+UITM KAMPUS JASIN
+
+Active
+
+Ali Isa
+
+Pending
+
+tengkorak@gmail.com
+
+Muhammad Syafiq
+
+syafiqcr7.fs7@gmail.com
+
+Ashs
+
+Mohd Ashraff
+
+mohdashr77@gmail.com
+
+2022930735
+
+2022937689
+
+CS240
+FACULTY OF COMPUTER AND MATHEMATICAL SCIENCES
+
+CS251
+FACULTY OF COMPUTER AND MATHEMATICAL SCIENCES
+
+UITM KAMPUS MACHANG
+
+Male
+
+Active
+
+UITM KAMPUS JASIN
+
+Male
+
+Active
+
+Wan
+
+Pending
+
+2022772035@student.uitm.edu.my
+
+Amirul
+
+amirulfcso@gmail.com
+
+Status
+
+2022988117
+
+CS251
+COLLEGE OF COMPUTING
+
+-
+
+INFORMATICS AND MATHEMATICS
+
+UITM KAMPUS JASIN
+
+Active
+
+Settings
+
+UNIVERSITI
+
+Q Search...
+
+Administrator
+
+MARA
+
+Dashboard
+
+Schedules
+
+Schedules
+
+Create
+
+Manage the schedules in this section.
+
+Courses
+
+Students
+
+Class Timetable
+
+Activities
+
+All
+
+ID
+
+Title
+
+Student Name
+
+Email
+
+Description
+
+Day
+
+Start
+
+End
+
+Reminder
+
+207
+
+CSC536
+
+MUHAMAD AKIF IQBAL BIN ABDULLAН
+
+akifiqbal72@gmail.com
+
+CSC536 - REKABENTUK PENGAJARAN DAN
+
+Wednesday
+
+08:00
+
+10:00
+
+Yes
+
+akifiqbal72@gmail.com
+
+CSC567
+
+200
+
+CSC567
+
+MUHAMAD AKIF IQBAL BIN ABDULLAH
+
+201
+
+CSC567
+
+MUHAMAD AKIF IQBAL BIN ABDULLAН
+
+akifiqbal72@gmail.com
+
+CSC567- PEMPROSESAN MEDIA TEMPORAL
+
+202
+
+CSP650
+
+MUHAMAD AKIF IQBAL BIN ABDULLAH
+
+akifiqbal72@gmail.com
+
+CSP650
+
+203
+
+CSP650
+
+MUHAMAD AKIF IQBAL BIN ABDULLAН
+
+akifiqbal72@gmail.com
+
+CSP650
+
+205
+
+ICT652
+
+MUHAMAD AKIF IQBAL BIN ABDULLAH
+
+akifiqbal72@gmail.com
+
+-
+
+PEMPROSESAN MEDIA TEMPORAL
+
+Start: 10
+
+Monday
+
+08:00
+
+10:00
+
+Yes
+
+Monday
+
+14:00
+
+16:00
+
+Yes
+
+Yes
+
+Monday
+
+10:00
+
+12:00
+
+Tuesday
+
+10:00
+
+12:00
+
+Yes
+
+ICT652- ISU ETIKA, SOSIAL, DAN PRO
+
+Wednesday
+
+12:00
+
+14:00
+
+Yes
+
+-
+
+-
+
+PROJEK Venue:
+
+-
+
+PROJEK Venue: Makmal MK20
+
+206
+
+CSC536
+
+MUHAMAD AKIF IQBAL BIN ABDULLAH
+
+akifiqbal72@gmail.com
+
+CSC536- REKABENTUK PENGAJARAN DAN
+
+Tuesday
+
+14:00
+
+16:00
+
+Yes
+
+204
+
+ICT652
+
+MUHAMAD AKIF IQBAL BIN ABDULLAH
+
+akifiqbal72@gmail.com
+
+ICT652- ISU ETIKA, SOSIAL, DAN PRO
+
+Tuesday
+
+12:00
+
+14:00
+
+Yes
+
+189
+
+CSP650
+
+Yamin
+
+yamin.multi09@gmail.com
+
+CSP650- Final Year :(Venue: DEWA
+
+Thursday
+
+08:00
+
+10:00
+
+No
+
+188
+
+CSP650
+
+Yamin
+
+yamin.multi09@gmail.com
+
+CSP650
+
+Wednesday
+
+14:00
+
+16:00
+
+No
+
+184
+
+Present FYP
+
+Muhammad Syafiq
+
+syafiqcr7.fs7@gmail.com
+
+Final Presentation
+
+Monday
+
+08:00
+
+176
+
+DSC650
+
+Muhammad Syafiq
+
+syafiqcr7.fs7@gmail.com
+
+DSC650- TEKNOLOGI DAN PERKEMBANGAN
+
+Monday
+
+10:00
+
+-
+
+Final Year :(Venue: BILI
+
+Yes
+
+Settings
+12:00
+
+Yes
+
+Ζ
+
+ΣΟ
+
+Administrator
+
+B StudyMate
+KNOLOGI
+
+Setting
+
+Dashboard
+
+Create
+
+The section where you can the student setting.
+
+Schedules
+
+Tips: Read how to modify the custom message.
+
+Courses
+
+Students
+No.
+
+Ο
+
+Student Name
+
+Email
+
+Telegram Username
+
+Time Before
+
+15
+
+1
+
+Amirul
+
+amirulfcso@gmail.com
+
+amlxv
+
+2
+
+Asrol Arshad
+
+asrol.arshad@gmail.com
+
+asrolarshad
+
+3
+
+Mohd Ashraff
+
+mohdashr77@gmail.com
+
+Anaria40
+
+4
+
+Muhammad Syafiq
+
+syafiqcr7.fs7@gmail.com
+
+FSyafiq23
+
+5
+
+Wan
+
+2022772035@student.uitm.edu.my
+
+amriewans
+
+6
+
+Mohamad Usamah Thani
+
+usamahsamah@gmail.com
+
+usamah50
+
+7
+
+MUHAMAD AKIF IQBAL BIN ABDULLAН
+
+akifiqbal72@gmail.com
+
+akihhhhhh
+
+Custom Message
+
+Settings
+
+RSITI
+
+Administrator
+
+StudyMate
+
+TEKNOLOGI
+
+8
+
+Amirul
+
+2022988117
+
+PENTADBIRAN SISTEM DAN RANGKAIAN
+
+ITT420
+
+M3CS2516A
+
+Schedules
+
+9
+
+Amirul
+
+2022988117
+
+PROJEK
+
+CSP650
+
+M3CS2516A
+
+Courses
+
+10
+
+Amirul
+
+2022988117
+
+KEUSAHAWANAN TEKNOLOGI
+
+ENT600
+
+M3CS2516A
+
+M3CS2516A
+
+Dashboard
+F
+
+Students
+
+Settings
+
+11
+
+Amirul
+
+2022988117
+
+PENGKOMPUTERAN AWAN MUDAH ALIH
+
+ITT632
+
+12
+
+Amirul
+
+2022988117
+
+ENGLISH EXIT TEST
+
+EET699
+
+M3CS2516A
+
+13
+
+Mohd Ashraff
+
+2022937689
+
+PENGKOMPUTERAN AWAN MUDAH ALIН
+
+ITT632
+
+M3CS2516A
+
+14
+
+Mohd Ashraff
+
+2022937689
+
+KEUSAHAWANAN TEKNOLOGI
+
+ENT600
+
+M3CS2516A
+
+15
+
+Mohd Ashraff
+
+2022937689
+
+ISU ETIKA, SOSIAL, DAN PROFESIONAL DALAM ICT
+
+ICT652
+
+M3CS2516A
+
+16
+
+Mohd Ashraff
+
+2022937689
+
+PENTADBIRAN SISTEM DAN RANGKAIAN
+
+ITT420
+
+M3CS2516A
+
+17
+
+Mohd Ashraff
+
+2022937689
+
+PROJEK
+
+CSP650
+
+M3CS2516A
+
+18
+
+Mohd Ashraff
+
+2022937689
+
+ENGLISH EXIT TEST
+
+EET699
+
+M3CS2516A
+
+19
+
+Muhammad Syafiq
+
+2022930735
+
+TEKNOLOGI UNTUK SISTEM FUTURISTIK
+
+ICT653
+
+D1CS2406A
+
+20
+
+Muhammad Syafiq
+
+2022930735
+
+TEKNOLOGI DAN PERKEMBANGAN MASA DEPAN DATA
+
+DSC650
+
+D1CS2406A
+
+21
+
+Muhammad Syafiq
+
+2022930735
+
+KEUSAHAWANAN TEKNOLOGI
+
+ENT600
+
+D1CS2406A
+
+22
+
+Muhammad Syafiq
+
+2022930735
+
+ISU ETIKA, SOSIAL, DAN PROFESIONAL DALAM ICТ
+
+ICT652
+
+D1CS2406A
+
+23
+
+Muhammad Syafiq
+
+2022930735
+
+PROJEK
+
+CSP650
+
+D1CS2406A
+
+24
+
+Yamin
+
+2022987975
+
+Final Year :(
+
+CSP650
+
+M3CS2516A
+
+會
+
+.11
+SUYHA
+
+StudyMate
+
+Q
+
+bot
+
+Venue: BILIK KULIAH 19
+Start: 14:00
+
+End: 16:00
+Lecturer: ZULKEFLI BIN MUHAMAD HANAPIYAH
+
+1:45 PM
+
+January 31
+Hi, there! There's upcoming schedule for you.
+Here's some details:
+
+ICT652
+ICT652-ISU ETIKA, SOSIAL, DAN PROFESIONAL
+DALAM ICT
+
+Venue: BILIK KULIAH 10
+
+Start: 10:00
+
+End: 12:00
+
+Lecturer: MOHD NOR HAJAR HASROL BIN JONO
+9:44 AM
+
+Hi, there! There's upcoming schedule for you.
+Here's some details:
+
+CSP650
+
+CSP650- PROJEK
+Venue: BILIK KULIAH 18
+
+Start: 14:00
+End: 16:00
+Lecturer: MOHAMAD ASROL BIN ARSHAD
+
+1:44 PM
+
+
