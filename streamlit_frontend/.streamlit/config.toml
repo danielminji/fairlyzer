@@ -1,0 +1,17 @@
+
+[theme]
+primaryColor="#3b82f6"
+backgroundColor="#111827"
+secondaryBackgroundColor="#1e293b"
+textColor="#f8fafc"
+font="sans serif"
+
+[server]
+enableStaticServing = true
+enableCORS = true
+enableXsrfProtection = false
+
+[browser]
+serverAddress = "localhost"
+gatherUsageStats = false
+        

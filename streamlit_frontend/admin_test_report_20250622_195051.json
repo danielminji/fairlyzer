@@ -1,0 +1,65 @@
+[
+  {
+    "test": "API Health Check",
+    "status": "\u2705 PASS",
+    "message": "API is responding",
+    "data": null,
+    "timestamp": "2025-06-22T19:50:32.948709"
+  },
+  {
+    "test": "Get Users",
+    "status": "\u274c FAIL",
+    "message": "Failed to get users",
+    "data": null,
+    "timestamp": "2025-06-22T19:50:35.309949"
+  },
+  {
+    "test": "Get Pending Organizers",
+    "status": "\u274c FAIL",
+    "message": "Failed to get pending organizers",
+    "data": null,
+    "timestamp": "2025-06-22T19:50:37.653213"
+  },
+  {
+    "test": "Get Approved Organizers",
+    "status": "\u274c FAIL",
+    "message": "Failed to get approved organizers",
+    "data": null,
+    "timestamp": "2025-06-22T19:50:40.025423"
+  },
+  {
+    "test": "Job Fair Management",
+    "status": "\u274c FAIL",
+    "message": "Error: not enough values to unpack (expected 3, got 2)",
+    "data": null,
+    "timestamp": "2025-06-22T19:50:42.386534"
+  },
+  {
+    "test": "Booth Management",
+    "status": "\u274c FAIL",
+    "message": "Error: not enough values to unpack (expected 3, got 2)",
+    "data": null,
+    "timestamp": "2025-06-22T19:50:44.707471"
+  },
+  {
+    "test": "Job Requirements Management",
+    "status": "\u274c FAIL",
+    "message": "Error: not enough values to unpack (expected 3, got 2)",
+    "data": null,
+    "timestamp": "2025-06-22T19:50:47.023762"
+  },
+  {
+    "test": "Admin Statistics",
+    "status": "\u274c FAIL",
+    "message": "Error: not enough values to unpack (expected 3, got 2)",
+    "data": null,
+    "timestamp": "2025-06-22T19:50:49.350394"
+  },
+  {
+    "test": "System Maintenance",
+    "status": "\u274c FAIL",
+    "message": "Error: not enough values to unpack (expected 3, got 2)",
+    "data": null,
+    "timestamp": "2025-06-22T19:50:51.703440"
+  }
+]
