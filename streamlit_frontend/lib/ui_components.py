@@ -46,58 +46,14 @@ def render_footer():
     st.divider()
     st.markdown("© 2025 Resume Analyzer & Booth Recommendations")
 
-def render_sidebar():
-    """Render the sidebar navigation based on user role"""
-    with st.sidebar:
-        st.markdown("## Navigation")
-        
-        if check_auth():
-            user = get_current_user()
-            user_role = user.get('role', 'user')
-            
-            # Home button for all users
-            if st.sidebar.button("🏠 Home", key="home_btn"):
-                st.session_state.page = 'home'
-                st.rerun()
-            
-            # Navigation based on role
-            if user_role == 'admin':
-                render_admin_sidebar()
-            elif user_role == 'organizer':
-                render_organizer_sidebar()
-            else:
-                render_jobseeker_sidebar()
-            
-            # Logout button for all users
-            if st.sidebar.button("🚪 Logout", key="logout_btn"):
-                success, _ = logout()
-                if success:
-                    st.session_state.page = 'home'
-                    st.rerun()
-        else:
-            # Navigation for unauthenticated users
-            if st.sidebar.button("🏠 Home", key="home_btn"):
-                st.session_state.page = 'home'
-                st.rerun()
-                
-            if st.sidebar.button("🔑 Login", key="login_btn"):
-                st.session_state.page = 'login'
-                st.rerun()
-                
-            if st.sidebar.button("📝 Register", key="register_btn"):
-                st.session_state.page = 'register'
-                st.rerun()
-
 def render_admin_sidebar():
     """Render sidebar navigation options for admin users"""
     if st.sidebar.button("👨‍💼 Manage Organizers", key="manage_organizers_btn"):
         st.session_state.page = 'admin_organizers'
         st.rerun()
-        
     if st.sidebar.button("🎪 Manage Job Fairs", key="manage_job_fairs_btn"):
         st.session_state.page = 'admin_job_fairs'
         st.rerun()
-        
     if st.sidebar.button("📊 System Analytics", key="system_analytics_btn"):
         st.session_state.page = 'admin_analytics'
         st.rerun()
@@ -107,11 +63,9 @@ def render_organizer_sidebar():
     if st.sidebar.button("🎪 My Job Fairs", key="my_job_fairs_btn"):
         st.session_state.page = 'organizer_job_fairs'
         st.rerun()
-        
     if st.sidebar.button("🏢 Manage Booths", key="manage_booths_btn"):
         st.session_state.page = 'organizer_booths'
         st.rerun()
-        
     if st.sidebar.button("📊 Analytics", key="analytics_btn"):
         st.session_state.page = 'organizer_analytics'
         st.rerun()
@@ -121,15 +75,12 @@ def render_jobseeker_sidebar():
     if st.sidebar.button("📄 My Resumes", key="my_resumes_btn"):
         st.session_state.page = 'my_resumes'
         st.rerun()
-        
     if st.sidebar.button("📋 Resume Analysis", key="resume_analysis_btn"):
         st.session_state.page = 'resume_analysis'
         st.rerun()
-        
     if st.sidebar.button("🎯 Booth Recommendations", key="booth_recommendations_btn"):
         st.session_state.page = 'booth_recommendations'
         st.rerun()
-        
     if st.sidebar.button("🗺️ Job Fair Map", key="job_fair_map_btn"):
         st.session_state.page = 'job_fair_map'
         st.rerun()

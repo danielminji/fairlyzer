@@ -15,6 +15,17 @@ def display_landing_page():
     """
     Display the landing page for the Resume Analyzer & Booth Recommendations app
     """
+    display_navbar()
+    st.markdown(
+        """
+        <style>
+        [data-testid='stSidebarNav'] { display: none !important; }
+        [data-testid='stSidebarSearch'] { display: none !important; }
+        [data-testid='stSidebarHeader'] { display: none !important; }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     st.markdown(
         """
         <style>
@@ -232,6 +243,17 @@ def display_landing_page():
     st.caption("© 2025 Resume Analyzer & Booth Recommendations | Powered by AI")
 
 def display_login_page():
+    display_navbar()
+    st.markdown(
+        """
+        <style>
+        [data-testid='stSidebarNav'] { display: none !important; }
+        [data-testid='stSidebarSearch'] { display: none !important; }
+        [data-testid='stSidebarHeader'] { display: none !important; }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     st.empty()
     st.markdown('''<div class="auth-container">''', unsafe_allow_html=True)
     # st.image("https://via.placeholder.com/150x50?text=App+Logo", width=150) # Placeholder logo
@@ -275,6 +297,17 @@ def display_login_page():
     st.markdown('''</div>''', unsafe_allow_html=True)
 
 def display_register_page():
+    display_navbar()
+    st.markdown(
+        """
+        <style>
+        [data-testid='stSidebarNav'] { display: none !important; }
+        [data-testid='stSidebarSearch'] { display: none !important; }
+        [data-testid='stSidebarHeader'] { display: none !important; }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     st.empty()
     st.markdown('''<div class="auth-container">''', unsafe_allow_html=True)
     # st.image("https://via.placeholder.com/150x50?text=App+Logo", width=150) # Placeholder logo
@@ -353,54 +386,211 @@ def display_register_page():
     st.markdown('''</div>''', unsafe_allow_html=True)
 
 def display_navbar():
-    # st.sidebar.image("https://via.placeholder.com/200x60?text=App+Logo", width=200) 
-    st.sidebar.title("Navigation")
-    
-    user_role = st.session_state.get("user_role", "user") 
-    user_name = st.session_state.get("user_name", "Guest")
-    
-    st.sidebar.markdown(f"Welcome, **{user_name}**!")
-    st.sidebar.markdown(f"Role: _{user_role.capitalize()}_")
-    st.sidebar.divider()
+    # Sidebar open/close state
+    if 'sidebar_open' not in st.session_state:
+        st.session_state['sidebar_open'] = True
 
-    if st.sidebar.button("🏠 Home", key="nav_home_main", use_container_width=True):
-        st.session_state.view = "home" 
-        st.switch_page("app.py") 
+    sidebar_css = """
+    <style>
+    .custom-sidebar-card {
+        background: #232b3b;
+        border-radius: 18px;
+        padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        margin: 0.5rem 0.2rem 0.2rem 0.2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .custom-sidebar-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #fff;
+    }
+    .custom-sidebar-welcome {
+        font-size: 1.05rem;
+        color: #cbd5e1;
+        margin-bottom: 0.2rem;
+    }
+    .custom-sidebar-role {
+        font-size: 0.98rem;
+        color: #60a5fa;
+        margin-bottom: 1.1rem;
+    }
+    .custom-sidebar-btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        background: #22304a !important;
+        color: #fff !important;
+        border-radius: 8px !important;
+        font-size: 1.08rem !important;
+        font-weight: 500;
+        border: none !important;
+        box-shadow: 0 2px 8px rgba(59,130,246,0.08) !important;
+        transition: background 0.18s, box-shadow 0.18s;
+    }
+    .custom-sidebar-btn:hover, .custom-sidebar-btn:focus {
+        background: #3b82f6 !important;
+        color: #fff !important;
+        box-shadow: 0 4px 16px rgba(59,130,246,0.18) !important;
+        outline: none !important;
+    }
+    .custom-sidebar-divider {
+        border: none;
+        border-top: 1px solid #334155;
+        margin: 1.1rem 0 1.1rem 0;
+        width: 100%;
+    }
+    </style>
+    """
+    st.markdown(sidebar_css, unsafe_allow_html=True)
 
-    if user_role == "admin":
-        if st.sidebar.button("👑 Admin Dashboard", key="nav_admin_dashboard", use_container_width=True):
-            st.switch_page("pages/admin_dashboard.py")
-        if st.sidebar.button("👥 User Management", key="nav_user_management", use_container_width=True):
-            st.switch_page("pages/admin_user_management.py")
-    elif user_role == "organizer":
-        if st.sidebar.button("💼 Organizer Job Fairs", key="nav_organizer_job_fairs", use_container_width=True):
-            st.switch_page("pages/05_Organizer_Job_Fairs.py")
-    elif user_role == "pending_organizer_approval":
-        # For pending organizers, profile and logout are sufficient.
-        # Home will show their pending status.
-        pass # Home is already added above, no other specific links for pending other than profile/logout below
-    else: # This is now primarily for 'user' (Job Seeker)  
-        if st.sidebar.button("📤 Resume Upload", key="nav_resume_upload", use_container_width=True):
-            st.switch_page("pages/01_resume_upload.py")
-        if st.sidebar.button("📋 My Resumes", key="nav_my_resumes", use_container_width=True):
-            st.switch_page("pages/02_my_resumes.py")
-
-    if st.sidebar.button("👤 My Profile", key="nav_profile_all", use_container_width=True):
-        st.switch_page("pages/05_profile.py")
-
-    st.sidebar.divider()
-    if st.sidebar.button("🚪 Logout", key="nav_logout_main", use_container_width=True):
-        logout_function() 
-        keys_to_keep = ['view', 'app_setup_complete'] # Persist view to redirect correctly
-        for key in list(st.session_state.keys()):
-            if key not in keys_to_keep and key not in ['authenticated', 'user_role', 'user_name', 'user_id', 'csrf_token', 'session_cookie']: # also clear auth tokens
-                del st.session_state[key]
-        st.session_state.authenticated = False
-        st.session_state.view = "login" 
-        st.success("Logged out successfully.")
-        st.rerun()
+    if st.session_state['sidebar_open']:
+        st.markdown(
+            """
+            <style>
+            .hide-sidebar-btn {
+                position: absolute;
+                top: 1.2rem;
+                left: 1.2rem;
+                z-index: 1002;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #232b3b !important;
+                color: #fff !important;
+                border: none !important;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+                font-size: 1.3rem !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background 0.2s, box-shadow 0.2s;
+            }
+            .hide-sidebar-btn:hover, .hide-sidebar-btn:focus {
+                background: #3b82f6 !important;
+                box-shadow: 0 4px 16px rgba(59,130,246,0.18) !important;
+                outline: none !important;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+        with st.sidebar:
+            if st.button('◀', key='sidebar_collapse', help='Hide sidebar', use_container_width=True, type='secondary', kwargs={"className": "hide-sidebar-btn"}):
+                st.session_state['sidebar_open'] = False
+                st.rerun()
+            st.markdown('<div class="custom-sidebar-card">', unsafe_allow_html=True)
+            st.markdown('<div class="custom-sidebar-title">Navigation</div>', unsafe_allow_html=True)
+            user_name = st.session_state.get("user_name") or "Guest"
+            user_role = st.session_state.get("user_role") or "guest"
+            st.markdown(f'<div class="custom-sidebar-welcome">Welcome, <b>{user_name}</b>!</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="custom-sidebar-role">Role: <i>{str(user_role).capitalize()}</i></div>', unsafe_allow_html=True)
+            st.markdown('<hr class="custom-sidebar-divider" />', unsafe_allow_html=True)
+            # Authenticated user navigation
+            if st.session_state.get("authenticated"):
+                if st.button("🏠 Home", key="nav_home_main", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                    st.session_state.view = "home"
+                    st.switch_page("app.py")
+                if user_role == "admin":
+                    if st.button("👑 Admin Dashboard", key="nav_admin_dashboard", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                        st.switch_page("pages/admin_dashboard.py")
+                    if st.button("👥 User Management", key="nav_user_management", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                        st.switch_page("pages/admin_user_management.py")
+                elif user_role == "organizer":
+                    if st.button("💼 Organizer Job Fairs", key="nav_organizer_job_fairs", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                        st.switch_page("pages/05_Organizer_Job_Fairs.py")
+                elif user_role == "pending_organizer_approval":
+                    pass
+                else:
+                    if st.button("📤 Resume Upload", key="nav_resume_upload", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                        st.switch_page("pages/01_resume_upload.py")
+                    if st.button("📋 My Resumes", key="nav_my_resumes", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                        st.switch_page("pages/02_my_resumes.py")
+                if st.button("👤 My Profile", key="nav_profile_all", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                    st.switch_page("pages/05_profile.py")
+                st.markdown('<hr class="custom-sidebar-divider" />', unsafe_allow_html=True)
+                if st.button("🚪 Logout", key="nav_logout_main", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                    logout_function()
+                    keys_to_keep = ['view', 'app_setup_complete']
+                    for key in list(st.session_state.keys()):
+                        if key not in keys_to_keep and key not in ['authenticated', 'user_role', 'user_name', 'user_id', 'csrf_token', 'session_cookie']:
+                            del st.session_state[key]
+                    st.session_state.authenticated = False
+                    # Safely remove user_name and user_id, and set user_role to 'guest'
+                    if "user_name" in st.session_state:
+                        del st.session_state["user_name"]
+                    if "user_id" in st.session_state:
+                        del st.session_state["user_id"]
+                    st.session_state.user_role = "guest"
+                    st.session_state.view = "login"
+                    st.success("Logged out successfully.")
+                    st.rerun()
+            # Guest navigation
+            else:
+                if st.button("🏠 Home", key="nav_home_guest", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                    st.session_state.view = "landing"
+                    st.switch_page("app.py")
+                if st.button("🔑 Login", key="nav_login_guest", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                    st.session_state.view = "login"
+                    st.rerun()
+                if st.button("📝 Register", key="nav_register_guest", use_container_width=True, kwargs={"className": "custom-sidebar-btn"}):
+                    st.session_state.view = "register"
+                    st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
+    else:
+        st.markdown(
+            '<style>\n'
+            'section[data-testid="stSidebar"] {\n'
+            '    min-width: 0 !important;\n'
+            '    width: 0 !important;\n'
+            '    padding: 0 !important;\n'
+            '    overflow: hidden !important;\n'
+            '}\n'
+            '.stButton>button.sidebar-round-btn {\n'
+            '    border-radius: 50% !important;\n'
+            '    width: 40px !important;\n'
+            '    height: 40px !important;\n'
+            '    min-width: 40px !important;\n'
+            '    min-height: 40px !important;\n'
+            '    background: #232b3b !important;\n'
+            '    color: #fff !important;\n'
+            '    border: none !important;\n'
+            '    box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;\n'
+            '    font-size: 1.3rem !important;\n'
+            '    padding: 0 !important;\n'
+            '    margin: 0.2rem 0.2rem 0.2rem 0.2rem !important;\n'
+            '    transition: background 0.2s, box-shadow 0.2s;\n'
+            '    margin-top: -0.7rem !important;\n'
+            '    margin-left: -0.7rem !important;\n'
+            '}\n'
+            '.stButton>button.sidebar-round-btn:hover, .stButton>button.sidebar-round-btn:focus {\n'
+            '    background: #3b82f6 !important;\n'
+            '    box-shadow: 0 4px 16px rgba(59,130,246,0.18) !important;\n'
+            '    outline: none !important;\n'
+            '}\n'
+            '</style>',
+            unsafe_allow_html=True)
+        open_col, _ = st.columns([0.07, 0.93])
+        with open_col:
+            open_btn = st.button('☰', key='sidebar_expand', help='Open sidebar', use_container_width=True, type='secondary', kwargs={"className": "sidebar-round-btn"})
+        if open_btn:
+            st.session_state['sidebar_open'] = True
+            st.rerun()
 
 def display_home_page():
+    st.markdown(
+        """
+        <style>
+        [data-testid='stSidebarNav'] { display: none !important; }
+        [data-testid='stSidebarSearch'] { display: none !important; }
+        [data-testid='stSidebarHeader'] { display: none !important; }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     st.title(f"Welcome to your Dashboard, {st.session_state.get('user_name', 'User')}!")
     user_role = st.session_state.get("user_role", "user")
 

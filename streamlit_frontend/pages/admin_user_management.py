@@ -10,7 +10,19 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(
 from lib.api import make_api_request  # Direct import from api.py for 3-value return
 from lib.api_helpers import safe_get_users, safe_get_organizers, is_api_healthy
 from lib.ui_components import load_css, render_header, render_status_indicator, handle_api_error
-from lib.navigation import display_sidebar_navigation
+from lib.ui import display_navbar
+
+import streamlit as st
+st.markdown(
+    """
+    <style>
+    [data-testid='stSidebarNav'] { display: none !important; }
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Helper functions
 def get_all_users():
@@ -76,10 +88,12 @@ except:
 
 # Page config
 st.set_page_config(
-    page_title="User Management",
+    page_title="Admin User Management",
     page_icon="👥",
     layout="wide"
 )
+
+display_navbar()
 
 # Load CSS
 load_css()
@@ -165,7 +179,7 @@ if st.session_state.user_role != "admin":
 # --- Admin Authenticated Content Starts Here ---
 
 # Display navigation sidebar for admin pages
-display_sidebar_navigation() 
+# display_sidebar_navigation() # This line is removed as per the edit hint
 
 # Header for this specific admin page
 st.title("User Management")

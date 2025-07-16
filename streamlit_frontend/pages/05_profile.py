@@ -8,6 +8,17 @@ from PIL import Image
 import io
 from streamlit_cropper import st_cropper
 
+st.markdown(
+    """
+    <style>
+    [data-testid='stSidebarNav'] { display: none !important; }
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Configure the page - MUST BE THE FIRST STREAMLIT COMMAND
 st.set_page_config(
     page_title="My Profile - Resume Analyzer",
@@ -229,6 +240,8 @@ def account_settings(user):
 
 def main():
     """Main function for the profile page."""
+    from lib.ui import display_navbar
+    display_navbar()
     render_header()
 
     if "authenticated" not in st.session_state or not st.session_state.authenticated:

@@ -1,4 +1,14 @@
 import streamlit as st
+st.markdown(
+    """
+    <style>
+    [data-testid='stSidebarNav'] { display: none !important; }
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.set_page_config(layout="wide", page_title="Organizer: Booth Management")
 

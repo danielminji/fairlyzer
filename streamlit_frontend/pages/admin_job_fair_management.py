@@ -12,6 +12,17 @@ from lib.api_helpers import make_api_request # Use the wrapper that returns 2 va
 from lib.ui_components import load_css, handle_api_error
 from lib.navigation import display_sidebar_navigation
 
+st.markdown(
+    """
+    <style>
+    [data-testid='stSidebarNav'] { display: none !important; }
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Page config
 st.set_page_config(
     page_title="Admin: Job Fair Management",

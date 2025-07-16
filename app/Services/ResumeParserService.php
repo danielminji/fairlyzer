@@ -173,8 +173,16 @@ class ResumeParserService
             // Always create/update the Python script to ensure it has the latest changes
                 $this->createEnhancedParserCLI();
             
-            // Prepare the command
+            // Determine correct Python executable for OS
+            $venvPython = null;
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                $venvPython = base_path('streamlit_frontend/venv/Scripts/python.exe');
+            } else {
             $venvPython = base_path('streamlit_frontend/venv/bin/python');
+            }
+            if (!file_exists($venvPython)) {
+                $venvPython = 'python'; // fallback to system python
+            }
             $escapedFilePath = escapeshellarg($filePath);
             $command = escapeshellarg($venvPython) . " " . escapeshellarg($pythonScript) . " " . $escapedFilePath;
             
