@@ -9,6 +9,19 @@ if app_root_dir not in sys.path:
     sys.path.insert(0, app_root_dir)
 
 import streamlit as st
+st.markdown(
+    """
+    <style>
+    /* Hide the default Streamlit sidebar navigation */
+    [data-testid='stSidebarNav'] { display: none !important; }
+    /* Hide the sidebar search input */
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    /* Hide the sidebar header */
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go # Added for more custom charts

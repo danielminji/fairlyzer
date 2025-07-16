@@ -3,6 +3,18 @@ import requests
 import pandas as pd
 from datetime import datetime
 import json
+from lib.ui import display_navbar
+
+st.markdown(
+    """
+    <style>
+    [data-testid='stSidebarNav'] { display: none !important; }
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Assuming lib.api.login_user is the preferred way to login as it handles CSRF
 # If lib.api is not structured to be easily called from here, we might need adjustment
@@ -99,25 +111,13 @@ def fetch_job_fairs():
 
 # --- Main Page Logic ---
 if not st.session_state.get('authenticated') or st.session_state.get('user_role') != 'organizer':
-    st.subheader("Organizer Login")
-    if st.session_state.get('authenticated') and st.session_state.get('user_role') != 'organizer':
-        st.warning(f"You are logged in as a {st.session_state.get('user_role')}. Organizer access required.")
-        if st.button("Logout and switch account?"):
-            handle_organizer_logout()
-        st.stop()
-    with st.form("organizer_login_form"):
-        email = st.text_input("Email")
-        password = st.text_input("Password", type="password")
-        submitted = st.form_submit_button("Login as Organizer")
-        if submitted:
-            if not email or not password:
-                st.warning("Please enter both email and password.")
-            else:
-                handle_organizer_login(email, password)
+    st.warning("You must be logged in as an organizer to access this page.")
+    if st.button("Go to Login Page"):
+        st.session_state.view = "login"
+        st.switch_page("app.py")
+    st.stop()
 else:
-    st.sidebar.write(f"Welcome, Organizer {st.session_state.user_name}!")
-    if st.sidebar.button("Logout"):
-        handle_organizer_logout()
+    display_navbar()
 
     if 'selected_job_fair_id_for_actions' not in st.session_state: # Renamed for clarity
         st.session_state.selected_job_fair_id_for_actions = None
@@ -242,15 +242,38 @@ else:
                     if row_list_item.get('latitude') and row_list_item.get('longitude'):
                         st.caption(f"Coordinates: Lat {row_list_item.get('latitude'):.4f}, Lon {row_list_item.get('longitude'):.4f}")
 
-                    if row_list_item.get('map_image_path'):
-                        # Construct the full URL for the map image
-                        base_display_url = API_BASE_URL.replace('/api', '')
-                        map_file_path = row_list_item['map_image_path']
-                        if not map_file_path.startswith('/storage'):
-                            map_url = f"{base_display_url}/storage/{map_file_path.lstrip('/')}"
-                        else:
-                            map_url = f"{base_display_url}{map_file_path}"
-                        st.markdown(f"Map: [View/Download]({map_url})", unsafe_allow_html=True)
+                    API_BASE_URL = "http://localhost:8000/api"  # Adjust as needed for deployment
+                    PUBLIC_BASE_URL = API_BASE_URL.replace("/api", "")
+                    map_filename = (
+                        row_list_item.get('map_filename')
+                        or row_list_item.get('map_image')
+                        or (row_list_item.get('map_image_path').split('/')[-1] if row_list_item.get('map_image_path') else None)
+                    )
+                    map_view_key = f"view_map_{job_fair_id_list}"
+                    map_state_key = f"show_map_{job_fair_id_list}"
+                    if map_filename:
+                        map_url = f"{PUBLIC_BASE_URL}/storage/job_fair_maps/{map_filename}"
+                        if st.button("View Map", key=map_view_key):
+                            st.session_state[map_state_key] = not st.session_state.get(map_state_key, False)
+                            st.rerun()
+                        if st.session_state.get(map_state_key, False):
+                            st.image(map_url, caption="Job Fair Map", use_container_width=True)
+                            try:
+                                import requests
+                                response = requests.get(map_url)
+                                if response.status_code == 200:
+                                    st.download_button(
+                                        label="Download Map",
+                                        data=response.content,
+                                        file_name=map_filename,
+                                        mime="image/png" if map_filename.lower().endswith(".png") else "image/jpeg"
+                                    )
+                                else:
+                                    st.warning("Map file could not be fetched for download (HTTP error).")
+                            except Exception as e:
+                                st.warning(f"Map file could not be fetched for download: {e}")
+                    else:
+                        st.warning("Map file not found for view or download.")
                     
                     # Action buttons for each job fair
                     cols_actions = st.columns(3) # Edit Fair, Delete Fair, Manage Booths

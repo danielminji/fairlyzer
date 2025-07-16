@@ -12,6 +12,17 @@ from lib.api import make_api_request # Direct import from api.py
 from lib.navigation import display_sidebar_navigation # Corrected import
 from lib.ui_components import load_css # Corrected import, render_header removed as it was causing issues
 
+st.markdown(
+    """
+    <style>
+    [data-testid='stSidebarNav'] { display: none !important; }
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # API Endpoints
 JOB_REQUIREMENTS_ENDPOINT = "admin/job-requirements"
 

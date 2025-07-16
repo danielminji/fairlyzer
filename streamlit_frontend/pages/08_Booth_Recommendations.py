@@ -3,12 +3,27 @@ from lib import api
 from lib.auth_client import require_auth
 from lib.navigation import display_sidebar_navigation
 from datetime import datetime # Import datetime
-from lib.ocr_utils import get_image_from_url, highlight_booths_on_map # Import OCR utils
+from lib.ocr_utils import highlight_booths_on_map # Import OCR utils
 from PIL import Image # For checking if an image is returned
 import requests # For Geoapify directions API call
 import folium # For interactive route map
 from streamlit_folium import st_folium # For interactive route map
 from streamlit_geolocation import streamlit_geolocation # UPDATED IMPORT
+from io import BytesIO
+
+st.markdown(
+    """
+    <style>
+    /* Hide the default Streamlit sidebar navigation */
+    [data-testid='stSidebarNav'] { display: none !important; }
+    /* Hide the sidebar search input */
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    /* Hide the sidebar header */
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.set_page_config(
     page_title="Job Fair Details & Recommendations - Resume Analyzer", # Updated Title
@@ -553,23 +568,33 @@ def display_job_fair_page(): # Renamed function for clarity
                             for booth_rec in recommendations_data.get('recommended_booths', [])
                             if booth_rec.get('booth_number_on_map')
                         ]
-                        
+                        # --- Determine which cache to use based on booth count or map filename ---
+                        debug_name = None
+                        if 'jobfairmap2' in (original_map_url_for_rec_tab or '').lower() or len(recommended_booth_numbers_for_ocr) <= 3:
+                            debug_name = 'all_3'
+                        else:
+                            debug_name = 'all_30'
                         if recommended_booth_numbers_for_ocr:
-                            # st.write(f"DEBUG OCR: Booth numbers for OCR: {recommended_booth_numbers_for_ocr}") # Optional DEBUG
                             st.caption("Attempting to highlight recommended booths on the map...")
-                            image_bytes = get_image_from_url(absolute_ocr_map_url) 
+                            try:
+                                response = requests.get(absolute_ocr_map_url, timeout=10)
+                                response.raise_for_status()
+                                image_bytes = response.content
+                            except Exception as e:
+                                image_bytes = None
                             if image_bytes:
-                                highlighted_image = highlight_booths_on_map(image_bytes, recommended_booth_numbers_for_ocr)
+                                image_bytes_io = BytesIO(image_bytes)
+                                highlighted_image = highlight_booths_on_map(image_bytes_io, recommended_booth_numbers_for_ocr, debug_name=debug_name)
                                 if highlighted_image and isinstance(highlighted_image, Image.Image):
                                     map_image_to_display = highlighted_image
                                 else: 
                                     st.warning("Could not highlight booths. Displaying original map.")
-                                    map_image_to_display = absolute_ocr_map_url # Display original URL if highlight fails
+                                    map_image_to_display = absolute_ocr_map_url
                             else:
                                 st.warning("Could not fetch map image for highlighting.")
-                                map_image_to_display = absolute_ocr_map_url # Display original URL if fetch fails
-                        else: # No booth numbers to highlight, use original map
-                            map_image_to_display = absolute_ocr_map_url 
+                                map_image_to_display = absolute_ocr_map_url
+                        else:
+                            map_image_to_display = absolute_ocr_map_url
                     
                     if map_image_to_display:
                         if isinstance(map_image_to_display, str): # It's a URL
