@@ -21,6 +21,21 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Hide Streamlit default sidebar navigation (page selector/search)
+st.markdown(
+    """
+    <style>
+    /* Hide the default Streamlit sidebar navigation */
+    [data-testid="stSidebarNav"] { display: none !important; }
+    /* Hide the sidebar search input */
+    [data-testid="stSidebarSearch"] { display: none !important; }
+    /* Hide the sidebar header */
+    [data-testid="stSidebarHeader"] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Import local modules after st.set_page_config
 from lib import api
 from lib.auth_client import init_session, check_auth, get_current_user, get_user_role

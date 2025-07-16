@@ -232,6 +232,20 @@ def main():
     """Main function for the resume upload page"""
     display_sidebar_navigation()
     
+    st.markdown(
+        """
+        <style>
+        /* Hide the default Streamlit sidebar navigation */
+        [data-testid='stSidebarNav'] { display: none !important; }
+        /* Hide the sidebar search input */
+        [data-testid='stSidebarSearch'] { display: none !important; }
+        /* Hide the sidebar header */
+        [data-testid='stSidebarHeader'] { display: none !important; }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
     # --- Responsive two-column layout ---
     col_left, col_right = st.columns([1.15, 1], gap="large")
     with col_left:

@@ -6,6 +6,19 @@ options to view detailed analysis, delete resumes, or upload new ones.
 """
 
 import streamlit as st
+st.markdown(
+    """
+    <style>
+    /* Hide the default Streamlit sidebar navigation */
+    [data-testid='stSidebarNav'] { display: none !important; }
+    /* Hide the sidebar search input */
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    /* Hide the sidebar header */
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 from streamlit.components.v1 import html
 import os
 import sys

@@ -23,6 +23,17 @@ st.set_page_config(
 # Load CSS
 load_css()
 
+st.markdown(
+    """
+    <style>
+    [data-testid='stSidebarNav'] { display: none !important; }
+    [data-testid='stSidebarSearch'] { display: none !important; }
+    [data-testid='stSidebarHeader'] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Check authentication - use main app authentication
 if "authenticated" not in st.session_state or not st.session_state.authenticated:
     st.warning("Please log in first.")
