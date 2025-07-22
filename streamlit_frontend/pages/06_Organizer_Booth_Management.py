@@ -463,7 +463,14 @@ if job_fair_details:
                         st.success("Booth added successfully!")
                         st.rerun()
                     except requests.exceptions.HTTPError as e:
-                        st.error(f"Failed to add booth: {e.response.status_code} - {e.response.text}")
+                        try:
+                            error_data = e.response.json()
+                            if 'errors' in error_data and 'booth_number_on_map' in error_data['errors']:
+                                st.error("Duplicate booth number, please try again.")
+                            else:
+                                st.error(f"Failed to add booth: {e.response.text}")
+                        except ValueError:
+                            st.error(f"Failed to add booth: {e.response.status_code} - {e.response.text}")
                     except Exception as e:
                         st.error(f"An error occurred: {e}")
                 else:

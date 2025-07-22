@@ -13,6 +13,7 @@ from lib.ui_components import load_css, render_header, render_status_indicator, 
 from lib.ui import display_navbar
 
 import streamlit as st
+# load_css() - This is now handled globally in app.py
 st.markdown(
     """
     <style>
@@ -94,9 +95,6 @@ st.set_page_config(
 )
 
 display_navbar()
-
-# Load CSS
-load_css()
 
 # Check authentication - use main app authentication
 if "authenticated" not in st.session_state or not st.session_state.authenticated:

@@ -21,7 +21,7 @@ st.set_page_config(
 )
 
 # Load CSS
-load_css()
+# load_css() - This is now handled globally in app.py
 
 st.markdown(
     """

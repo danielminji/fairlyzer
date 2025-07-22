@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Response;
+use App\Http\Controllers\MapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/download-map/{filename}', [MapController::class, 'download']);
 
 // Ensure login route is not duplicated here if it's an API route
 // Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']); // Removed from here

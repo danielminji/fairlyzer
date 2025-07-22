@@ -124,7 +124,6 @@ class User extends Authenticatable
         if ($this->profile_photo_path) {
             return url('storage/' . $this->profile_photo_path);
         }
-
-        return 'https://via.placeholder.com/150'; // Default image
+        return null;
     }
 }

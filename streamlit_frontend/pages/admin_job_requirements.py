@@ -10,7 +10,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from lib.api import make_api_request # Direct import from api.py
 from lib.navigation import display_sidebar_navigation # Corrected import
-from lib.ui_components import load_css # Corrected import, render_header removed as it was causing issues
+# from lib.ui_components import load_css # Corrected import, render_header removed as it was causing issues
+# load_css() - This is now handled globally in app.py
 
 st.markdown(
     """
@@ -55,7 +56,7 @@ if 'current_req_data_for_edit' not in st.session_state:
     st.session_state.current_req_data_for_edit = None
 
 st.set_page_config(page_title="Admin: Job Requirements", layout="wide")
-load_css() # Assuming this is a custom function to load CSS
+# load_css() # Assuming this is a custom function to load CSS
 
 # Check authentication - use main app authentication
 if "authenticated" not in st.session_state or not st.session_state.authenticated:
@@ -335,8 +336,8 @@ with st.form(key="add_job_requirement_form", clear_on_submit=True):
     add_description = st.text_area("Description (Optional)")
     
     st.markdown("**Skills** (Enter as comma-separated values)")
-    add_skills_general_str = st.text_input("General Skills (e.g., Python, Java, CPR, Financial Modeling)")
-    add_skills_soft_str = st.text_input("Soft Skills (e.g., Communication, Teamwork, Problem Solving)")
+    add_skills_general_str = st.text_input("General Skills (e.g., Python, Java, CPR, Financial Modeling)", help="e.g., Python, SQL, Data Analysis")
+    add_skills_soft_str = st.text_input("Soft Skills (e.g., Communication, Teamwork, Problem Solving)", help="e.g., Communication, Teamwork, Problem Solving")
     
     min_experience_years = st.number_input("Minimum Experience (Years)", min_value=0, max_value=50, value=0, step=1)
     min_experience_entries = st.number_input("Minimum Experience Entries (Number of distinct work experiences)", min_value=0, max_value=20, value=0, step=1)
@@ -367,7 +368,7 @@ with st.form(key="add_job_requirement_form", clear_on_submit=True):
             # Remove None values from payload keys like skills if they were empty strings
             payload = {k: v for k, v in payload.items() if v is not None}
             
-            response, success, _ = make_api_request(JOB_REQUIREMENTS_ENDPOINT, "POST", data=payload)
+            response, success = make_api_request(JOB_REQUIREMENTS_ENDPOINT, "POST", data=payload)
             if success:
                 st.success(f"Job Requirement '{add_job_title}' added successfully!")
                 st.rerun()

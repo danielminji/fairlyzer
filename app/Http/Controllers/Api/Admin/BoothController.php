@@ -8,6 +8,7 @@ use App\Models\Booth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log; // For logging
+use Illuminate\Validation\Rule;
 
 class BoothController extends Controller
 {
@@ -28,7 +29,15 @@ class BoothController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'company_name' => 'required|string|max:255',
-            'booth_number_on_map' => 'required|integer|min:1|max:1000', // Assuming a reasonable max
+            'booth_number_on_map' => [
+                'required',
+                'integer',
+                'min:1',
+                'max:1000',
+                Rule::unique('booths')->where(function ($query) use ($jobFair) {
+                    return $query->where('job_fair_id', $jobFair->id);
+                }),
+            ],
             // 'description' => 'nullable|string', // Booth model doesn't have description, add if needed
         ]);
 
@@ -67,9 +76,19 @@ class BoothController extends Controller
      */
     public function update(Request $request, Booth $booth)
     {
+        $jobFair = $booth->jobFair;
         $validator = Validator::make($request->all(), [
             'company_name' => 'sometimes|required|string|max:255',
-            'booth_number_on_map' => 'sometimes|required|integer|min:1|max:1000',
+            'booth_number_on_map' => [
+                'sometimes',
+                'required',
+                'integer',
+                'min:1',
+                'max:1000',
+                Rule::unique('booths')->where(function ($query) use ($jobFair) {
+                    return $query->where('job_fair_id', $jobFair->id);
+                })->ignore($booth->id),
+            ],
             // 'description' => 'nullable|string',
         ]);
 
