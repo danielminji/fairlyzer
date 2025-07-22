@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Validation\Rule;
 
 class BoothController extends Controller
 {
@@ -37,7 +38,14 @@ class BoothController extends Controller
 
         $validatedData = $request->validate([
             'company_name' => 'required|string|max:255',
-            'booth_number_on_map' => 'required|numeric|max:255',
+            'booth_number_on_map' => [
+                'required',
+                'numeric',
+                'max:255',
+                Rule::unique('booths')->where(function ($query) use ($jobFair) {
+                    return $query->where('job_fair_id', $jobFair->id);
+                }),
+            ],
             // 'map_coordinates' => 'nullable|json' // Removed
         ]);
 
@@ -75,7 +83,15 @@ class BoothController extends Controller
 
         $validatedData = $request->validate([
             'company_name' => 'sometimes|required|string|max:255',
-            'booth_number_on_map' => 'sometimes|required|numeric|max:255',
+            'booth_number_on_map' => [
+                'sometimes',
+                'required',
+                'numeric',
+                'max:255',
+                Rule::unique('booths')->where(function ($query) use ($jobFair) {
+                    return $query->where('job_fair_id', $jobFair->id);
+                })->ignore($booth->id),
+            ],
             // 'map_coordinates' => 'sometimes|nullable|json' // Removed
         ]);
 

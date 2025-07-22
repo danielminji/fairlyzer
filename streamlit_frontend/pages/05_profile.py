@@ -56,7 +56,11 @@ def display_profile(user):
     with col1:
         # Custom CSS to make the image circular
         st.markdown('<style>.profile-photo img { border-radius: 50%; object-fit: cover; width: 150px; height: 150px; }</style>', unsafe_allow_html=True)
-        st.image(user.get('profile_photo_url', 'https://via.placeholder.com/150'), caption="Profile Picture", width=150)
+        profile_photo_url = user.get('profile_photo_url')
+        if not profile_photo_url or profile_photo_url.strip() == '' or profile_photo_url.endswith('placeholder.com/150'):
+            name = user.get('name', 'User').replace(' ', '+')
+            profile_photo_url = 'https://ui-avatars.com/api/?name=' + name + '&background=ececec&color=222&size=150'
+        st.image(profile_photo_url, caption="Profile Picture", width=150)
     
     with col2:
         st.text_input("Full Name", value=user.get('name', ''), disabled=True)
@@ -87,7 +91,8 @@ def edit_profile(user):
         st.subheader("Edit Profile Information")
 
         # --- Profile Picture Upload and Crop ---
-        uploaded_photo = st.file_uploader("Change Profile Picture", type=["png", "jpg", "jpeg"])
+        uploaded_photo = st.file_uploader("Change Profile Picture (PNG, JPG, JPEG, max 2MB)", type=["png", "jpg", "jpeg"])
+        st.caption("Max file size: 2MB")
         cropped_photo = None
         if uploaded_photo:
             img = Image.open(uploaded_photo)

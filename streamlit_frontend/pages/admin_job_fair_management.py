@@ -31,7 +31,7 @@ st.set_page_config(
 )
 
 # Load CSS
-load_css()
+# load_css()
 
 # Check authentication
 if "authenticated" not in st.session_state or not st.session_state.authenticated:
@@ -558,10 +558,9 @@ if st.session_state.selected_job_fair_id_for_booths:
     # --- Add New Booth Form ---
     if not st.session_state.editing_booth_id: # Only show add form if not editing a booth
         st.markdown("#### Add New Booth")
-        with st.form("new_booth_for_job_fair_form_admin", clear_on_submit=True):
+        with st.form("new_booth_for_job_fair_form_admin"):
             nb_company_name = st.text_input("Company Name*", help="e.g., Tech Solutions Inc.")
             nb_booth_number = st.number_input("Booth Number on Map*", min_value=1, max_value=1000, step=1, help="Numeric identifier on the map, e.g., 1, 2, ...30")
-            # map_coordinates could be added later if a map interface is built for placing booths
             
             nb_submitted = st.form_submit_button("Add Booth")
 
@@ -572,19 +571,19 @@ if st.session_state.selected_job_fair_id_for_booths:
                     payload = {
                         'company_name': nb_company_name,
                         'booth_number_on_map': nb_booth_number,
-                        # 'map_coordinates': json.loads(nb_map_coordinates) if nb_map_coordinates else None # Example if using JSON input
                     }
                     add_booth_endpoint = f"admin/job-fairs/{job_fair_id_for_booths}/booths"
                     response, success = make_api_request(add_booth_endpoint, "POST", data=payload)
 
                     if success:
-                        st.session_state.success_message_booth_admin = f"Booth '{nb_company_name}' added successfully."
+                        st.success(f"Booth '{nb_company_name}' added successfully.")
                         st.rerun()
                     else:
-                        error_detail = response.get('error', response.get('message', 'Failed to add booth.'))
-                        if 'errors' in response: error_detail = response['errors']
-                        st.session_state.error_message_booth_admin = f"Error adding booth: {error_detail}"
-                        st.rerun() # Rerun to show the error and persist form data
+                        if 'errors' in response and 'booth_number_on_map' in response['errors']:
+                            st.error("Duplicate booth number, please try again.")
+                        else:
+                            error_detail = response.get('error', response.get('message', 'Failed to add booth.'))
+                            st.error(f"Error adding booth, duplicate booth number: {error_detail}")
 
     # --- Edit Booth Form (Placeholder/Initial Setup) ---
     if st.session_state.editing_booth_id and st.session_state.booth_data_for_edit:

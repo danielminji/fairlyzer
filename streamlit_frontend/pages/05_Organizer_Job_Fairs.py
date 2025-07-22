@@ -4,6 +4,7 @@ import pandas as pd
 from datetime import datetime
 import json
 from lib.ui import display_navbar
+import os
 
 st.markdown(
     """
@@ -23,7 +24,7 @@ st.markdown(
 # We'll stick to direct requests.post for now and ensure variables match api.py expectations
 
 # Configuration for the Laravel API
-API_BASE_URL = "http://localhost:8000/api" # Make sure this matches your Laravel dev server
+API_BASE_URL = os.environ.get('FAIRLYZER_API_BASE_URL', 'http://localhost:8000/api') # Make sure this matches your Laravel dev server
 LOGIN_URL = f"{API_BASE_URL}/login"
 # USER_URL = f"{API_BASE_URL}/user" # Not used directly in this simplified version
 ORGANIZER_JOB_FAIRS_URL = f"{API_BASE_URL}/organizer/job-fairs"
@@ -242,54 +243,55 @@ else:
                     if row_list_item.get('latitude') and row_list_item.get('longitude'):
                         st.caption(f"Coordinates: Lat {row_list_item.get('latitude'):.4f}, Lon {row_list_item.get('longitude'):.4f}")
 
-                    API_BASE_URL = "http://localhost:8000/api"  # Adjust as needed for deployment
-                    PUBLIC_BASE_URL = API_BASE_URL.replace("/api", "")
-                    map_filename = (
-                        row_list_item.get('map_filename')
-                        or row_list_item.get('map_image')
-                        or (row_list_item.get('map_image_path').split('/')[-1] if row_list_item.get('map_image_path') else None)
-                    )
-                    map_view_key = f"view_map_{job_fair_id_list}"
-                    map_state_key = f"show_map_{job_fair_id_list}"
-                    if map_filename:
-                        map_url = f"{PUBLIC_BASE_URL}/storage/job_fair_maps/{map_filename}"
-                        if st.button("View Map", key=map_view_key):
-                            st.session_state[map_state_key] = not st.session_state.get(map_state_key, False)
-                            st.rerun()
-                        if st.session_state.get(map_state_key, False):
-                            st.image(map_url, caption="Job Fair Map", use_container_width=True)
-                            try:
-                                import requests
-                                response = requests.get(map_url)
-                                if response.status_code == 200:
-                                    st.download_button(
-                                        label="Download Map",
-                                        data=response.content,
-                                        file_name=map_filename,
-                                        mime="image/png" if map_filename.lower().endswith(".png") else "image/jpeg"
-                                    )
-                                else:
-                                    st.warning("Map file could not be fetched for download (HTTP error).")
-                            except Exception as e:
-                                st.warning(f"Map file could not be fetched for download: {e}")
-                    else:
-                        st.warning("Map file not found for view or download.")
-                    
-                    # Action buttons for each job fair
-                    cols_actions = st.columns(3) # Edit Fair, Delete Fair, Manage Booths
-                    with cols_actions[0]:
-                        if st.button("Edit Fair ✏️", key=f"edit_jf_details_{job_fair_id_list}"):
-                            st.session_state.selected_job_fair_id_for_actions = job_fair_id_list
-                            st.rerun()
-                    with cols_actions[1]:
-                        # The Manage Booths button will navigate using session state.
-                        if st.button("Manage Booths 🎪", key=f"manage_booths_nav_{job_fair_id_list}"):
-                            st.session_state.navigate_to_booth_management = True
-                            st.session_state.booth_management_job_fair_id = job_fair_id_list
-                            st.rerun() # Rerun to trigger navigation check at the top
-                    with cols_actions[2]:
-                        if st.button("Delete Fair 🗑️", key=f"delete_jf_details_{job_fair_id_list}", type="secondary"):
-                            st.session_state.selected_job_fair_id_for_actions = job_fair_id_list # Still select for delete confirmation
+                API_BASE_URL = os.environ.get('FAIRLYZER_API_BASE_URL', 'http://localhost:8000/api')
+                PUBLIC_BASE_URL = API_BASE_URL.replace('/api', '')
+                map_filename = (
+                    row_list_item.get('map_filename')
+                    or row_list_item.get('map_image')
+                    or (row_list_item.get('map_image_path').split('/')[-1] if row_list_item.get('map_image_path') else None)
+                )
+                map_view_key = f"view_map_{job_fair_id_list}"
+                map_state_key = f"show_map_{job_fair_id_list}"
+                if map_filename:
+                    map_url = f"{PUBLIC_BASE_URL}/storage/job_fair_maps/{map_filename}"
+                    if st.button("View Map", key=map_view_key):
+                        st.session_state[map_state_key] = not st.session_state.get(map_state_key, False)
+                        st.rerun()
+                    if st.session_state.get(map_state_key, False):
+                        st.image(map_url, caption="Job Fair Map", use_container_width=True)
+                        try:
+                            import requests
+                            response = requests.get(map_url)
+                            if response.status_code == 200:
+                                st.download_button(
+                                    label="Download Map",
+                                    data=response.content,
+                                    file_name=map_filename,
+                                    mime="image/png" if map_filename.lower().endswith(".png") else "image/jpeg",
+                                    key=f"download_map_{job_fair_id_list}"
+                                )
+                            else:
+                                st.warning("Map file could not be fetched for download (HTTP error).")
+                        except Exception as e:
+                            st.warning(f"Map file could not be fetched for download: {e}")
+                if not map_filename:
+                    st.warning("Map file not found for view or download.")
+
+                # Action buttons for each job fair
+                cols_actions = st.columns(3) # Edit Fair, Delete Fair, Manage Booths
+                with cols_actions[0]:
+                    if st.button("Edit Fair ✏️", key=f"edit_jf_details_{job_fair_id_list}"):
+                        st.session_state.selected_job_fair_id_for_actions = job_fair_id_list
+                        st.rerun()
+                with cols_actions[1]:
+                    # The Manage Booths button will navigate using session state.
+                    if st.button("Manage Booths 🎪", key=f"manage_booths_nav_{job_fair_id_list}"):
+                        st.session_state.navigate_to_booth_management = True
+                        st.session_state.booth_management_job_fair_id = job_fair_id_list
+                        st.rerun() # Rerun to trigger navigation check at the top
+                with cols_actions[2]:
+                    if st.button("Delete Fair 🗑️", key=f"delete_jf_details_{job_fair_id_list}", type="secondary"):
+                        st.session_state.selected_job_fair_id_for_actions = job_fair_id_list # Still select for delete confirmation
 
                 st.markdown("---")
         else:

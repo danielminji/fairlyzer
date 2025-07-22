@@ -7,39 +7,41 @@ from .css.ui import load_css
 
 def load_css():
     """Load global CSS from a file"""
-    css_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "lib", "css", "global.css")
+    css_file = os.path.join(os.path.dirname(__file__), "css", "global.css")
     with open(css_file, "r") as f:
-        html(f"<style>{f.read()}</style>")
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def render_header():
     """Render the application header with auth status and theme toggle"""
-    with st.container():
-        col1, col2, col3 = st.columns([6, 3, 1])
+    # This component is causing the black box, so we will comment it out.
+    # with st.container():
+    #     col1, col2, col3 = st.columns([6, 3, 1])
         
-        with col1:
-            st.title("Resume Analyzer & Booth Recommendations")
+    #     with col1:
+    #         st.title("Resume Analyzer & Booth Recommendations")
         
-        with col2:
-            if check_auth():
-                user_name = get_user_display_name()
-                st.write(f"👤 Logged in as: {user_name}")
+    #     with col2:
+    #         if check_auth():
+    #             user_name = get_user_display_name()
+    #             st.write(f"👤 Logged in as: {user_name}")
         
-        with col3:
-            # Theme toggle button - uses JavaScript to toggle theme
-            html("""
-            <button 
-                onclick="toggleTheme()" 
-                style="background: transparent; border: none; cursor: pointer; float: right;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" 
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12 2V4M12 20V22M4.93 4.93L6.34 6.34M17.66 17.66L19.07 19.07M2 12H4M20 12H22M4.93 19.07L6.34 17.66M17.66 6.34L19.07 4.93" 
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-            """)
+    #     with col3:
+    #         # Theme toggle button - uses JavaScript to toggle theme
+    #         html("""
+    #         <button 
+    #             onclick="toggleTheme()" 
+    #             style="background: transparent; border: none; cursor: pointer; float: right;">
+    #             <svg width="24" height="24" viewBox="0 0 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    #                 <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" 
+    #                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    #                 <path d="M12 2V4M12 20V22M4.93 4.93L6.34 6.34M17.66 17.66L19.07 19.07M2 12H4M20 12H22M4.93 19.07L6.34 17.66M17.66 6.34L19.07 4.93" 
+    #                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    #             </svg>
+    #         </button>
+    #         """)
     
-    st.divider()
+    # st.divider()
+    pass
 
 def render_footer():
     """Render the application footer"""

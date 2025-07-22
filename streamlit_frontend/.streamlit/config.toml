@@ -1,10 +1,9 @@
-
 [theme]
-primaryColor="#3b82f6"
-backgroundColor="#111827"
-secondaryBackgroundColor="#1e293b"
-textColor="#f8fafc"
-font="sans serif"
+primaryColor = "#AD9C8E"              # Muted brown for buttons/accents
+backgroundColor = "#F7E6CA"           # Light beige for main background
+secondaryBackgroundColor = "#E8D59E"  # Slightly darker beige for sidebar/cards
+textColor = "#222222"                 # Very dark for high readability
+font = "sans serif"
 
 [server]
 enableStaticServing = true
