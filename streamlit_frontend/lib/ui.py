@@ -38,8 +38,8 @@ def display_landing_page():
             margin-top: 2.5rem;
             margin-bottom: 2rem;
         }
-        .hero-title { font-size: 3.2rem; font-weight: 900; background: linear-gradient(90deg, #3b82f6, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-sub { font-size: 1.3rem; color: #cbd5e1; margin-bottom: 1.5rem; }
+        .hero-title { font-size: 3.2rem; font-weight: 900; color: #AD9C8E; }
+        .hero-sub { font-size: 1.3rem; color: #666666; margin-bottom: 1.5rem; }
         .feature-card {
             background: #232b3b;
             border-radius: 18px;
@@ -91,7 +91,7 @@ def display_landing_page():
             justify-content: space-between;
             align-items: center;
         }
-        .jobfair-title { margin-top: 1rem; font-size: 1.2rem; font-weight: 700; }
+        .jobfair-title { margin-top: 1rem; font-size: 1.2rem; font-weight: 700; color: #ffffff !important; }
         .jobfair-desc { color: #cbd5e1; margin-bottom: 0.7rem; }
         .jobfair-list { color: #cbd5e1; margin-top: 1rem; margin-bottom: 1.2rem; }
         .jobfair-btn-row { width: 100%; margin-top: 1.2rem; text-align: center; }
@@ -102,6 +102,9 @@ def display_landing_page():
             font-size: 1.1rem;
             padding: 0.7rem 0;
             border-radius: 8px;
+        }
+        .feature-card b, .feature-card span {
+            color: #ffffff !important; /* Ensure text is always visible */
         }
         @media (max-width: 900px) {
             .hero-title { font-size: 2.2rem; }
@@ -119,7 +122,7 @@ def display_landing_page():
         unsafe_allow_html=True
     )
     st.markdown('<div class="hero-section">', unsafe_allow_html=True)
-    st.markdown('<span class="hero-title">Resume Analyzer & Booth <span style="color:#3b82f6;">Recommendations</span></span>', unsafe_allow_html=True)
+    st.markdown('<span class="hero-title">Resume Analyzer & Booth <span style="color:#AD9C8E;">Recommendations</span></span>', unsafe_allow_html=True)
     st.markdown('<div class="hero-sub">Your AI-powered Job Fair Assistant</div>', unsafe_allow_html=True)
     st.write("Get personalized career insights and discover the perfect job fair booths tailored to your skills and aspirations")
     # Center login/register using columns
@@ -406,16 +409,16 @@ def display_navbar():
         font-size: 1.3rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        color: #fff;
+        color: #333333;
     }
     .custom-sidebar-welcome {
         font-size: 1.05rem;
-        color: #cbd5e1;
+        color: #444444;
         margin-bottom: 0.2rem;
     }
     .custom-sidebar-role {
         font-size: 0.98rem;
-        color: #60a5fa;
+        color: #AD9C8E;
         margin-bottom: 1.1rem;
     }
     .custom-sidebar-btn {
